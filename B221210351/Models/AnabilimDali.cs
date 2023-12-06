@@ -2,7 +2,13 @@
 {
     public class AnabilimDali
     {
-        public int Id { get; set; }
+        AnabilimDali()
+        {
+            Poliklinikler = new HashSet<Poliklinik>();
+        }
+        public int AnabilimDaliId { get; set; }
         public string Ad { get; set; }
+
+        public ICollection<Poliklinik> Poliklinikler { get; set; }
     }
 }

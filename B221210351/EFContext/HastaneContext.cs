@@ -8,7 +8,7 @@ namespace B221210351.EFContext
         DbSet<Admin> Adminler { get; set; }
         DbSet<Adres> Adresler { get; set; }
         DbSet<AnabilimDali> AnabilimDallari { get; set; }
-        DbSet<Sehir> Sehirler { get; set; }
+        DbSet<Il> Sehirler { get; set; }
         DbSet<Ilce> Ilceler { get; set; }
         DbSet<Mahalle> Mahalleler { get; set; }
         DbSet<Doktor> Doktorlar { get; set; }

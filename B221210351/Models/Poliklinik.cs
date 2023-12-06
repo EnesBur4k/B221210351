@@ -2,7 +2,13 @@
 {
     public class Poliklinik
     {
-        public int Id { get; set; }
+        Poliklinik()
+        {
+            Doktorlar = new HashSet<Doktor>();
+        }
+        public int PoliklinikId { get; set; }
         public AnabilimDali AnabilimDali { get; set; }
+
+        public ICollection<Doktor> Doktorlar { get; set; }
     }
 }

@@ -2,7 +2,10 @@
 {
     public class Hasta : Kisi
     {
-        public int Id { get; set; }
-        public ICollection<Randevu> Randevu { get; set; }
+        Hasta() 
+        {
+            Randevular = new HashSet<Randevu>();
+        }
+        public ICollection<Randevu> Randevular { get; set; }
     }
 }

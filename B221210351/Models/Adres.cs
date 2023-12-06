@@ -2,6 +2,12 @@
 {
     public class Adres
     {
-        public Sehir Sehir { get; set; }
+        public int AdresId { get; set; }
+        public Il Il { get; set; }
+        public Ilce Ilce { get; set; }
+        public Mahalle Mahalle { get; set; }
+        public Cadde Cadde { get; set; }
+        public int BinaNo { get; set; }
+        public int DaireNo { get; set; }
     }
 }
