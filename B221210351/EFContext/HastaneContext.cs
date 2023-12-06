@@ -13,7 +13,7 @@ namespace B221210351.EFContext
         DbSet<Mahalle> Mahalleler { get; set; }
         DbSet<Doktor> Doktorlar { get; set; }
         DbSet<Hasta> Hastalar { get; set; }
-        DbSet<Kisi> Kisiler { get; set; }
+        //DbSet<Kisi> Kisiler { get; set; }
         DbSet<Poliklinik> Poliklinikler { get; set; }
         DbSet<Randevu> Randevular { get; set; }
 

@@ -164,36 +164,59 @@ namespace B221210351.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Kisiler",
+                name: "Doktorlar",
                 columns: table => new
                 {
-                    KisiId = table.Column<int>(type: "int", nullable: false)
+                    DoktorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ad = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Soyad = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DogumGunu = table.Column<int>(type: "int", nullable: false),
                     Cinsiyet = table.Column<bool>(type: "bit", nullable: false),
                     KimlikNo = table.Column<int>(type: "int", nullable: false),
+                    CalismaSaati = table.Column<int>(type: "int", nullable: false),
+                    NobetGunleri = table.Column<int>(type: "int", nullable: false),
                     AdresId = table.Column<int>(type: "int", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CalismaSaati = table.Column<int>(type: "int", nullable: true),
-                    NobetGunleri = table.Column<int>(type: "int", nullable: true),
-                    PoliklinikId = table.Column<int>(type: "int", nullable: true)
+                    PoliklinikId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Kisiler", x => x.KisiId);
+                    table.PrimaryKey("PK_Doktorlar", x => x.DoktorId);
                     table.ForeignKey(
-                        name: "FK_Kisiler_Adresler_AdresId",
+                        name: "FK_Doktorlar_Adresler_AdresId",
                         column: x => x.AdresId,
                         principalTable: "Adresler",
                         principalColumn: "AdresId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Kisiler_Poliklinikler_PoliklinikId",
+                        name: "FK_Doktorlar_Poliklinikler_PoliklinikId",
                         column: x => x.PoliklinikId,
                         principalTable: "Poliklinikler",
                         principalColumn: "PoliklinikId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hastalar",
+                columns: table => new
+                {
+                    HastaId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Soyad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DogumGunu = table.Column<int>(type: "int", nullable: false),
+                    Cinsiyet = table.Column<bool>(type: "bit", nullable: false),
+                    KimlikNo = table.Column<int>(type: "int", nullable: false),
+                    AdresId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hastalar", x => x.HastaId);
+                    table.ForeignKey(
+                        name: "FK_Hastalar_Adresler_AdresId",
+                        column: x => x.AdresId,
+                        principalTable: "Adresler",
+                        principalColumn: "AdresId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -204,23 +227,23 @@ namespace B221210351.Migrations
                     RandevuId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PoliklinikId = table.Column<int>(type: "int", nullable: false),
-                    DoktorKisiId = table.Column<int>(type: "int", nullable: false),
-                    HastaKisiId = table.Column<int>(type: "int", nullable: false)
+                    DoktorId = table.Column<int>(type: "int", nullable: false),
+                    HastaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Randevular", x => x.RandevuId);
                     table.ForeignKey(
-                        name: "FK_Randevular_Kisiler_DoktorKisiId",
-                        column: x => x.DoktorKisiId,
-                        principalTable: "Kisiler",
-                        principalColumn: "KisiId",
+                        name: "FK_Randevular_Doktorlar_DoktorId",
+                        column: x => x.DoktorId,
+                        principalTable: "Doktorlar",
+                        principalColumn: "DoktorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Randevular_Kisiler_HastaKisiId",
-                        column: x => x.HastaKisiId,
-                        principalTable: "Kisiler",
-                        principalColumn: "KisiId",
+                        name: "FK_Randevular_Hastalar_HastaId",
+                        column: x => x.HastaId,
+                        principalTable: "Hastalar",
+                        principalColumn: "HastaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Randevular_Poliklinikler_PoliklinikId",
@@ -256,19 +279,24 @@ namespace B221210351.Migrations
                 column: "MahalleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ilceler_IlId",
-                table: "Ilceler",
-                column: "IlId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Kisiler_AdresId",
-                table: "Kisiler",
+                name: "IX_Doktorlar_AdresId",
+                table: "Doktorlar",
                 column: "AdresId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Kisiler_PoliklinikId",
-                table: "Kisiler",
+                name: "IX_Doktorlar_PoliklinikId",
+                table: "Doktorlar",
                 column: "PoliklinikId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hastalar_AdresId",
+                table: "Hastalar",
+                column: "AdresId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ilceler_IlId",
+                table: "Ilceler",
+                column: "IlId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Mahalleler_IlceId",
@@ -281,14 +309,14 @@ namespace B221210351.Migrations
                 column: "AnabilimDaliId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Randevular_DoktorKisiId",
+                name: "IX_Randevular_DoktorId",
                 table: "Randevular",
-                column: "DoktorKisiId");
+                column: "DoktorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Randevular_HastaKisiId",
+                name: "IX_Randevular_HastaId",
                 table: "Randevular",
-                column: "HastaKisiId");
+                column: "HastaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Randevular_PoliklinikId",
@@ -305,19 +333,22 @@ namespace B221210351.Migrations
                 name: "Randevular");
 
             migrationBuilder.DropTable(
-                name: "Kisiler");
+                name: "Doktorlar");
 
             migrationBuilder.DropTable(
-                name: "Adresler");
+                name: "Hastalar");
 
             migrationBuilder.DropTable(
                 name: "Poliklinikler");
 
             migrationBuilder.DropTable(
-                name: "Cadde");
+                name: "Adresler");
 
             migrationBuilder.DropTable(
                 name: "AnabilimDallari");
+
+            migrationBuilder.DropTable(
+                name: "Cadde");
 
             migrationBuilder.DropTable(
                 name: "Mahalleler");

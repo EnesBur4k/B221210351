@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B221210351.Migrations
 {
     [DbContext(typeof(HastaneContext))]
-    [Migration("20231206111235_mig_1")]
+    [Migration("20231206115201_mig_1")]
     partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,6 +123,87 @@ namespace B221210351.Migrations
                     b.ToTable("Cadde");
                 });
 
+            modelBuilder.Entity("B221210351.Models.Doktor", b =>
+                {
+                    b.Property<int>("DoktorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoktorId"), 1L, 1);
+
+                    b.Property<string>("Ad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AdresId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CalismaSaati")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Cinsiyet")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("DogumGunu")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KimlikNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NobetGunleri")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PoliklinikId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Soyad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DoktorId");
+
+                    b.HasIndex("AdresId");
+
+                    b.HasIndex("PoliklinikId");
+
+                    b.ToTable("Doktorlar");
+                });
+
+            modelBuilder.Entity("B221210351.Models.Hasta", b =>
+                {
+                    b.Property<int>("HastaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HastaId"), 1L, 1);
+
+                    b.Property<string>("Ad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AdresId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Cinsiyet")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("DogumGunu")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KimlikNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Soyad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HastaId");
+
+                    b.HasIndex("AdresId");
+
+                    b.ToTable("Hastalar");
+                });
+
             modelBuilder.Entity("B221210351.Models.Il", b =>
                 {
                     b.Property<int>("IlId")
@@ -152,47 +233,6 @@ namespace B221210351.Migrations
                     b.HasIndex("IlId");
 
                     b.ToTable("Ilceler");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Kisi", b =>
-                {
-                    b.Property<int>("KisiId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KisiId"), 1L, 1);
-
-                    b.Property<string>("Ad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AdresId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Cinsiyet")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DogumGunu")
-                        .HasColumnType("int");
-
-                    b.Property<int>("KimlikNo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Soyad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("KisiId");
-
-                    b.HasIndex("AdresId");
-
-                    b.ToTable("Kisiler");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Kisi");
                 });
 
             modelBuilder.Entity("B221210351.Models.Mahalle", b =>
@@ -239,10 +279,10 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RandevuId"), 1L, 1);
 
-                    b.Property<int>("DoktorKisiId")
+                    b.Property<int>("DoktorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HastaKisiId")
+                    b.Property<int>("HastaId")
                         .HasColumnType("int");
 
                     b.Property<int>("PoliklinikId")
@@ -250,38 +290,13 @@ namespace B221210351.Migrations
 
                     b.HasKey("RandevuId");
 
-                    b.HasIndex("DoktorKisiId");
+                    b.HasIndex("DoktorId");
 
-                    b.HasIndex("HastaKisiId");
+                    b.HasIndex("HastaId");
 
                     b.HasIndex("PoliklinikId");
 
                     b.ToTable("Randevular");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Doktor", b =>
-                {
-                    b.HasBaseType("B221210351.Models.Kisi");
-
-                    b.Property<int>("CalismaSaati")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NobetGunleri")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PoliklinikId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("PoliklinikId");
-
-                    b.HasDiscriminator().HasValue("Doktor");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Hasta", b =>
-                {
-                    b.HasBaseType("B221210351.Models.Kisi");
-
-                    b.HasDiscriminator().HasValue("Hasta");
                 });
 
             modelBuilder.Entity("B221210351.Models.Adres", b =>
@@ -326,14 +341,26 @@ namespace B221210351.Migrations
                         .HasForeignKey("MahalleId");
                 });
 
-            modelBuilder.Entity("B221210351.Models.Ilce", b =>
+            modelBuilder.Entity("B221210351.Models.Doktor", b =>
                 {
-                    b.HasOne("B221210351.Models.Il", null)
-                        .WithMany("Ilceler")
-                        .HasForeignKey("IlId");
+                    b.HasOne("B221210351.Models.Adres", "Adres")
+                        .WithMany()
+                        .HasForeignKey("AdresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("B221210351.Models.Poliklinik", "Poliklinik")
+                        .WithMany("Doktorlar")
+                        .HasForeignKey("PoliklinikId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Adres");
+
+                    b.Navigation("Poliklinik");
                 });
 
-            modelBuilder.Entity("B221210351.Models.Kisi", b =>
+            modelBuilder.Entity("B221210351.Models.Hasta", b =>
                 {
                     b.HasOne("B221210351.Models.Adres", "Adres")
                         .WithMany()
@@ -342,6 +369,13 @@ namespace B221210351.Migrations
                         .IsRequired();
 
                     b.Navigation("Adres");
+                });
+
+            modelBuilder.Entity("B221210351.Models.Ilce", b =>
+                {
+                    b.HasOne("B221210351.Models.Il", null)
+                        .WithMany("Ilceler")
+                        .HasForeignKey("IlId");
                 });
 
             modelBuilder.Entity("B221210351.Models.Mahalle", b =>
@@ -366,13 +400,13 @@ namespace B221210351.Migrations
                 {
                     b.HasOne("B221210351.Models.Doktor", "Doktor")
                         .WithMany()
-                        .HasForeignKey("DoktorKisiId")
+                        .HasForeignKey("DoktorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("B221210351.Models.Hasta", "Hasta")
                         .WithMany("Randevular")
-                        .HasForeignKey("HastaKisiId")
+                        .HasForeignKey("HastaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -389,20 +423,14 @@ namespace B221210351.Migrations
                     b.Navigation("Poliklinik");
                 });
 
-            modelBuilder.Entity("B221210351.Models.Doktor", b =>
-                {
-                    b.HasOne("B221210351.Models.Poliklinik", "Poliklinik")
-                        .WithMany("Doktorlar")
-                        .HasForeignKey("PoliklinikId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Poliklinik");
-                });
-
             modelBuilder.Entity("B221210351.Models.AnabilimDali", b =>
                 {
                     b.Navigation("Poliklinikler");
+                });
+
+            modelBuilder.Entity("B221210351.Models.Hasta", b =>
+                {
+                    b.Navigation("Randevular");
                 });
 
             modelBuilder.Entity("B221210351.Models.Il", b =>
@@ -423,11 +451,6 @@ namespace B221210351.Migrations
             modelBuilder.Entity("B221210351.Models.Poliklinik", b =>
                 {
                     b.Navigation("Doktorlar");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Hasta", b =>
-                {
-                    b.Navigation("Randevular");
                 });
 #pragma warning restore 612, 618
         }
