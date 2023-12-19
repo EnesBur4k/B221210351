@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace B221210351.Models
 {
-    public class Hasta
+    public class Patient
     {
-        Hasta() 
+        Patient() 
         {
             Randevular = new HashSet<Randevu>();
         }
