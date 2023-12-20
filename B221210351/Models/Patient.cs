@@ -7,7 +7,7 @@ namespace B221210351.Models
     {
         Patient() 
         {
-            Randevular = new HashSet<Randevu>();
+            Randevular = new HashSet<Appointment>();
         }
         public int HastaId { get; set; }
         public int KimlikNo { get; set; }
@@ -17,7 +17,7 @@ namespace B221210351.Models
         public string Parola { get; set; }
         public DateTime DogumGunu { get; set; }
         public bool Cinsiyet { get; set; }
-        public Adres Adres { get; set; }
-        public ICollection<Randevu> Randevular { get; set; }
+        public Adress Adres { get; set; }
+        public ICollection<Appointment> Randevular { get; set; }
     }
 }
