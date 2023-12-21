@@ -4,11 +4,13 @@
     {
         Policlinic()
         {
-            Doktorlar = new HashSet<Doctor>();
+            Doctors = new HashSet<Doctor>();
+            Appointments = new HashSet<Appointment>();
         }
-        public int PoliklinikId { get; set; }
-        public Department AnabilimDali { get; set; }
+        public int PoliclinicId { get; set; }
+        public Department Department { get; set; }
 
-        public ICollection<Doctor> Doktorlar { get; set; }
+        public ICollection<Doctor> Doctors { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

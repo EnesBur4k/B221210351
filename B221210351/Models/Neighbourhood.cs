@@ -4,9 +4,9 @@
     {
         Neighbourhood()
         {
-            Caddeler = new HashSet<Street>();
+            Streets = new HashSet<Street>();
         }
-        public int MahalleId { get; set; }
-        public ICollection<Street> Caddeler { get; set; }
+        public int NeighbourhoodId { get; set; }
+        public ICollection<Street> Streets { get; set; }
     }
 }

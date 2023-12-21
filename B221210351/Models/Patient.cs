@@ -7,17 +7,17 @@ namespace B221210351.Models
     {
         Patient() 
         {
-            Randevular = new HashSet<Appointment>();
+            Appointments = new HashSet<Appointment>();
         }
-        public int HastaId { get; set; }
-        public int KimlikNo { get; set; }
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
+        public int PatientId { get; set; }
+        public int PersonalId { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public string EMail { get; set; }
-        public string Parola { get; set; }
-        public DateTime DogumGunu { get; set; }
-        public bool Cinsiyet { get; set; }
-        public Adress Adres { get; set; }
-        public ICollection<Appointment> Randevular { get; set; }
+        public string Password { get; set; }
+        public DateTime BirthDay { get; set; }
+        public bool Gender { get; set; }
+        public Address Address { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

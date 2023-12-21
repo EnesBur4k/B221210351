@@ -4,9 +4,9 @@
     {
         City()
         {
-            Ilceler = new HashSet<District>();
+            Cities = new HashSet<District>();
         }
-        public int IlId { get; set; }
-        public ICollection<District> Ilceler { get; set; }
+        public int CityId { get; set; }
+        public ICollection<District> Cities { get; set; }
     }
 }

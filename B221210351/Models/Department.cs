@@ -4,11 +4,11 @@
     {
         Department()
         {
-            Poliklinikler = new HashSet<Policlinic>();
+            Policlinics = new HashSet<Policlinic>();
         }
-        public int AnabilimDaliId { get; set; }
+        public int DepartmentId { get; set; }
         public string Ad { get; set; }
 
-        public ICollection<Policlinic> Poliklinikler { get; set; }
+        public ICollection<Policlinic> Policlinics { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using B221210351.EFContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B221210351.Migrations
 {
     [DbContext(typeof(HastaneContext))]
-    partial class HastaneContextModelSnapshot : ModelSnapshot
+    [Migration("20231221152340_mig")]
+    partial class mig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,28 +57,7 @@ namespace B221210351.Migrations
 
                     b.HasIndex("StreetId");
 
-                    b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Admin", b =>
-                {
-                    b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"), 1L, 1);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AdminId");
-
-                    b.ToTable("Admins");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("B221210351.Models.Appointment", b =>
@@ -117,7 +98,7 @@ namespace B221210351.Migrations
 
                     b.HasKey("CityId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City");
                 });
 
             modelBuilder.Entity("B221210351.Models.Department", b =>
@@ -134,7 +115,7 @@ namespace B221210351.Migrations
 
                     b.HasKey("DepartmentId");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Department");
                 });
 
             modelBuilder.Entity("B221210351.Models.District", b =>
@@ -152,7 +133,7 @@ namespace B221210351.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Districts");
+                    b.ToTable("District");
                 });
 
             modelBuilder.Entity("B221210351.Models.Doctor", b =>
@@ -216,7 +197,7 @@ namespace B221210351.Migrations
 
                     b.HasIndex("DistrictId");
 
-                    b.ToTable("Neighbourhoods");
+                    b.ToTable("Neighbourhood");
                 });
 
             modelBuilder.Entity("B221210351.Models.Patient", b =>
@@ -262,41 +243,6 @@ namespace B221210351.Migrations
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("B221210351.Models.Person", b =>
-                {
-                    b.Property<int>("PersonId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"), 1L, 1);
-
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BirthDay")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PersonalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PersonId");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("People");
-                });
-
             modelBuilder.Entity("B221210351.Models.Policlinic", b =>
                 {
                     b.Property<int>("PoliclinicId")
@@ -335,27 +281,6 @@ namespace B221210351.Migrations
                     b.HasIndex("NeighbourhoodId");
 
                     b.ToTable("Street");
-                });
-
-            modelBuilder.Entity("B221210351.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("B221210351.Models.Address", b =>
@@ -454,17 +379,6 @@ namespace B221210351.Migrations
                 });
 
             modelBuilder.Entity("B221210351.Models.Patient", b =>
-                {
-                    b.HasOne("B221210351.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Person", b =>
                 {
                     b.HasOne("B221210351.Models.Address", "Address")
                         .WithMany()

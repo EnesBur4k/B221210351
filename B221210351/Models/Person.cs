@@ -1,13 +1,13 @@
 ﻿namespace B221210351.Models
 {
-    public class Kisi
+    public class Person
     {
-        public int KisiId { get; set; }
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
-        public int DogumGunu { get; set; }
-        public bool Cinsiyet { get; set; }
-        public int KimlikNo { get; set; }
-        public Adres Adres { get; set; }
+        public int PersonId { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public int BirthDay { get; set; }
+        public bool Gender { get; set; }
+        public int PersonalId { get; set; }
+        public Address Address { get; set; }
     }
 }

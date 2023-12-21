@@ -2,7 +2,7 @@
 {
     public class Street
     {
-        public int CaddeId { get; set; }
-        public string CaddeAdi { get; set; }
+        public int StreetId { get; set; }
+        public string StreetName { get; set; }
     }
 }

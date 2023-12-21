@@ -10,5 +10,20 @@ namespace B221210351.Controllers
         {
             return View();
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(Admin admin)
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }

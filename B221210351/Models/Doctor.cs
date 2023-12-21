@@ -2,15 +2,16 @@
 {
     public class Doctor
     {
-        public int DoktorId { get; set; }
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
-        public int DogumGunu { get; set; }
-        public bool Cinsiyet { get; set; }
-        public int KimlikNo { get; set; }
-        public int CalismaSaati { get; set; }
-        public int NobetGunleri { get; set; }
-        public Adress Adres { get; set; }
-        public Policlinic Poliklinik { get; set; }
+        public int DoctorId { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public int BirthDay { get; set; }
+        public bool Gerder { get; set; }
+        public int PersonalId { get; set; }
+        public int WorkingHours { get; set; }
+        public int WatchDays { get; set; }
+        public Address Address { get; set; }
+        public Policlinic Policlinic { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }
