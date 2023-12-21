@@ -115,9 +115,30 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"), 1L, 1);
 
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CityId");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            CityId = 1,
+                            CityName = "İstanbul"
+                        },
+                        new
+                        {
+                            CityId = 2,
+                            CityName = "Kocaeli"
+                        },
+                        new
+                        {
+                            CityId = 3,
+                            CityName = "Sakarya"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Department", b =>
@@ -145,14 +166,30 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DistrictId"), 1L, 1);
 
-                    b.Property<int?>("CityId")
-                        .HasColumnType("int");
+                    b.Property<string>("DistrictName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DistrictId");
 
-                    b.HasIndex("CityId");
-
                     b.ToTable("Districts");
+
+                    b.HasData(
+                        new
+                        {
+                            DistrictId = 1,
+                            DistrictName = "Pendik"
+                        },
+                        new
+                        {
+                            DistrictId = 2,
+                            DistrictName = "Kartal"
+                        },
+                        new
+                        {
+                            DistrictId = 3,
+                            DistrictName = "Maltepe"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Doctor", b =>
@@ -169,7 +206,7 @@ namespace B221210351.Migrations
                     b.Property<int>("BirthDay")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Gerder")
+                    b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -209,14 +246,30 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NeighbourhoodId"), 1L, 1);
 
-                    b.Property<int?>("DistrictId")
-                        .HasColumnType("int");
+                    b.Property<string>("NeighbourhoodName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NeighbourhoodId");
 
-                    b.HasIndex("DistrictId");
-
                     b.ToTable("Neighbourhoods");
+
+                    b.HasData(
+                        new
+                        {
+                            NeighbourhoodId = 1,
+                            NeighbourhoodName = "Güzelyalı"
+                        },
+                        new
+                        {
+                            NeighbourhoodId = 2,
+                            NeighbourhoodName = "Kaynarca"
+                        },
+                        new
+                        {
+                            NeighbourhoodId = 3,
+                            NeighbourhoodName = "Çamçeşme"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Patient", b =>
@@ -308,6 +361,10 @@ namespace B221210351.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
+                    b.Property<string>("PoliclinicName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("PoliclinicId");
 
                     b.HasIndex("DepartmentId");
@@ -323,18 +380,30 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StreetId"), 1L, 1);
 
-                    b.Property<int?>("NeighbourhoodId")
-                        .HasColumnType("int");
-
                     b.Property<string>("StreetName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("StreetId");
 
-                    b.HasIndex("NeighbourhoodId");
-
                     b.ToTable("Street");
+
+                    b.HasData(
+                        new
+                        {
+                            StreetId = 1,
+                            StreetName = "Yavuz Selim"
+                        },
+                        new
+                        {
+                            StreetId = 2,
+                            StreetName = "Teoman"
+                        },
+                        new
+                        {
+                            StreetId = 3,
+                            StreetName = "Toplum"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.User", b =>
@@ -361,25 +430,25 @@ namespace B221210351.Migrations
             modelBuilder.Entity("B221210351.Models.Address", b =>
                 {
                     b.HasOne("B221210351.Models.City", "City")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("B221210351.Models.District", "District")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("B221210351.Models.Neighbourhood", "Neighbourhood")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("NeighbourhoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("B221210351.Models.Street", "Street")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("StreetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -420,13 +489,6 @@ namespace B221210351.Migrations
                     b.Navigation("Policlinic");
                 });
 
-            modelBuilder.Entity("B221210351.Models.District", b =>
-                {
-                    b.HasOne("B221210351.Models.City", null)
-                        .WithMany("Cities")
-                        .HasForeignKey("CityId");
-                });
-
             modelBuilder.Entity("B221210351.Models.Doctor", b =>
                 {
                     b.HasOne("B221210351.Models.Address", "Address")
@@ -444,13 +506,6 @@ namespace B221210351.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("Policlinic");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Neighbourhood", b =>
-                {
-                    b.HasOne("B221210351.Models.District", null)
-                        .WithMany("Neighbourhoods")
-                        .HasForeignKey("DistrictId");
                 });
 
             modelBuilder.Entity("B221210351.Models.Patient", b =>
@@ -486,16 +541,9 @@ namespace B221210351.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("B221210351.Models.Street", b =>
-                {
-                    b.HasOne("B221210351.Models.Neighbourhood", null)
-                        .WithMany("Streets")
-                        .HasForeignKey("NeighbourhoodId");
-                });
-
             modelBuilder.Entity("B221210351.Models.City", b =>
                 {
-                    b.Navigation("Cities");
+                    b.Navigation("Addresses");
                 });
 
             modelBuilder.Entity("B221210351.Models.Department", b =>
@@ -505,7 +553,7 @@ namespace B221210351.Migrations
 
             modelBuilder.Entity("B221210351.Models.District", b =>
                 {
-                    b.Navigation("Neighbourhoods");
+                    b.Navigation("Addresses");
                 });
 
             modelBuilder.Entity("B221210351.Models.Doctor", b =>
@@ -515,7 +563,7 @@ namespace B221210351.Migrations
 
             modelBuilder.Entity("B221210351.Models.Neighbourhood", b =>
                 {
-                    b.Navigation("Streets");
+                    b.Navigation("Addresses");
                 });
 
             modelBuilder.Entity("B221210351.Models.Patient", b =>
@@ -528,6 +576,11 @@ namespace B221210351.Migrations
                     b.Navigation("Appointments");
 
                     b.Navigation("Doctors");
+                });
+
+            modelBuilder.Entity("B221210351.Models.Street", b =>
+                {
+                    b.Navigation("Addresses");
                 });
 #pragma warning restore 612, 618
         }

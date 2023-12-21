@@ -2,7 +2,7 @@
 {
     public class Department
     {
-        Department()
+        public Department()
         {
             Policlinics = new HashSet<Policlinic>();
         }

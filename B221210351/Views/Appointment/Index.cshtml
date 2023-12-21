@@ -1,0 +1,43 @@
+﻿@* @model AppointmentViewModel *@
+
+<h1>
+    RANDEVU EKRANI
+
+    il
+    ilçe
+    hastane
+    poliklinik
+    doktor
+    tarih
+
+    sorgula
+
+    getir
+</h1>
+
+<form asp-action="Search" asp-controller="Appointment">
+
+    Poliklinik
+    <select>
+        @foreach (var item in Model)
+        {
+            <div>@item.Bar</div>
+        }
+        <option>İstanbul</option>
+    </select>
+    Doktor
+    <select>
+        <option>İstanbul</option>
+        <option>Ankara</option>
+        <option>İzmir</option>
+    </select>
+    Tarih
+    <select>
+        <option>İstanbul</option>
+        <option>Ankara</option>
+        <option>İzmir</option>
+    </select>
+
+    <button type="submit"> Randevu Ara</button>
+
+</form>

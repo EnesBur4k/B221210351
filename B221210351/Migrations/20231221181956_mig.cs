@@ -10,19 +10,34 @@ namespace B221210351.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "City",
+                name: "Admins",
                 columns: table => new
                 {
-                    CityId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                    AdminId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_City", x => x.CityId);
+                    table.PrimaryKey("PK_Admins", x => x.AdminId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Department",
+                name: "Cities",
+                columns: table => new
+                {
+                    CityId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.CityId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Departments",
                 columns: table => new
                 {
                     DepartmentId = table.Column<int>(type: "int", nullable: false)
@@ -31,62 +46,33 @@ namespace B221210351.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Department", x => x.DepartmentId);
+                    table.PrimaryKey("PK_Departments", x => x.DepartmentId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "District",
+                name: "Districts",
                 columns: table => new
                 {
                     DistrictId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CityId = table.Column<int>(type: "int", nullable: true)
+                    DistrictName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_District", x => x.DistrictId);
-                    table.ForeignKey(
-                        name: "FK_District_City_CityId",
-                        column: x => x.CityId,
-                        principalTable: "City",
-                        principalColumn: "CityId");
+                    table.PrimaryKey("PK_Districts", x => x.DistrictId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Policlinics",
-                columns: table => new
-                {
-                    PoliclinicId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DepartmentId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Policlinics", x => x.PoliclinicId);
-                    table.ForeignKey(
-                        name: "FK_Policlinics_Department_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Department",
-                        principalColumn: "DepartmentId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Neighbourhood",
+                name: "Neighbourhoods",
                 columns: table => new
                 {
                     NeighbourhoodId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DistrictId = table.Column<int>(type: "int", nullable: true)
+                    NeighbourhoodName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Neighbourhood", x => x.NeighbourhoodId);
-                    table.ForeignKey(
-                        name: "FK_Neighbourhood_District_DistrictId",
-                        column: x => x.DistrictId,
-                        principalTable: "District",
-                        principalColumn: "DistrictId");
+                    table.PrimaryKey("PK_Neighbourhoods", x => x.NeighbourhoodId);
                 });
 
             migrationBuilder.CreateTable(
@@ -95,21 +81,49 @@ namespace B221210351.Migrations
                 {
                     StreetId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StreetName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NeighbourhoodId = table.Column<int>(type: "int", nullable: true)
+                    StreetName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Street", x => x.StreetId);
-                    table.ForeignKey(
-                        name: "FK_Street_Neighbourhood_NeighbourhoodId",
-                        column: x => x.NeighbourhoodId,
-                        principalTable: "Neighbourhood",
-                        principalColumn: "NeighbourhoodId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Users",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Policlinics",
+                columns: table => new
+                {
+                    PoliclinicId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PoliclinicName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DepartmentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Policlinics", x => x.PoliclinicId);
+                    table.ForeignKey(
+                        name: "FK_Policlinics_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "DepartmentId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Addresses",
                 columns: table => new
                 {
                     AddressId = table.Column<int>(type: "int", nullable: false)
@@ -122,27 +136,27 @@ namespace B221210351.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.AddressId);
+                    table.PrimaryKey("PK_Addresses", x => x.AddressId);
                     table.ForeignKey(
-                        name: "FK_Address_City_CityId",
+                        name: "FK_Addresses_Cities_CityId",
                         column: x => x.CityId,
-                        principalTable: "City",
+                        principalTable: "Cities",
                         principalColumn: "CityId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Address_District_DistrictId",
+                        name: "FK_Addresses_Districts_DistrictId",
                         column: x => x.DistrictId,
-                        principalTable: "District",
+                        principalTable: "Districts",
                         principalColumn: "DistrictId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Address_Neighbourhood_NeighbourhoodId",
+                        name: "FK_Addresses_Neighbourhoods_NeighbourhoodId",
                         column: x => x.NeighbourhoodId,
-                        principalTable: "Neighbourhood",
+                        principalTable: "Neighbourhoods",
                         principalColumn: "NeighbourhoodId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Address_Street_StreetId",
+                        name: "FK_Addresses_Street_StreetId",
                         column: x => x.StreetId,
                         principalTable: "Street",
                         principalColumn: "StreetId",
@@ -158,7 +172,7 @@ namespace B221210351.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDay = table.Column<int>(type: "int", nullable: false),
-                    Gerder = table.Column<bool>(type: "bit", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
                     PersonalId = table.Column<int>(type: "int", nullable: false),
                     WorkingHours = table.Column<int>(type: "int", nullable: false),
                     WatchDays = table.Column<int>(type: "int", nullable: false),
@@ -169,9 +183,9 @@ namespace B221210351.Migrations
                 {
                     table.PrimaryKey("PK_Doctors", x => x.DoctorId);
                     table.ForeignKey(
-                        name: "FK_Doctors_Address_AddressId",
+                        name: "FK_Doctors_Addresses_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "AddressId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -201,9 +215,33 @@ namespace B221210351.Migrations
                 {
                     table.PrimaryKey("PK_Patients", x => x.PatientId);
                     table.ForeignKey(
-                        name: "FK_Patients_Address_AddressId",
+                        name: "FK_Patients_Addresses_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
+                        principalColumn: "AddressId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "People",
+                columns: table => new
+                {
+                    PersonId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDay = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
+                    PersonalId = table.Column<int>(type: "int", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_People", x => x.PersonId);
+                    table.ForeignKey(
+                        name: "FK_People_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
                         principalColumn: "AddressId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -241,24 +279,64 @@ namespace B221210351.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "CityId", "CityName" },
+                values: new object[,]
+                {
+                    { 1, "İstanbul" },
+                    { 2, "Kocaeli" },
+                    { 3, "Sakarya" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Districts",
+                columns: new[] { "DistrictId", "DistrictName" },
+                values: new object[,]
+                {
+                    { 1, "Pendik" },
+                    { 2, "Kartal" },
+                    { 3, "Maltepe" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Neighbourhoods",
+                columns: new[] { "NeighbourhoodId", "NeighbourhoodName" },
+                values: new object[,]
+                {
+                    { 1, "Güzelyalı" },
+                    { 2, "Kaynarca" },
+                    { 3, "Çamçeşme" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Street",
+                columns: new[] { "StreetId", "StreetName" },
+                values: new object[,]
+                {
+                    { 1, "Yavuz Selim" },
+                    { 2, "Teoman" },
+                    { 3, "Toplum" }
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Address_CityId",
-                table: "Address",
+                name: "IX_Addresses_CityId",
+                table: "Addresses",
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address_DistrictId",
-                table: "Address",
+                name: "IX_Addresses_DistrictId",
+                table: "Addresses",
                 column: "DistrictId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address_NeighbourhoodId",
-                table: "Address",
+                name: "IX_Addresses_NeighbourhoodId",
+                table: "Addresses",
                 column: "NeighbourhoodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address_StreetId",
-                table: "Address",
+                name: "IX_Addresses_StreetId",
+                table: "Addresses",
                 column: "StreetId");
 
             migrationBuilder.CreateIndex(
@@ -277,11 +355,6 @@ namespace B221210351.Migrations
                 column: "PoliclinicId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_District_CityId",
-                table: "District",
-                column: "CityId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Doctors_AddressId",
                 table: "Doctors",
                 column: "AddressId");
@@ -292,30 +365,34 @@ namespace B221210351.Migrations
                 column: "PoliclinicId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Neighbourhood_DistrictId",
-                table: "Neighbourhood",
-                column: "DistrictId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Patients_AddressId",
                 table: "Patients",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_People_AddressId",
+                table: "People",
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Policlinics_DepartmentId",
                 table: "Policlinics",
                 column: "DepartmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Street_NeighbourhoodId",
-                table: "Street",
-                column: "NeighbourhoodId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Admins");
+
+            migrationBuilder.DropTable(
                 name: "Appointments");
+
+            migrationBuilder.DropTable(
+                name: "People");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Doctors");
@@ -327,22 +404,22 @@ namespace B221210351.Migrations
                 name: "Policlinics");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
-                name: "Department");
+                name: "Departments");
+
+            migrationBuilder.DropTable(
+                name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "Districts");
+
+            migrationBuilder.DropTable(
+                name: "Neighbourhoods");
 
             migrationBuilder.DropTable(
                 name: "Street");
-
-            migrationBuilder.DropTable(
-                name: "Neighbourhood");
-
-            migrationBuilder.DropTable(
-                name: "District");
-
-            migrationBuilder.DropTable(
-                name: "City");
         }
     }
 }

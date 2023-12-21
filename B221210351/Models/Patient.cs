@@ -5,7 +5,7 @@ namespace B221210351.Models
 {
     public class Patient
     {
-        Patient() 
+        public Patient() 
         {
             Appointments = new HashSet<Appointment>();
         }

@@ -5,18 +5,18 @@ namespace B221210351.EFContext
 {
     public class HastaneContext : DbContext
     {
-        DbSet<Admin> Admins { get; set; }
-        DbSet<User> Users { get; set; }
-        DbSet<Address> Addresses { get; set; }
-        DbSet<Department> Departments { get; set; }
-        DbSet<City> Cities { get; set; }
-        DbSet<District> Districts { get; set; }
-        DbSet<Neighbourhood> Neighbourhoods { get; set; }
-        DbSet<Appointment> Appointments { get; set; }
-        DbSet<Person> People { get; set; }
-        DbSet<Doctor> Doctors { get; set; }
-        DbSet<Patient> Patients { get; set; }
-        DbSet<Policlinic> Policlinics { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Neighbourhood> Neighbourhoods { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Policlinic> Policlinics { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,16 +34,154 @@ namespace B221210351.EFContext
                 .OnDelete(DeleteBehavior.Restrict); ;
 
             modelBuilder.Entity<Appointment>()
-                .HasOne(a =>a.Patient)
+                .HasOne(a => a.Patient)
                 .WithMany(p => p.Appointments)
                 .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Appointment>()
-                .HasOne(a =>a.Policlinic)
-                .WithMany(p  => p.Appointments)
-                .HasForeignKey(a =>a.PoliclinicId)
-                .OnDelete(DeleteBehavior.Restrict); ;
+                .HasOne(a => a.Policlinic)
+                .WithMany(p => p.Appointments)
+                .HasForeignKey(a => a.PoliclinicId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.City)
+                .WithMany(c => c.Addresses)
+                .HasForeignKey(a => a.CityId);
+
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.District)
+                .WithMany(c => c.Addresses)
+                .HasForeignKey(a => a.DistrictId);
+
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.Neighbourhood)
+                .WithMany(c => c.Addresses)
+                .HasForeignKey(a => a.NeighbourhoodId);
+
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.Street)
+                .WithMany(c => c.Addresses)
+                .HasForeignKey(a => a.StreetId);
+
+            modelBuilder.Entity<Street>()
+                .HasData(
+                new Street
+                {
+                    StreetId = 1,
+                    StreetName = "Yavuz Selim",
+
+                },
+                new Street
+                {
+                    StreetId = 2,
+                    StreetName = "Teoman"
+                },
+                new Street
+                {
+                    StreetId = 3,
+                    StreetName = "Toplum"
+                }
+                );
+
+            modelBuilder.Entity<Neighbourhood>()
+                .HasData(
+                new Neighbourhood
+                {
+                    NeighbourhoodId = 1,
+                    NeighbourhoodName = "Güzelyalı",
+
+                },
+                new Neighbourhood
+                {
+                    NeighbourhoodId = 2,
+                    NeighbourhoodName = "Kaynarca"
+                },
+                new Neighbourhood
+                {
+                    NeighbourhoodId = 3,
+                    NeighbourhoodName = "Çamçeşme"
+                }
+                );
+
+            modelBuilder.Entity<District>()
+                .HasData(
+                new District
+                {
+                    DistrictId = 1,
+                    DistrictName = "Pendik",
+
+                },
+                new District
+                {
+                    DistrictId = 2,
+                    DistrictName = "Kartal"
+                },
+                new District
+                {
+                    DistrictId = 3,
+                    DistrictName = "Maltepe"
+                }
+                );
+            modelBuilder.Entity<City>()
+                .HasData(
+                new City
+                {
+                    CityId = 1,
+                    CityName = "İstanbul",
+
+                },
+                new City
+                {
+                    CityId = 2,
+                    CityName = "Kocaeli"
+                },
+                new City
+                {
+                    CityId = 3,
+                    CityName = "Sakarya"
+                }
+                );
+            //modelBuilder.Entity<Policlinic>()
+            //    .HasData(
+            //    new Policlinic
+            //    {
+            //        PoliclinicId = 1,
+            //        PoliclinicName = "Genel Diş",
+
+            //    },
+            //    new Policlinic
+            //    {
+            //        PoliclinicId = 2,
+            //        PoliclinicName = "Ruh ve Sinir"
+            //    },
+            //    new Policlinic
+            //    {
+            //        PoliclinicId = 3,
+            //        PoliclinicName = "Çocuk Hastalıkları"
+            //    }
+            //    );
+            //modelBuilder.Entity<Doctor>()
+            //    .HasData(
+            //    new Doctor
+            //    {
+            //        DoctorId = 1,
+            //        Name = "Abdülhak Tarhana",
+
+            //    },
+            //    new Doctor
+            //    {
+            //        DoctorId = 2,
+            //        Name = "İbrahim Malkoçoğlu"
+            //    },
+            //    new Doctor
+            //    {
+            //        DoctorId = 3,
+            //        Name = "Ertem Şenşen"
+
+            //    }
+            //    );
         }
     }
 }

@@ -2,11 +2,12 @@
 {
     public class City
     {
-        City()
+        public City()
         {
-            Cities = new HashSet<District>();
+            Addresses = new HashSet<Address>();
         }
         public int CityId { get; set; }
-        public ICollection<District> Cities { get; set; }
+        public string CityName { get; set; }
+        public ICollection<Address> Addresses { get; set; }
     }
 }

@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public string Surname { get; set; }
         public int BirthDay { get; set; }
-        public bool Gerder { get; set; }
+        public bool Gender { get; set; }
         public int PersonalId { get; set; }
         public int WorkingHours { get; set; }
         public int WatchDays { get; set; }

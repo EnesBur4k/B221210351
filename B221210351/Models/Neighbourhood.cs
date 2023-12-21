@@ -2,11 +2,13 @@
 {
     public class Neighbourhood
     {
-        Neighbourhood()
+        public Neighbourhood()
         {
-            Streets = new HashSet<Street>();
+            Addresses = new HashSet<Address>();
         }
         public int NeighbourhoodId { get; set; }
-        public ICollection<Street> Streets { get; set; }
+        public string NeighbourhoodName { get; set; }
+
+        public ICollection<Address> Addresses { get; set; }
     }
 }
