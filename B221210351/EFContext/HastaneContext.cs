@@ -5,7 +5,6 @@ namespace B221210351.EFContext
 {
     public class HastaneContext : DbContext
     {
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -143,45 +142,7 @@ namespace B221210351.EFContext
                     CityName = "Sakarya"
                 }
                 );
-            //modelBuilder.Entity<Policlinic>()
-            //    .HasData(
-            //    new Policlinic
-            //    {
-            //        PoliclinicId = 1,
-            //        PoliclinicName = "Genel Diş",
-
-            //    },
-            //    new Policlinic
-            //    {
-            //        PoliclinicId = 2,
-            //        PoliclinicName = "Ruh ve Sinir"
-            //    },
-            //    new Policlinic
-            //    {
-            //        PoliclinicId = 3,
-            //        PoliclinicName = "Çocuk Hastalıkları"
-            //    }
-            //    );
-            //modelBuilder.Entity<Doctor>()
-            //    .HasData(
-            //    new Doctor
-            //    {
-            //        DoctorId = 1,
-            //        Name = "Abdülhak Tarhana",
-
-            //    },
-            //    new Doctor
-            //    {
-            //        DoctorId = 2,
-            //        Name = "İbrahim Malkoçoğlu"
-            //    },
-            //    new Doctor
-            //    {
-            //        DoctorId = 3,
-            //        Name = "Ertem Şenşen"
-
-            //    }
-            //    );
+            
         }
     }
 }

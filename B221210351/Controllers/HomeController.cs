@@ -7,7 +7,7 @@ namespace B221210351.Controllers
 {
     public class HomeController : Controller
     {
-        HastaneContext Context = new HastaneContext();
+        HastaneContext context = new HastaneContext();
         public IActionResult Index()
         {
             return View();
@@ -19,11 +19,12 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(User User)
+        public IActionResult Login(User user)
         {
-            if(Context.Users.Any(u => u.UserName == User.UserName))
+            if(context.Users.Any(u => u.UserName == user.UserName))
             {
-                if(Context.Users.Any(u => u.Password == User.Password))
+                User userControl = context.Users.FirstOrDefault(u => u.UserName == user.UserName);
+                if (userControl.Password == user.Password)
                     return RedirectToAction("index","appointment");      
             }
             TempData["hataMesaji"] = "Lütfen Bilgileri Doğru Giriniz";
@@ -36,10 +37,10 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(User User)
+        public IActionResult Register(User user)
         {
-            Context.Users.Add(User);
-            Context.SaveChanges();
+            context.Users.Add(user);
+            context.SaveChanges();
             return RedirectToAction("Login");
         }
     }
