@@ -1,0 +1,94 @@
+﻿@model DoctorPageVM
+@* 
+Her klinikte 5 doktor her doktor 1 gün nöbet tutar
+herkes 8-16 arası çalışır. *@
+
+<center>
+    <div class="bg-white p-2 rounded" style="--bs-bg-opacity: .75;">
+
+        <form class="opacity-100" style="width: 50%; " asp-action="addDoctor" asp-controller="Home" asp-area="yonetimPaneli">
+            <div class="form-group">
+                <label for="name">Ad: </label>
+                <input type="text" class="form-control" asp-for="@Model.Doctor.Name">
+            </div>
+            <div class="form-group">
+                <label for="surname">Soyad: </label>
+                <input type="text" class="form-control" asp-for="@Model.Doctor.Surname">
+            </div>
+            <div class="form-group">
+                <label for="PersonalId">TC Kimlik No: </label>
+                <input type="text" class="form-control" asp-for="@Model.Doctor.PersonalId">
+            </div>
+            <div class="form-group">
+                <label for="BirthdayDate">Doğum Tarihi: </label>
+                <input type="datetime-local" class="form-control" asp-for="@Model.Doctor.BirthdayDate">
+            </div>
+            <div class="form-group">
+                <label for="gender">Cinsiyet: </label>
+                <select id="gender" asp-for="@Model.Doctor.Gender">
+                    <option value="0">Erkek</option>
+                    <option value="1">Kadın</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="policlinic">Poliklinik: </label>
+                <select id="policlinic" asp-for="@Model.Doctor.PoliclinicId">
+                    @foreach (var item in Model.Policlinics)
+                    {
+                        <option value="@item.PoliclinicId">@item.PoliclinicName</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Doktor Ekle</button>
+        </form>
+        <span>@TempData["hataMesaji"]</span>
+    </div>
+</center>
+<br>
+
+<table class="table table-dark">
+    <tr>
+        <td>
+            Doktor Adı Soyadı
+        </td>
+        <td>
+            Poliklinik
+        </td>
+        <td>
+            Anabilim Dalı
+        </td>
+        <td>
+            Cinsiyeti
+        </td>
+        <td>
+            TC Kimlik No
+        </td>
+        <td>
+            Nöbet Günleri
+        </td>
+        <td>
+            Çalışma Saatleri
+        </td>
+    </tr>
+    @foreach (var item in Model.Doctors)
+    {
+        <tr>
+            <td>
+                @item.Name @item.Surname
+            </td>
+            <td>
+                @item.Policlinic.PoliclinicName
+            </td>
+            <td>
+                @item.Policlinic.Department.DepartmentName
+            </td>
+            <td>
+                @item.Gender
+            </td>
+            <td>
+                @item.PersonalId
+            </td>
+        </tr>
+    }
+</table>
+<br />

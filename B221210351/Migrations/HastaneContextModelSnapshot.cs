@@ -56,6 +56,35 @@ namespace B221210351.Migrations
                     b.HasIndex("StreetId");
 
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            AddressId = 1,
+                            ApartmentNo = 1,
+                            CityId = 1,
+                            DistrictId = 1,
+                            NeighbourhoodId = 1,
+                            StreetId = 1
+                        },
+                        new
+                        {
+                            AddressId = 2,
+                            ApartmentNo = 2,
+                            CityId = 1,
+                            DistrictId = 2,
+                            NeighbourhoodId = 2,
+                            StreetId = 2
+                        },
+                        new
+                        {
+                            AddressId = 3,
+                            ApartmentNo = 3,
+                            CityId = 1,
+                            DistrictId = 3,
+                            NeighbourhoodId = 3,
+                            StreetId = 3
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Appointment", b =>
@@ -128,13 +157,55 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepartmentId"), 1L, 1);
 
-                    b.Property<string>("Ad")
+                    b.Property<string>("DepartmentName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            DepartmentId = 1,
+                            DepartmentName = "İç Hastalıkları Anabilim Dalı"
+                        },
+                        new
+                        {
+                            DepartmentId = 2,
+                            DepartmentName = "Kardiyoloji Anabilim Dalı"
+                        },
+                        new
+                        {
+                            DepartmentId = 3,
+                            DepartmentName = "Göğüs Hastalıkları Anabilim Dalı"
+                        },
+                        new
+                        {
+                            DepartmentId = 4,
+                            DepartmentName = "Çocuk Sağlığı ve Hastalıkları Anabilim Dalı"
+                        },
+                        new
+                        {
+                            DepartmentId = 5,
+                            DepartmentName = "Ruh Sağlığı ve Hastalıkları Anabilim Dalı"
+                        },
+                        new
+                        {
+                            DepartmentId = 6,
+                            DepartmentName = "Nöroloji Anabilim Dalı"
+                        },
+                        new
+                        {
+                            DepartmentId = 7,
+                            DepartmentName = "Deri ve Zührevi Anabilim Dalı"
+                        },
+                        new
+                        {
+                            DepartmentId = 8,
+                            DepartmentName = "Genel Cerrahi Anabilim Dalı"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.District", b =>
@@ -179,11 +250,8 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorId"), 1L, 1);
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BirthDay")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("BirthdayDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
@@ -192,8 +260,9 @@ namespace B221210351.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonalId")
-                        .HasColumnType("int");
+                    b.Property<string>("PersonalId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PoliclinicId")
                         .HasColumnType("int");
@@ -202,19 +271,113 @@ namespace B221210351.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WatchDays")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WorkingHours")
-                        .HasColumnType("int");
-
                     b.HasKey("DoctorId");
-
-                    b.HasIndex("AddressId");
 
                     b.HasIndex("PoliclinicId");
 
                     b.ToTable("Doctors");
+
+                    b.HasData(
+                        new
+                        {
+                            DoctorId = 1,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Asım",
+                            PersonalId = "123",
+                            PoliclinicId = 1,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 2,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Basım",
+                            PersonalId = "123",
+                            PoliclinicId = 2,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 3,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Casım",
+                            PersonalId = "123",
+                            PoliclinicId = 3,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 4,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Dasım",
+                            PersonalId = "123",
+                            PoliclinicId = 4,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 5,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Esim",
+                            PersonalId = "123",
+                            PoliclinicId = 5,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 6,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Fesim",
+                            PersonalId = "123",
+                            PoliclinicId = 6,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 7,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Kesim",
+                            PersonalId = "123",
+                            PoliclinicId = 7,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 8,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Lesim",
+                            PersonalId = "123",
+                            PoliclinicId = 8,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 9,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Tesim",
+                            PersonalId = "123",
+                            PoliclinicId = 9,
+                            Surname = "Bar"
+                        },
+                        new
+                        {
+                            DoctorId = 10,
+                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Gender = true,
+                            Name = "Resim",
+                            PersonalId = "123",
+                            PoliclinicId = 10,
+                            Surname = "Bar"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Neighbourhood", b =>
@@ -349,6 +512,68 @@ namespace B221210351.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Policlinics");
+
+                    b.HasData(
+                        new
+                        {
+                            PoliclinicId = 1,
+                            DepartmentId = 1,
+                            PoliclinicName = "Endokrinoloji ve Metabolizma Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 2,
+                            DepartmentId = 1,
+                            PoliclinicName = "Gastroenteroloji Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 3,
+                            DepartmentId = 2,
+                            PoliclinicName = "Kardiyoloji Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 4,
+                            DepartmentId = 3,
+                            PoliclinicName = "Göğüs Hastalıkları Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 5,
+                            DepartmentId = 4,
+                            PoliclinicName = "Çocuk Gastroenterolojisi Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 6,
+                            DepartmentId = 4,
+                            PoliclinicName = "Çocuk Kardiyolojisi Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 7,
+                            DepartmentId = 5,
+                            PoliclinicName = "Ruh Sağlığı ve Hastalıkları Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 8,
+                            DepartmentId = 6,
+                            PoliclinicName = "Nöroloji Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 9,
+                            DepartmentId = 7,
+                            PoliclinicName = "Deri ve Zührevi Hastalıklar Kliniği"
+                        },
+                        new
+                        {
+                            PoliclinicId = 10,
+                            DepartmentId = 8,
+                            PoliclinicName = "Genel Cerrahi Kliniği"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Street", b =>
@@ -473,19 +698,11 @@ namespace B221210351.Migrations
 
             modelBuilder.Entity("B221210351.Models.Doctor", b =>
                 {
-                    b.HasOne("B221210351.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("B221210351.Models.Policlinic", "Policlinic")
                         .WithMany("Doctors")
                         .HasForeignKey("PoliclinicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Address");
 
                     b.Navigation("Policlinic");
                 });

@@ -28,7 +28,7 @@ namespace B221210351.Migrations
                 {
                     DepartmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ad = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DepartmentName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,23 +158,14 @@ namespace B221210351.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDay = table.Column<int>(type: "int", nullable: false),
+                    BirthdayDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
-                    PersonalId = table.Column<int>(type: "int", nullable: false),
-                    WorkingHours = table.Column<int>(type: "int", nullable: false),
-                    WatchDays = table.Column<int>(type: "int", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    PersonalId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PoliclinicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Doctors", x => x.DoctorId);
-                    table.ForeignKey(
-                        name: "FK_Doctors_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Doctors_Policlinics_PoliclinicId",
                         column: x => x.PoliclinicId,
@@ -277,6 +268,21 @@ namespace B221210351.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "DepartmentId", "DepartmentName" },
+                values: new object[,]
+                {
+                    { 1, "İç Hastalıkları Anabilim Dalı" },
+                    { 2, "Kardiyoloji Anabilim Dalı" },
+                    { 3, "Göğüs Hastalıkları Anabilim Dalı" },
+                    { 4, "Çocuk Sağlığı ve Hastalıkları Anabilim Dalı" },
+                    { 5, "Ruh Sağlığı ve Hastalıkları Anabilim Dalı" },
+                    { 6, "Nöroloji Anabilim Dalı" },
+                    { 7, "Deri ve Zührevi Anabilim Dalı" },
+                    { 8, "Genel Cerrahi Anabilim Dalı" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Districts",
                 columns: new[] { "DistrictId", "DistrictName" },
                 values: new object[,]
@@ -304,6 +310,50 @@ namespace B221210351.Migrations
                     { 1, "Yavuz Selim" },
                     { 2, "Teoman" },
                     { 3, "Toplum" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Addresses",
+                columns: new[] { "AddressId", "ApartmentNo", "CityId", "DistrictId", "NeighbourhoodId", "StreetId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1, 1, 1 },
+                    { 2, 2, 1, 2, 2, 2 },
+                    { 3, 3, 1, 3, 3, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Policlinics",
+                columns: new[] { "PoliclinicId", "DepartmentId", "PoliclinicName" },
+                values: new object[,]
+                {
+                    { 1, 1, "Endokrinoloji ve Metabolizma Kliniği" },
+                    { 2, 1, "Gastroenteroloji Kliniği" },
+                    { 3, 2, "Kardiyoloji Kliniği" },
+                    { 4, 3, "Göğüs Hastalıkları Kliniği" },
+                    { 5, 4, "Çocuk Gastroenterolojisi Kliniği" },
+                    { 6, 4, "Çocuk Kardiyolojisi Kliniği" },
+                    { 7, 5, "Ruh Sağlığı ve Hastalıkları Kliniği" },
+                    { 8, 6, "Nöroloji Kliniği" },
+                    { 9, 7, "Deri ve Zührevi Hastalıklar Kliniği" },
+                    { 10, 8, "Genel Cerrahi Kliniği" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Doctors",
+                columns: new[] { "DoctorId", "BirthdayDate", "Gender", "Name", "PersonalId", "PoliclinicId", "Surname" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Asım", "123", 1, "Bar" },
+                    { 2, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Basım", "123", 2, "Bar" },
+                    { 3, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Casım", "123", 3, "Bar" },
+                    { 4, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Dasım", "123", 4, "Bar" },
+                    { 5, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Esim", "123", 5, "Bar" },
+                    { 6, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Fesim", "123", 6, "Bar" },
+                    { 7, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Kesim", "123", 7, "Bar" },
+                    { 8, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Lesim", "123", 8, "Bar" },
+                    { 9, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Tesim", "123", 9, "Bar" },
+                    { 10, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), true, "Resim", "123", 10, "Bar" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -340,11 +390,6 @@ namespace B221210351.Migrations
                 name: "IX_Appointments_PoliclinicId",
                 table: "Appointments",
                 column: "PoliclinicId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Doctors_AddressId",
-                table: "Doctors",
-                column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doctors_PoliclinicId",

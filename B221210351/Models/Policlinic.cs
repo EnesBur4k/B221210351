@@ -9,6 +9,7 @@
         }
         public int PoliclinicId { get; set; }
         public string PoliclinicName { get; set; }
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
 
         public ICollection<Doctor> Doctors { get; set; }

@@ -81,8 +81,7 @@ namespace B221210351.EFContext
                 {
                     StreetId = 3,
                     StreetName = "Toplum"
-                }
-                );
+                });
 
             modelBuilder.Entity<Neighbourhood>()
                 .HasData(
@@ -101,8 +100,7 @@ namespace B221210351.EFContext
                 {
                     NeighbourhoodId = 3,
                     NeighbourhoodName = "Çamçeşme"
-                }
-                );
+                });
 
             modelBuilder.Entity<District>()
                 .HasData(
@@ -121,8 +119,8 @@ namespace B221210351.EFContext
                 {
                     DistrictId = 3,
                     DistrictName = "Maltepe"
-                }
-                );
+                });
+
             modelBuilder.Entity<City>()
                 .HasData(
                 new City
@@ -140,9 +138,265 @@ namespace B221210351.EFContext
                 {
                     CityId = 3,
                     CityName = "Sakarya"
-                }
-                );
-            
+                });
+
+            modelBuilder.Entity<Address>()
+                .HasData(
+                new Address
+                {
+                    AddressId = 1,
+                    CityId = 1,
+                    DistrictId = 1,
+                    NeighbourhoodId = 1,
+                    StreetId = 1,
+                    ApartmentNo = 1
+                },
+                new Address
+                {
+                    AddressId = 2,
+                    CityId = 1,
+                    DistrictId = 2,
+                    NeighbourhoodId = 2,
+                    StreetId = 2,
+                    ApartmentNo = 2
+                },
+                new Address
+                {
+                    AddressId = 3,
+                    CityId = 1,
+                    DistrictId = 3,
+                    NeighbourhoodId = 3,
+                    StreetId = 3,
+                    ApartmentNo = 3
+                });
+
+            modelBuilder.Entity<Department>()
+                .HasData(
+                new Department
+                {
+                    DepartmentId = 1,
+                    DepartmentName = "İç Hastalıkları Anabilim Dalı"
+
+                },
+                new Department
+                {
+                    DepartmentId = 2,
+                    DepartmentName = "Kardiyoloji Anabilim Dalı"
+
+                },
+               new Department
+               {
+                   DepartmentId = 3,
+                   DepartmentName = "Göğüs Hastalıkları Anabilim Dalı"
+
+               },
+               new Department
+               {
+                   DepartmentId = 4,
+                   DepartmentName = "Çocuk Sağlığı ve Hastalıkları Anabilim Dalı"
+
+               },
+               new Department
+               {
+                   DepartmentId = 5,
+                   DepartmentName = "Ruh Sağlığı ve Hastalıkları Anabilim Dalı"
+
+               },
+               new Department
+               {
+                   DepartmentId = 6,
+                   DepartmentName = "Nöroloji Anabilim Dalı"
+
+               },
+               new Department
+               {
+                   DepartmentId = 7,
+                   DepartmentName = "Deri ve Zührevi Anabilim Dalı"
+
+               },
+               new Department
+               {
+                   DepartmentId = 8,
+                   DepartmentName = "Genel Cerrahi Anabilim Dalı"
+
+               });
+
+            modelBuilder.Entity<Policlinic>()
+                .HasData(
+                new Policlinic
+                {
+                    PoliclinicId = 1,
+                    DepartmentId = 1,
+                    PoliclinicName = "Endokrinoloji ve Metabolizma Kliniği"
+
+                },
+                new Policlinic
+                {
+                    PoliclinicId = 2,
+                    DepartmentId = 1,
+                    PoliclinicName = "Gastroenteroloji Kliniği"
+
+                },
+               new Policlinic
+               {
+                   PoliclinicId = 3,
+                   DepartmentId = 2,
+                   PoliclinicName = "Kardiyoloji Kliniği"
+
+               },
+               new Policlinic
+               {
+                   PoliclinicId = 4,
+                   DepartmentId = 3,
+                   PoliclinicName = "Göğüs Hastalıkları Kliniği"
+
+               },
+               new Policlinic
+               {
+                   PoliclinicId = 5,
+                   DepartmentId = 4,
+                   PoliclinicName = "Çocuk Gastroenterolojisi Kliniği"
+
+               },
+               new Policlinic
+               {
+                   PoliclinicId = 6,
+                   DepartmentId = 4,
+                   PoliclinicName = "Çocuk Kardiyolojisi Kliniği"
+
+               },
+               new Policlinic
+               {
+                   PoliclinicId = 7,
+                   DepartmentId = 5,
+                   PoliclinicName = "Ruh Sağlığı ve Hastalıkları Kliniği"
+
+               },
+               new Policlinic
+               {
+                   PoliclinicId = 8,
+                   DepartmentId = 6,
+                   PoliclinicName = "Nöroloji Kliniği"
+
+               },
+               new Policlinic
+               {
+                   PoliclinicId = 9,
+                   DepartmentId = 7,
+                   PoliclinicName = "Deri ve Zührevi Hastalıklar Kliniği"
+
+               },
+               new Policlinic
+               {
+                   PoliclinicId = 10,
+                   DepartmentId = 8,
+                   PoliclinicName = "Genel Cerrahi Kliniği"
+
+               });
+
+            modelBuilder.Entity<Doctor>()
+                .HasData(
+                new Doctor
+                {
+                    DoctorId = 1,
+                    Name = "Asım",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 1
+                },
+                new Doctor
+                {
+                    DoctorId = 2,
+                    Name = "Basım",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 2
+                },
+                new Doctor
+                {
+                    DoctorId = 3,
+                    Name = "Casım",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 3
+                },
+                new Doctor
+                {
+                    DoctorId = 4,
+                    Name = "Dasım",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 4
+                },
+                new Doctor
+                {
+                    DoctorId = 5,
+                    Name = "Esim",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 5
+                },
+                new Doctor
+                {
+                    DoctorId = 6,
+                    Name = "Fesim",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 6
+                },
+                new Doctor
+                {
+                    DoctorId = 7,
+                    Name = "Kesim",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 7
+                },
+                new Doctor
+                {
+                    DoctorId = 8,
+                    Name = "Lesim",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 8
+                },
+                new Doctor
+                {
+                    DoctorId = 9,
+                    Name = "Tesim",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 9
+                },
+                new Doctor
+                {
+                    DoctorId = 10,
+                    Name = "Resim",
+                    Surname = "Bar",
+                    BirthdayDate = DateTime.Today,
+                    Gender = true,
+                    PersonalId = "123",
+                    PoliclinicId = 10
+                });
+
         }
     }
 }
