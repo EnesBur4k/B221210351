@@ -10,6 +10,7 @@ namespace B221210351.Models
             Appointments = new HashSet<Appointment>();
         }
         public int PatientId { get; set; }
+        public int AddressId { get; set; }
         public int PatientPersonalId { get; set; }
         public string PatientName { get; set; }
         public string PatientSurname { get; set; }

@@ -6,12 +6,12 @@ namespace B221210351.EFContext
     public class HastaneContext : DbContext
     {
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Neighbourhood> Neighbourhoods { get; set; }
-        public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Policlinic> Policlinics { get; set; }
@@ -374,6 +374,105 @@ namespace B221210351.EFContext
                     DoctorSurname = "Bar",
                     Gender = true,
                     PoliclinicId = 10
+                });
+
+            modelBuilder.Entity<Patient>()
+                .HasData(
+                new Patient
+                {
+                    PatientId = 1,
+                    PatientPersonalId = 100,
+                    PatientName = "Enes",
+                    PatientSurname = "Burak",
+                    PatientGender = true,
+                    PatientEmail = "enesburak@gmail.com",
+                    Password = "Foo",
+                    PatientBirthDay = DateTime.Now,
+                    AddressId = 1
+                },
+                new Patient
+                {
+                    PatientId = 2,
+                    PatientPersonalId = 101,
+                    PatientName = "Ogün",
+                    PatientSurname = "Şanlısoy",
+                    PatientGender = true,
+                    PatientEmail = "ogun@gmail.com",
+                    Password = "Foo",
+                    PatientBirthDay = DateTime.Now,
+                    AddressId = 2
+                },
+                new Patient
+                {
+                    PatientId = 3,
+                    PatientPersonalId = 102,
+                    PatientName = "Winston",
+                    PatientSurname = "Churchill",
+                    PatientGender = true,
+                    PatientEmail = "winston@gmail.com",
+                    Password = "Foo",
+                    PatientBirthDay = DateTime.Now,
+                    AddressId = 3
+                },
+                new Patient
+                {
+                    PatientId = 4,
+                    PatientPersonalId = 103,
+                    PatientName = "Emanuel",
+                    PatientSurname = "İcardi",
+                    PatientGender = true,
+                    PatientEmail = "goat@gmail.com",
+                    Password = "Foo",
+                    PatientBirthDay = DateTime.Now,
+                    AddressId = 2
+                },
+                new Patient
+                {
+                    PatientId = 5,
+                    PatientPersonalId = 104,
+                    PatientName = "Bülent",
+                    PatientSurname = "Ersoy",
+                    PatientGender = true,
+                    PatientEmail = "bulent@gmail.com",
+                    Password = "Foo",
+                    PatientBirthDay = DateTime.Now,
+                    AddressId = 1
+                },
+                new Patient
+                {
+                    PatientId = 6,
+                    PatientPersonalId = 105,
+                    PatientName = "Muazzez",
+                    PatientSurname = "Senar",
+                    PatientGender = true,
+                    PatientEmail = "senar@gmail.com",
+                    Password = "Foo",
+                    PatientBirthDay = DateTime.Now,
+                    AddressId = 3
+                },
+                new Patient
+                {
+                    PatientId = 7,
+                    PatientPersonalId = 106,
+                    PatientName = "Vincent",
+                    PatientSurname = "Van Gogh",
+                    PatientGender = true,
+                    PatientEmail = "gogh@gmail.com",
+                    Password = "Foo",
+                    PatientBirthDay = DateTime.Now,
+                    AddressId = 2
+                },
+                new Patient
+                {
+                    PatientId = 8,
+                    PatientPersonalId = 107,
+                    PatientName = "Werner",
+                    PatientSurname = "Heisenberg",
+                    PatientGender = true,
+                    PatientEmail = "heisenberg@gmail.com",
+                    Password = "Foo",
+                    PatientBirthDay = DateTime.Now,
+                    AddressId = 1
                 });
 
         }

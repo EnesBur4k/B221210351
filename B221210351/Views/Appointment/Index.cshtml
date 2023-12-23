@@ -1,11 +1,8 @@
-﻿@* @model AppointmentViewModel *@
+﻿@model AppointmentVM
 
 <h1>
     RANDEVU EKRANI
 
-    il
-    ilçe
-    hastane
     poliklinik
     doktor
     tarih
@@ -15,29 +12,31 @@
     getir
 </h1>
 
-<form asp-action="Search" asp-controller="Appointment">
+<
 
-    Poliklinik
-    <select>
-        @foreach (var item in Model)
-        {
-            <div>@item.Bar</div>
-        }
-        <option>İstanbul</option>
-    </select>
-    Doktor
-    <select>
-        <option>İstanbul</option>
-        <option>Ankara</option>
-        <option>İzmir</option>
-    </select>
-    Tarih
-    <select>
-        <option>İstanbul</option>
-        <option>Ankara</option>
-        <option>İzmir</option>
-    </select>
-
-    <button type="submit"> Randevu Ara</button>
-
+<form class="opacity-100" style="width: 50%; " asp-action="CreateAppointment" asp-controller="Appointment">
+    <div class="form-group">
+        <label for="policlinic">Klinik: </label>
+        <select id="policlinic" asp-for="@Model.Policlinic.PoliclinicId">
+            @foreach (var item in Model.Policlinics)
+            {
+                <option value="@item.PoliclinicId">@item.PoliclinicName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="policlinic">Doktor: </label>
+        <select id="policlinic" asp-for="Doctor.DoctorId">
+            @foreach (var item in Model.Doctors)
+            {
+                <option value="@item.DoctorId">@item.DoctorName @item.DoctorSurname</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="policlinic">Tarih: </label>
+        <input type="datetime-local" asp-for="@Model.Appointment.AppointmentDate"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Doktor Ekle</button>
 </form>
+<span>@TempData["hataMesaji"]</span>

@@ -67,11 +67,11 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
             };
             return View(policlinicDepartmentVm);
         }
-        //public IActionResult Users()
-        //{
-        //    List<User> users = context.Users.ToList();
-        //    return View(users);
-        //}
+        public IActionResult Patients()
+        {
+            List<Patient> patients = context.Patients.ToList();
+            return View(patients);
+        }
         public IActionResult Appointments()
         {
             List<Appointment> appointments = context.Appointments

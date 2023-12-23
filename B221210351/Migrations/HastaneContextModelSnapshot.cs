@@ -116,6 +116,9 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"), 1L, 1);
 
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
@@ -449,6 +452,104 @@ namespace B221210351.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Patients");
+
+                    b.HasData(
+                        new
+                        {
+                            PatientId = 1,
+                            AddressId = 1,
+                            Password = "Foo",
+                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2288),
+                            PatientEmail = "enesburak@gmail.com",
+                            PatientGender = true,
+                            PatientName = "Enes",
+                            PatientPersonalId = 100,
+                            PatientSurname = "Burak"
+                        },
+                        new
+                        {
+                            PatientId = 2,
+                            AddressId = 2,
+                            Password = "Foo",
+                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2296),
+                            PatientEmail = "ogun@gmail.com",
+                            PatientGender = true,
+                            PatientName = "Ogün",
+                            PatientPersonalId = 101,
+                            PatientSurname = "Şanlısoy"
+                        },
+                        new
+                        {
+                            PatientId = 3,
+                            AddressId = 3,
+                            Password = "Foo",
+                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2297),
+                            PatientEmail = "winston@gmail.com",
+                            PatientGender = true,
+                            PatientName = "Winston",
+                            PatientPersonalId = 102,
+                            PatientSurname = "Churchill"
+                        },
+                        new
+                        {
+                            PatientId = 4,
+                            AddressId = 2,
+                            Password = "Foo",
+                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2298),
+                            PatientEmail = "goat@gmail.com",
+                            PatientGender = true,
+                            PatientName = "Emanuel",
+                            PatientPersonalId = 103,
+                            PatientSurname = "İcardi"
+                        },
+                        new
+                        {
+                            PatientId = 5,
+                            AddressId = 1,
+                            Password = "Foo",
+                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2299),
+                            PatientEmail = "bulent@gmail.com",
+                            PatientGender = true,
+                            PatientName = "Bülent",
+                            PatientPersonalId = 104,
+                            PatientSurname = "Ersoy"
+                        },
+                        new
+                        {
+                            PatientId = 6,
+                            AddressId = 3,
+                            Password = "Foo",
+                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2300),
+                            PatientEmail = "senar@gmail.com",
+                            PatientGender = true,
+                            PatientName = "Muazzez",
+                            PatientPersonalId = 105,
+                            PatientSurname = "Senar"
+                        },
+                        new
+                        {
+                            PatientId = 7,
+                            AddressId = 2,
+                            Password = "Foo",
+                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2301),
+                            PatientEmail = "gogh@gmail.com",
+                            PatientGender = true,
+                            PatientName = "Vincent",
+                            PatientPersonalId = 106,
+                            PatientSurname = "Van Gogh"
+                        },
+                        new
+                        {
+                            PatientId = 8,
+                            AddressId = 1,
+                            Password = "Foo",
+                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2302),
+                            PatientEmail = "heisenberg@gmail.com",
+                            PatientGender = true,
+                            PatientName = "Werner",
+                            PatientPersonalId = 107,
+                            PatientSurname = "Heisenberg"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Policlinic", b =>
