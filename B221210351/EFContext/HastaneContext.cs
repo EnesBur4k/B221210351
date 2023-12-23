@@ -5,14 +5,13 @@ namespace B221210351.EFContext
 {
     public class HastaneContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Neighbourhood> Neighbourhoods { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Person> People { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Policlinic> Policlinics { get; set; }
@@ -299,101 +298,81 @@ namespace B221210351.EFContext
                 new Doctor
                 {
                     DoctorId = 1,
-                    Name = "Asım",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Asım",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 1
                 },
                 new Doctor
                 {
                     DoctorId = 2,
-                    Name = "Basım",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Basım",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 2
                 },
                 new Doctor
                 {
                     DoctorId = 3,
-                    Name = "Casım",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Casım",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 3
                 },
                 new Doctor
                 {
                     DoctorId = 4,
-                    Name = "Dasım",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Dasım",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 4
                 },
                 new Doctor
                 {
                     DoctorId = 5,
-                    Name = "Esim",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Esim",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 5
                 },
                 new Doctor
                 {
                     DoctorId = 6,
-                    Name = "Fesim",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Fesim",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 6
                 },
                 new Doctor
                 {
                     DoctorId = 7,
-                    Name = "Kesim",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Kesim",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 7
                 },
                 new Doctor
                 {
                     DoctorId = 8,
-                    Name = "Lesim",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Lesim",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 8
                 },
                 new Doctor
                 {
                     DoctorId = 9,
-                    Name = "Tesim",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Tesim",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 9
                 },
                 new Doctor
                 {
                     DoctorId = 10,
-                    Name = "Resim",
-                    Surname = "Bar",
-                    BirthdayDate = DateTime.Today,
+                    DoctorName = "Resim",
+                    DoctorSurname = "Bar",
                     Gender = true,
-                    PersonalId = "123",
                     PoliclinicId = 10
                 });
 

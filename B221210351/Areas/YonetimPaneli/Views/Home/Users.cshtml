@@ -1,0 +1,48 @@
+﻿@model List<Patient>
+
+<table class="table table-dark">
+    <tr>
+        <td>
+            Ad
+        </td>
+        <td>
+            Soyad
+        </td>
+        <td>
+            Email
+        </td>
+        <td>
+            TC Kimlik No
+        </td>
+        <td>
+            Cinsiyet
+        </td>
+        <td>
+            Doğum Tarihi
+        </td>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                    @item.PatientName
+            </td>
+            <td>
+                    @item.PatientSurname
+            </td>
+            <td>
+                    @item.PatientEmail
+            </td>
+            <td>
+                    @item.PatientPersonalId
+
+            </td>
+            <td>
+                    @item.PatientGender
+            </td>
+            <td>
+                    @item.PatientBirthDay
+            </td>
+        </tr>
+        }
+</table>
+<br />

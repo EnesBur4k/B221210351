@@ -19,12 +19,12 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(User user)
+        public IActionResult Login(Patient patient)
         {
-            if(context.Users.Any(u => u.UserName == user.UserName))
+            if(context.Patients.Any(p => p.PatientEmail == patient.PatientEmail))
             {
-                User userControl = context.Users.FirstOrDefault(u => u.UserName == user.UserName);
-                if (userControl.Password == user.Password)
+                Patient userControl = context.Patients.FirstOrDefault(u => u.PatientEmail == patient.PatientEmail);
+                if (userControl.Password == patient.Password)
                     return RedirectToAction("index","appointment");      
             }
             TempData["hataMesaji"] = "Lütfen Bilgileri Doğru Giriniz";
@@ -37,9 +37,9 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(Patient user)
         {
-            context.Users.Add(user);
+            context.Patients.Add(user);
             context.SaveChanges();
             return RedirectToAction("Login");
         }

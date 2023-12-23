@@ -3,6 +3,7 @@ using B221210351.EFContext;
 using B221210351.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 
 namespace B221210351.Areas.YonetimPaneli.Controllers
 {
@@ -16,13 +17,13 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(User user)
+        public IActionResult Login(Admin admin)
         {
-            if (context.Users.Any(u => u.UserName == user.UserName))
+            if (context.Admins.Any(a => a.UserName == admin.UserName))
             {
-                User userControl = context.Users.FirstOrDefault(u => u.UserName == user.UserName);
+                Admin userControl = context.Admins.FirstOrDefault(p => p.UserName == admin.UserName);
 
-                if (userControl.Password == user.Password && userControl.isAdmin)
+                if (userControl.Password == admin.Password)
                     return RedirectToAction("Dashboard");
             }
             TempData["hataMesaji"] = "Lütfen Bilgileri Doğru Giriniz";
@@ -31,14 +32,14 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
 
         public IActionResult Dashboard()
         {
-            List<User> users = context.Users.ToList();
+            List<Patient> patients = context.Patients.ToList();
             List<Doctor> doctors = context.Doctors.ToList();
             List<Policlinic> policlinics = context.Policlinics.ToList();
             List<Department> departments = context.Departments.ToList();
 
             AppDatasForAdminVM appData = new()
             {
-                Users = users,
+                Patients = patients,
                 Doctors = doctors,
                 Departments = departments,
                 Policlinics = policlinics
@@ -59,12 +60,25 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
 
         public IActionResult Policlinics()
         {
-            return View();
+            PoliclinicDepartmentVM policlinicDepartmentVm = new()
+            {
+                Policlinics = context.Policlinics.Include(p => p.Department).ToList(),
+                Departments = context.Departments.ToList()
+            };
+            return View(policlinicDepartmentVm);
         }
-
-        public IActionResult Departments()
+        //public IActionResult Users()
+        //{
+        //    List<User> users = context.Users.ToList();
+        //    return View(users);
+        //}
+        public IActionResult Appointments()
         {
-            return View();
+            List<Appointment> appointments = context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Policlinic).ToList();
+            return View(appointments);
         }
 
         [HttpPost]
@@ -78,14 +92,22 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
             return RedirectToAction("Doctors");
         }
 
-        public IActionResult addPoliclinic()
+        public async Task<IActionResult> addPoliclinicAsync(Policlinic policlinic)
         {
-            return View();
+            var department = context.Departments.Find(policlinic.DepartmentId);
+            policlinic.Department = department;
+            await context.Policlinics.AddAsync(policlinic);
+            context.SaveChanges();
+            TempData["AddMessage"] = "Anabilim Dalı başarıyla eklendi";
+            return RedirectToAction("Policlinics");
         }
 
-        public IActionResult addDepartment()
+        public async Task<IActionResult> addDepartmentAsync(Department department)
         {
-            return View();
+            await context.Departments.AddAsync(department);
+            context.SaveChanges();
+            TempData["AddMessage"] = "Anabilim Dalı başarıyla eklendi";
+            return RedirectToAction("Policlinics");
         }
     }
 }

@@ -4,6 +4,7 @@ using B221210351.EFContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B221210351.Migrations
 {
     [DbContext(typeof(HastaneContext))]
-    partial class HastaneContextModelSnapshot : ModelSnapshot
+    [Migration("20231223123640_mig")]
+    partial class mig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,35 +58,6 @@ namespace B221210351.Migrations
                     b.HasIndex("StreetId");
 
                     b.ToTable("Addresses");
-
-                    b.HasData(
-                        new
-                        {
-                            AddressId = 1,
-                            ApartmentNo = 1,
-                            CityId = 1,
-                            DistrictId = 1,
-                            NeighbourhoodId = 1,
-                            StreetId = 1
-                        },
-                        new
-                        {
-                            AddressId = 2,
-                            ApartmentNo = 2,
-                            CityId = 1,
-                            DistrictId = 2,
-                            NeighbourhoodId = 2,
-                            StreetId = 2
-                        },
-                        new
-                        {
-                            AddressId = 3,
-                            ApartmentNo = 3,
-                            CityId = 1,
-                            DistrictId = 3,
-                            NeighbourhoodId = 3,
-                            StreetId = 3
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Admin", b =>
@@ -151,23 +124,6 @@ namespace B221210351.Migrations
                     b.HasKey("CityId");
 
                     b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            CityId = 1,
-                            CityName = "İstanbul"
-                        },
-                        new
-                        {
-                            CityId = 2,
-                            CityName = "Kocaeli"
-                        },
-                        new
-                        {
-                            CityId = 3,
-                            CityName = "Sakarya"
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Department", b =>
@@ -185,48 +141,6 @@ namespace B221210351.Migrations
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            DepartmentId = 1,
-                            DepartmentName = "İç Hastalıkları Anabilim Dalı"
-                        },
-                        new
-                        {
-                            DepartmentId = 2,
-                            DepartmentName = "Kardiyoloji Anabilim Dalı"
-                        },
-                        new
-                        {
-                            DepartmentId = 3,
-                            DepartmentName = "Göğüs Hastalıkları Anabilim Dalı"
-                        },
-                        new
-                        {
-                            DepartmentId = 4,
-                            DepartmentName = "Çocuk Sağlığı ve Hastalıkları Anabilim Dalı"
-                        },
-                        new
-                        {
-                            DepartmentId = 5,
-                            DepartmentName = "Ruh Sağlığı ve Hastalıkları Anabilim Dalı"
-                        },
-                        new
-                        {
-                            DepartmentId = 6,
-                            DepartmentName = "Nöroloji Anabilim Dalı"
-                        },
-                        new
-                        {
-                            DepartmentId = 7,
-                            DepartmentName = "Deri ve Zührevi Anabilim Dalı"
-                        },
-                        new
-                        {
-                            DepartmentId = 8,
-                            DepartmentName = "Genel Cerrahi Anabilim Dalı"
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.District", b =>
@@ -244,23 +158,6 @@ namespace B221210351.Migrations
                     b.HasKey("DistrictId");
 
                     b.ToTable("Districts");
-
-                    b.HasData(
-                        new
-                        {
-                            DistrictId = 1,
-                            DistrictName = "Pendik"
-                        },
-                        new
-                        {
-                            DistrictId = 2,
-                            DistrictName = "Kartal"
-                        },
-                        new
-                        {
-                            DistrictId = 3,
-                            DistrictName = "Maltepe"
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Doctor", b =>
@@ -290,88 +187,6 @@ namespace B221210351.Migrations
                     b.HasIndex("PoliclinicId");
 
                     b.ToTable("Doctors");
-
-                    b.HasData(
-                        new
-                        {
-                            DoctorId = 1,
-                            DoctorName = "Asım",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 1
-                        },
-                        new
-                        {
-                            DoctorId = 2,
-                            DoctorName = "Basım",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 2
-                        },
-                        new
-                        {
-                            DoctorId = 3,
-                            DoctorName = "Casım",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 3
-                        },
-                        new
-                        {
-                            DoctorId = 4,
-                            DoctorName = "Dasım",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 4
-                        },
-                        new
-                        {
-                            DoctorId = 5,
-                            DoctorName = "Esim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 5
-                        },
-                        new
-                        {
-                            DoctorId = 6,
-                            DoctorName = "Fesim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 6
-                        },
-                        new
-                        {
-                            DoctorId = 7,
-                            DoctorName = "Kesim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 7
-                        },
-                        new
-                        {
-                            DoctorId = 8,
-                            DoctorName = "Lesim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 8
-                        },
-                        new
-                        {
-                            DoctorId = 9,
-                            DoctorName = "Tesim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 9
-                        },
-                        new
-                        {
-                            DoctorId = 10,
-                            DoctorName = "Resim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
-                            PoliclinicId = 10
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Neighbourhood", b =>
@@ -389,23 +204,6 @@ namespace B221210351.Migrations
                     b.HasKey("NeighbourhoodId");
 
                     b.ToTable("Neighbourhoods");
-
-                    b.HasData(
-                        new
-                        {
-                            NeighbourhoodId = 1,
-                            NeighbourhoodName = "Güzelyalı"
-                        },
-                        new
-                        {
-                            NeighbourhoodId = 2,
-                            NeighbourhoodName = "Kaynarca"
-                        },
-                        new
-                        {
-                            NeighbourhoodId = 3,
-                            NeighbourhoodName = "Çamçeşme"
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Patient", b =>
@@ -471,68 +269,6 @@ namespace B221210351.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Policlinics");
-
-                    b.HasData(
-                        new
-                        {
-                            PoliclinicId = 1,
-                            DepartmentId = 1,
-                            PoliclinicName = "Endokrinoloji ve Metabolizma Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 2,
-                            DepartmentId = 1,
-                            PoliclinicName = "Gastroenteroloji Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 3,
-                            DepartmentId = 2,
-                            PoliclinicName = "Kardiyoloji Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 4,
-                            DepartmentId = 3,
-                            PoliclinicName = "Göğüs Hastalıkları Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 5,
-                            DepartmentId = 4,
-                            PoliclinicName = "Çocuk Gastroenterolojisi Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 6,
-                            DepartmentId = 4,
-                            PoliclinicName = "Çocuk Kardiyolojisi Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 7,
-                            DepartmentId = 5,
-                            PoliclinicName = "Ruh Sağlığı ve Hastalıkları Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 8,
-                            DepartmentId = 6,
-                            PoliclinicName = "Nöroloji Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 9,
-                            DepartmentId = 7,
-                            PoliclinicName = "Deri ve Zührevi Hastalıklar Kliniği"
-                        },
-                        new
-                        {
-                            PoliclinicId = 10,
-                            DepartmentId = 8,
-                            PoliclinicName = "Genel Cerrahi Kliniği"
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Street", b =>
@@ -550,23 +286,6 @@ namespace B221210351.Migrations
                     b.HasKey("StreetId");
 
                     b.ToTable("Street");
-
-                    b.HasData(
-                        new
-                        {
-                            StreetId = 1,
-                            StreetName = "Yavuz Selim"
-                        },
-                        new
-                        {
-                            StreetId = 2,
-                            StreetName = "Teoman"
-                        },
-                        new
-                        {
-                            StreetId = 3,
-                            StreetName = "Toplum"
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.Address", b =>

@@ -9,19 +9,11 @@ herkes 8-16 arası çalışır. *@
         <form class="opacity-100" style="width: 50%; " asp-action="addDoctor" asp-controller="Home" asp-area="yonetimPaneli">
             <div class="form-group">
                 <label for="name">Ad: </label>
-                <input type="text" class="form-control" asp-for="@Model.Doctor.Name">
+                <input type="text" class="form-control" asp-for="@Model.Doctor.DoctorName">
             </div>
             <div class="form-group">
                 <label for="surname">Soyad: </label>
-                <input type="text" class="form-control" asp-for="@Model.Doctor.Surname">
-            </div>
-            <div class="form-group">
-                <label for="PersonalId">TC Kimlik No: </label>
-                <input type="text" class="form-control" asp-for="@Model.Doctor.PersonalId">
-            </div>
-            <div class="form-group">
-                <label for="BirthdayDate">Doğum Tarihi: </label>
-                <input type="datetime-local" class="form-control" asp-for="@Model.Doctor.BirthdayDate">
+                <input type="text" class="form-control" asp-for="@Model.Doctor.DoctorSurname">
             </div>
             <div class="form-group">
                 <label for="gender">Cinsiyet: </label>
@@ -61,9 +53,6 @@ herkes 8-16 arası çalışır. *@
             Cinsiyeti
         </td>
         <td>
-            TC Kimlik No
-        </td>
-        <td>
             Nöbet Günleri
         </td>
         <td>
@@ -74,7 +63,7 @@ herkes 8-16 arası çalışır. *@
     {
         <tr>
             <td>
-                @item.Name @item.Surname
+                @item.DoctorName @item.DoctorSurname
             </td>
             <td>
                 @item.Policlinic.PoliclinicName
@@ -84,9 +73,6 @@ herkes 8-16 arası çalışır. *@
             </td>
             <td>
                 @item.Gender
-            </td>
-            <td>
-                @item.PersonalId
             </td>
         </tr>
     }

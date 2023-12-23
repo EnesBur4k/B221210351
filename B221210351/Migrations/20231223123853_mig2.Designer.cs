@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B221210351.Migrations
 {
     [DbContext(typeof(HastaneContext))]
-    [Migration("20231222190111_mig")]
-    partial class mig
+    [Migration("20231223123853_mig2")]
+    partial class mig2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,6 +87,27 @@ namespace B221210351.Migrations
                             NeighbourhoodId = 3,
                             StreetId = 3
                         });
+                });
+
+            modelBuilder.Entity("B221210351.Models.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"), 1L, 1);
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdminId");
+
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("B221210351.Models.Appointment", b =>
@@ -252,26 +273,19 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorId"), 1L, 1);
 
-                    b.Property<DateTime>("BirthdayDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DoctorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DoctorSurname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PersonalId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("PoliclinicId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DoctorId");
 
@@ -283,102 +297,82 @@ namespace B221210351.Migrations
                         new
                         {
                             DoctorId = 1,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Asım",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Asım",
-                            PersonalId = "123",
-                            PoliclinicId = 1,
-                            Surname = "Bar"
+                            PoliclinicId = 1
                         },
                         new
                         {
                             DoctorId = 2,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Basım",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Basım",
-                            PersonalId = "123",
-                            PoliclinicId = 2,
-                            Surname = "Bar"
+                            PoliclinicId = 2
                         },
                         new
                         {
                             DoctorId = 3,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Casım",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Casım",
-                            PersonalId = "123",
-                            PoliclinicId = 3,
-                            Surname = "Bar"
+                            PoliclinicId = 3
                         },
                         new
                         {
                             DoctorId = 4,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Dasım",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Dasım",
-                            PersonalId = "123",
-                            PoliclinicId = 4,
-                            Surname = "Bar"
+                            PoliclinicId = 4
                         },
                         new
                         {
                             DoctorId = 5,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Esim",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Esim",
-                            PersonalId = "123",
-                            PoliclinicId = 5,
-                            Surname = "Bar"
+                            PoliclinicId = 5
                         },
                         new
                         {
                             DoctorId = 6,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Fesim",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Fesim",
-                            PersonalId = "123",
-                            PoliclinicId = 6,
-                            Surname = "Bar"
+                            PoliclinicId = 6
                         },
                         new
                         {
                             DoctorId = 7,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Kesim",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Kesim",
-                            PersonalId = "123",
-                            PoliclinicId = 7,
-                            Surname = "Bar"
+                            PoliclinicId = 7
                         },
                         new
                         {
                             DoctorId = 8,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Lesim",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Lesim",
-                            PersonalId = "123",
-                            PoliclinicId = 8,
-                            Surname = "Bar"
+                            PoliclinicId = 8
                         },
                         new
                         {
                             DoctorId = 9,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Tesim",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Tesim",
-                            PersonalId = "123",
-                            PoliclinicId = 9,
-                            Surname = "Bar"
+                            PoliclinicId = 9
                         },
                         new
                         {
                             DoctorId = 10,
-                            BirthdayDate = new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            DoctorName = "Resim",
+                            DoctorSurname = "Bar",
                             Gender = true,
-                            Name = "Resim",
-                            PersonalId = "123",
-                            PoliclinicId = 10,
-                            Surname = "Bar"
+                            PoliclinicId = 10
                         });
                 });
 
@@ -427,28 +421,28 @@ namespace B221210351.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("BirthDay")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EMail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonalId")
+                    b.Property<DateTime>("PatientBirthDay")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PatientEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PatientGender")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PatientPersonalId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Surname")
+                    b.Property<string>("PatientSurname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -457,41 +451,6 @@ namespace B221210351.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Person", b =>
-                {
-                    b.Property<int>("PersonId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"), 1L, 1);
-
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BirthDay")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PersonalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PersonId");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("People");
                 });
 
             modelBuilder.Entity("B221210351.Models.Policlinic", b =>
@@ -612,30 +571,6 @@ namespace B221210351.Migrations
                         });
                 });
 
-            modelBuilder.Entity("B221210351.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isAdmin")
-                        .HasColumnType("bit");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("B221210351.Models.Address", b =>
                 {
                     b.HasOne("B221210351.Models.City", "City")
@@ -710,17 +645,6 @@ namespace B221210351.Migrations
                 });
 
             modelBuilder.Entity("B221210351.Models.Patient", b =>
-                {
-                    b.HasOne("B221210351.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("B221210351.Models.Person", b =>
                 {
                     b.HasOne("B221210351.Models.Address", "Address")
                         .WithMany()
