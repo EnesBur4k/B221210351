@@ -1,9 +1,10 @@
 ﻿using B221210351.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace B221210351.EFContext
 {
-    public class HastaneContext : DbContext
+    public class HastaneContext : IdentityDbContext<AppUser>
     {
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
@@ -13,7 +14,7 @@ namespace B221210351.EFContext
         public DbSet<District> Districts { get; set; }
         public DbSet<Neighbourhood> Neighbourhoods { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Patient> Patients { get; set; }
+        public DbSet<AppUser> Patients { get; set; }
         public DbSet<Policlinic> Policlinics { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -376,9 +377,9 @@ namespace B221210351.EFContext
                     PoliclinicId = 10
                 });
 
-            modelBuilder.Entity<Patient>()
+            modelBuilder.Entity<AppUser>()
                 .HasData(
-                new Patient
+                new AppUser
                 {
                     PatientId = 1,
                     PatientPersonalId = 100,
@@ -390,7 +391,7 @@ namespace B221210351.EFContext
                     PatientBirthDay = DateTime.Now,
                     AddressId = 1
                 },
-                new Patient
+                new AppUser
                 {
                     PatientId = 2,
                     PatientPersonalId = 101,
@@ -402,7 +403,7 @@ namespace B221210351.EFContext
                     PatientBirthDay = DateTime.Now,
                     AddressId = 2
                 },
-                new Patient
+                new AppUser
                 {
                     PatientId = 3,
                     PatientPersonalId = 102,
@@ -414,7 +415,7 @@ namespace B221210351.EFContext
                     PatientBirthDay = DateTime.Now,
                     AddressId = 3
                 },
-                new Patient
+                new AppUser
                 {
                     PatientId = 4,
                     PatientPersonalId = 103,
@@ -426,7 +427,7 @@ namespace B221210351.EFContext
                     PatientBirthDay = DateTime.Now,
                     AddressId = 2
                 },
-                new Patient
+                new AppUser
                 {
                     PatientId = 5,
                     PatientPersonalId = 104,
@@ -438,7 +439,7 @@ namespace B221210351.EFContext
                     PatientBirthDay = DateTime.Now,
                     AddressId = 1
                 },
-                new Patient
+                new AppUser
                 {
                     PatientId = 6,
                     PatientPersonalId = 105,
@@ -450,7 +451,7 @@ namespace B221210351.EFContext
                     PatientBirthDay = DateTime.Now,
                     AddressId = 3
                 },
-                new Patient
+                new AppUser
                 {
                     PatientId = 7,
                     PatientPersonalId = 106,
@@ -462,7 +463,7 @@ namespace B221210351.EFContext
                     PatientBirthDay = DateTime.Now,
                     AddressId = 2
                 },
-                new Patient
+                new AppUser
                 {
                     PatientId = 8,
                     PatientPersonalId = 107,

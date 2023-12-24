@@ -335,14 +335,14 @@ namespace B221210351.Migrations
                 columns: new[] { "PatientId", "AddressId", "Password", "PatientBirthDay", "PatientEmail", "PatientGender", "PatientName", "PatientPersonalId", "PatientSurname" },
                 values: new object[,]
                 {
-                    { 1, 1, "Foo", new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2288), "enesburak@gmail.com", true, "Enes", 100, "Burak" },
-                    { 2, 2, "Foo", new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2296), "ogun@gmail.com", true, "Ogün", 101, "Şanlısoy" },
-                    { 3, 3, "Foo", new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2297), "winston@gmail.com", true, "Winston", 102, "Churchill" },
-                    { 4, 2, "Foo", new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2298), "goat@gmail.com", true, "Emanuel", 103, "İcardi" },
-                    { 5, 1, "Foo", new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2299), "bulent@gmail.com", true, "Bülent", 104, "Ersoy" },
-                    { 6, 3, "Foo", new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2300), "senar@gmail.com", true, "Muazzez", 105, "Senar" },
-                    { 7, 2, "Foo", new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2301), "gogh@gmail.com", true, "Vincent", 106, "Van Gogh" },
-                    { 8, 1, "Foo", new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2302), "heisenberg@gmail.com", true, "Werner", 107, "Heisenberg" }
+                    { 1, 1, "Foo", new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9522), "enesburak@gmail.com", true, "Enes", 100, "Burak" },
+                    { 2, 2, "Foo", new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9531), "ogun@gmail.com", true, "Ogün", 101, "Şanlısoy" },
+                    { 3, 3, "Foo", new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9532), "winston@gmail.com", true, "Winston", 102, "Churchill" },
+                    { 4, 2, "Foo", new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9533), "goat@gmail.com", true, "Emanuel", 103, "İcardi" },
+                    { 5, 1, "Foo", new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9535), "bulent@gmail.com", true, "Bülent", 104, "Ersoy" },
+                    { 6, 3, "Foo", new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9536), "senar@gmail.com", true, "Muazzez", 105, "Senar" },
+                    { 7, 2, "Foo", new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9537), "gogh@gmail.com", true, "Vincent", 106, "Van Gogh" },
+                    { 8, 1, "Foo", new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9538), "heisenberg@gmail.com", true, "Werner", 107, "Heisenberg" }
                 });
 
             migrationBuilder.CreateIndex(

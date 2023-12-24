@@ -32,7 +32,7 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
 
         public IActionResult Dashboard()
         {
-            List<Patient> patients = context.Patients.ToList();
+            List<AppUser> patients = context.Patients.ToList();
             List<Doctor> doctors = context.Doctors.ToList();
             List<Policlinic> policlinics = context.Policlinics.ToList();
             List<Department> departments = context.Departments.ToList();
@@ -69,7 +69,7 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
         }
         public IActionResult Patients()
         {
-            List<Patient> patients = context.Patients.ToList();
+            List<AppUser> patients = context.Patients.ToList();
             return View(patients);
         }
         public IActionResult Appointments()

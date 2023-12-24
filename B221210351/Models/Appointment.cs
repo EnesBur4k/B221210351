@@ -9,6 +9,6 @@
         public DateTime AppointmentDate { get; set; }
         public Policlinic Policlinic { get; set; }
         public Doctor Doctor { get; set; }
-        public Patient Patient { get; set; }
+        public AppUser Patient { get; set; }
     }
 }

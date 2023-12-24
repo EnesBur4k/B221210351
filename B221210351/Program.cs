@@ -1,7 +1,19 @@
+using B221210351.EFContext;
+using B221210351.Models;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
+using System;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services
+    .AddControllersWithViews()
+    .AddFluentValidation(x => x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+
+builder.Services
+    .AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<HastaneContext>();
 
 var app = builder.Build();
 

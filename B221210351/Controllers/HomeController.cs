@@ -19,11 +19,11 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(Patient patient)
+        public IActionResult Login(AppUser patient)
         {
             if(context.Patients.Any(p => p.PatientEmail == patient.PatientEmail))
             {
-                Patient userControl = context.Patients.FirstOrDefault(u => u.PatientEmail == patient.PatientEmail);
+                AppUser userControl = context.Patients.FirstOrDefault(u => u.PatientEmail == patient.PatientEmail);
                 if (userControl.Password == patient.Password)
                     return RedirectToAction("index","appointment");      
             }
@@ -37,7 +37,7 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(Patient user)
+        public IActionResult Register(AppUser user)
         {
             context.Patients.Add(user);
             context.SaveChanges();

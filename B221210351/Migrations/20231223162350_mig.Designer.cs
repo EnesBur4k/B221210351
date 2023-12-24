@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B221210351.Migrations
 {
     [DbContext(typeof(HastaneContext))]
-    [Migration("20231223155709_mig")]
+    [Migration("20231223162350_mig")]
     partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -461,7 +461,7 @@ namespace B221210351.Migrations
                             PatientId = 1,
                             AddressId = 1,
                             Password = "Foo",
-                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2288),
+                            PatientBirthDay = new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9522),
                             PatientEmail = "enesburak@gmail.com",
                             PatientGender = true,
                             PatientName = "Enes",
@@ -473,7 +473,7 @@ namespace B221210351.Migrations
                             PatientId = 2,
                             AddressId = 2,
                             Password = "Foo",
-                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2296),
+                            PatientBirthDay = new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9531),
                             PatientEmail = "ogun@gmail.com",
                             PatientGender = true,
                             PatientName = "Ogün",
@@ -485,7 +485,7 @@ namespace B221210351.Migrations
                             PatientId = 3,
                             AddressId = 3,
                             Password = "Foo",
-                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2297),
+                            PatientBirthDay = new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9532),
                             PatientEmail = "winston@gmail.com",
                             PatientGender = true,
                             PatientName = "Winston",
@@ -497,7 +497,7 @@ namespace B221210351.Migrations
                             PatientId = 4,
                             AddressId = 2,
                             Password = "Foo",
-                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2298),
+                            PatientBirthDay = new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9533),
                             PatientEmail = "goat@gmail.com",
                             PatientGender = true,
                             PatientName = "Emanuel",
@@ -509,7 +509,7 @@ namespace B221210351.Migrations
                             PatientId = 5,
                             AddressId = 1,
                             Password = "Foo",
-                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2299),
+                            PatientBirthDay = new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9535),
                             PatientEmail = "bulent@gmail.com",
                             PatientGender = true,
                             PatientName = "Bülent",
@@ -521,7 +521,7 @@ namespace B221210351.Migrations
                             PatientId = 6,
                             AddressId = 3,
                             Password = "Foo",
-                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2300),
+                            PatientBirthDay = new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9536),
                             PatientEmail = "senar@gmail.com",
                             PatientGender = true,
                             PatientName = "Muazzez",
@@ -533,7 +533,7 @@ namespace B221210351.Migrations
                             PatientId = 7,
                             AddressId = 2,
                             Password = "Foo",
-                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2301),
+                            PatientBirthDay = new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9537),
                             PatientEmail = "gogh@gmail.com",
                             PatientGender = true,
                             PatientName = "Vincent",
@@ -545,7 +545,7 @@ namespace B221210351.Migrations
                             PatientId = 8,
                             AddressId = 1,
                             Password = "Foo",
-                            PatientBirthDay = new DateTime(2023, 12, 23, 18, 57, 8, 969, DateTimeKind.Local).AddTicks(2302),
+                            PatientBirthDay = new DateTime(2023, 12, 23, 19, 23, 49, 981, DateTimeKind.Local).AddTicks(9538),
                             PatientEmail = "heisenberg@gmail.com",
                             PatientGender = true,
                             PatientName = "Werner",

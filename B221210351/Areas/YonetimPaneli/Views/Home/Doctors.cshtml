@@ -3,6 +3,8 @@
 Her klinikte 5 doktor her doktor 1 gün nöbet tutar
 herkes 8-16 arası çalışır. *@
 
+
+
 <center>
     <div class="bg-white p-2 rounded" style="--bs-bg-opacity: .75;">
 
@@ -10,10 +12,12 @@ herkes 8-16 arası çalışır. *@
             <div class="form-group">
                 <label for="name">Ad: </label>
                 <input type="text" class="form-control" asp-for="@Model.Doctor.DoctorName">
+                <span asp-validation-for="@Model.Doctor.DoctorName"></span>
             </div>
             <div class="form-group">
                 <label for="surname">Soyad: </label>
                 <input type="text" class="form-control" asp-for="@Model.Doctor.DoctorSurname">
+                <span asp-validation-for="@Model.Doctor.DoctorSurname"></span>
             </div>
             <div class="form-group">
                 <label for="gender">Cinsiyet: </label>
