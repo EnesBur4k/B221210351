@@ -10,7 +10,13 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
     [Area("yonetimPaneli")]
     public class HomeController : Controller
     {
-        HastaneContext context = new HastaneContext();
+        private readonly HastaneDbContext context;
+
+        public HomeController(HastaneDbContext context)
+        {
+            this.context = context;
+        }
+
         public IActionResult Login()
         {
             return View();
@@ -32,7 +38,7 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
 
         public IActionResult Dashboard()
         {
-            List<AppUser> patients = context.Patients.ToList();
+            List<AppUser> patients = context.Users.ToList();
             List<Doctor> doctors = context.Doctors.ToList();
             List<Policlinic> policlinics = context.Policlinics.ToList();
             List<Department> departments = context.Departments.ToList();
@@ -69,13 +75,13 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
         }
         public IActionResult Patients()
         {
-            List<AppUser> patients = context.Patients.ToList();
+            List<AppUser> patients = context.Users.ToList();
             return View(patients);
         }
         public IActionResult Appointments()
         {
             List<Appointment> appointments = context.Appointments
-                .Include(a => a.Patient)
+                .Include(a => a.AppUser)
                 .Include(a => a.Doctor)
                 .Include(a => a.Policlinic).ToList();
             return View(appointments);

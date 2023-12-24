@@ -2,6 +2,7 @@ using B221210351.EFContext;
 using B221210351.Models;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection;
 
@@ -12,8 +13,11 @@ builder.Services
     .AddControllersWithViews()
     .AddFluentValidation(x => x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
 
-builder.Services
-    .AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<HastaneContext>();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<HastaneDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<HastaneDbContext>();
 
 var app = builder.Build();
 

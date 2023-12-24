@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace B221210351.EFContext
 {
-    public class HastaneContext : IdentityDbContext<AppUser>
+    public class HastaneDbContext : IdentityDbContext<AppUser>
     {
+        public HastaneDbContext(DbContextOptions<HastaneDbContext> options) : base(options) { }
+
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -14,28 +16,27 @@ namespace B221210351.EFContext
         public DbSet<District> Districts { get; set; }
         public DbSet<Neighbourhood> Neighbourhoods { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<AppUser> Patients { get; set; }
+        public DbSet<AppUser> Users { get; set; }
         public DbSet<Policlinic> Policlinics { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=HastaneDb;Trusted_Connection=True;");
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Appointment>()
                 .HasOne(a => a.Doctor)
                 .WithMany(d => d.Appointments)
                 .HasForeignKey(a => a.DoctorId)
-                .OnDelete(DeleteBehavior.Restrict); ;
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.Patient)
+                .HasOne(a => a.AppUser)
                 .WithMany(p => p.Appointments)
-                .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Appointment>()
@@ -381,97 +382,89 @@ namespace B221210351.EFContext
                 .HasData(
                 new AppUser
                 {
-                    PatientId = 1,
+                    Id = "1",
                     PatientPersonalId = 100,
                     PatientName = "Enes",
                     PatientSurname = "Burak",
                     PatientGender = true,
-                    PatientEmail = "enesburak@gmail.com",
-                    Password = "Foo",
+                    Email = "enesburak@gmail.com",
                     PatientBirthDay = DateTime.Now,
                     AddressId = 1
                 },
                 new AppUser
                 {
-                    PatientId = 2,
+                    Id = "2",
                     PatientPersonalId = 101,
                     PatientName = "Ogün",
                     PatientSurname = "Şanlısoy",
                     PatientGender = true,
-                    PatientEmail = "ogun@gmail.com",
-                    Password = "Foo",
+                    Email = "ogun@gmail.com",
                     PatientBirthDay = DateTime.Now,
                     AddressId = 2
                 },
                 new AppUser
                 {
-                    PatientId = 3,
+                    Id = "3",
                     PatientPersonalId = 102,
                     PatientName = "Winston",
                     PatientSurname = "Churchill",
                     PatientGender = true,
-                    PatientEmail = "winston@gmail.com",
-                    Password = "Foo",
+                    Email = "winston@gmail.com",
                     PatientBirthDay = DateTime.Now,
                     AddressId = 3
                 },
                 new AppUser
                 {
-                    PatientId = 4,
+                    Id = "4",
                     PatientPersonalId = 103,
                     PatientName = "Emanuel",
                     PatientSurname = "İcardi",
                     PatientGender = true,
-                    PatientEmail = "goat@gmail.com",
-                    Password = "Foo",
+                    Email = "goat@gmail.com",
                     PatientBirthDay = DateTime.Now,
                     AddressId = 2
                 },
                 new AppUser
                 {
-                    PatientId = 5,
+                    Id = "5",
                     PatientPersonalId = 104,
                     PatientName = "Bülent",
                     PatientSurname = "Ersoy",
                     PatientGender = true,
-                    PatientEmail = "bulent@gmail.com",
-                    Password = "Foo",
+                    Email = "bulent@gmail.com",
                     PatientBirthDay = DateTime.Now,
                     AddressId = 1
                 },
                 new AppUser
                 {
-                    PatientId = 6,
+                    Id = "6",
                     PatientPersonalId = 105,
                     PatientName = "Muazzez",
                     PatientSurname = "Senar",
                     PatientGender = true,
-                    PatientEmail = "senar@gmail.com",
-                    Password = "Foo",
+                    Email = "senar@gmail.com",
                     PatientBirthDay = DateTime.Now,
                     AddressId = 3
                 },
                 new AppUser
                 {
-                    PatientId = 7,
+                    Id = "7",
                     PatientPersonalId = 106,
                     PatientName = "Vincent",
                     PatientSurname = "Van Gogh",
                     PatientGender = true,
-                    PatientEmail = "gogh@gmail.com",
-                    Password = "Foo",
+                    Email = "gogh@gmail.com",
                     PatientBirthDay = DateTime.Now,
                     AddressId = 2
                 },
                 new AppUser
                 {
-                    PatientId = 8,
+                    Id = "8",
                     PatientPersonalId = 107,
                     PatientName = "Werner",
                     PatientSurname = "Heisenberg",
                     PatientGender = true,
-                    PatientEmail = "heisenberg@gmail.com",
-                    Password = "Foo",
+                    Email = "heisenberg@gmail.com",
                     PatientBirthDay = DateTime.Now,
                     AddressId = 1
                 });

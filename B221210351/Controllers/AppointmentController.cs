@@ -7,7 +7,13 @@ namespace B221210351.Controllers
 {
     public class AppointmentController : Controller
     {
-        HastaneContext context = new HastaneContext();
+        private readonly HastaneDbContext context;
+
+        public AppointmentController(HastaneDbContext context)
+        {
+            this.context = context;
+        }
+
         public IActionResult Index()
         {
             AppointmentVM model = new AppointmentVM()
@@ -27,7 +33,7 @@ namespace B221210351.Controllers
                 Doctor = appointmentVM.Doctor,
                 Policlinic = appointmentVM.Policlinic,
                 AppointmentDate = appointmentVM.Appointment.AppointmentDate,
-                Patient = context.Patients.Find(1)
+                AppUser = context.Users.Find(1)
             };
 
             context.Appointments.Add(appointment);
