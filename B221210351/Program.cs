@@ -17,7 +17,19 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<HastaneDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<HastaneDbContext>();
+builder.Services
+    .AddIdentity<AppUser, IdentityRole>(x =>
+    {
+        x.Password.RequiredLength = 3;
+        x.Password.RequireNonAlphanumeric = false;
+        x.Password.RequireLowercase = false;
+        x.Password.RequireUppercase = false;
+        x.Password.RequireDigit = false;
+
+        x.User.RequireUniqueEmail = true;
+        x.User.AllowedUserNameCharacters = "abcçdefghiýjklmnoöpqrsþtuüvwxyzABCÇDEFGHIÝJKLMNOÖPQRSÞTUÜVWXYZ0123456789";
+    })
+    .AddEntityFrameworkStores<HastaneDbContext>();
 
 var app = builder.Build();
 

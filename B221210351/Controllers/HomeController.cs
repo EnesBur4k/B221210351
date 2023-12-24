@@ -1,5 +1,7 @@
 ﻿using B221210351.EFContext;
 using B221210351.Models;
+using B221210351.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,10 +10,12 @@ namespace B221210351.Controllers
     public class HomeController : Controller
     {
         private readonly HastaneDbContext context;
+        private readonly UserManager<AppUser> userManager;
 
-        public HomeController(HastaneDbContext context)
+        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager)
         {
             this.context = context;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()
@@ -25,9 +29,9 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(AppUser patient)
+        public IActionResult Login(LoginUserVM loginUserVM)
         {
-            return View(patient);
+            return View();
         }
 
         public IActionResult Register()
@@ -36,11 +40,26 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(AppUser user)
+        public async Task<IActionResult> Register(CreateUserVM appUserViewModel)
         {
-            context.Users.Add(user);
-            context.SaveChanges();
-            return RedirectToAction("Login");
+            if (ModelState.IsValid)
+            {
+                AppUser appUser = new AppUser
+                {
+                    PatientName = appUserViewModel.PatientName,
+                    PatientSurname = appUserViewModel.PatientSurname,
+                    UserName = appUserViewModel.UserName,
+                    Email = appUserViewModel.Email,
+                    PatientBirthDay = DateTime.Now,
+                    Address = await context.Addresses.FindAsync(1)
+                };
+                IdentityResult result = await userManager.CreateAsync(appUser, appUserViewModel.Password);
+                if (result.Succeeded)
+                    return RedirectToAction("Index");
+                else
+                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+            }
+            return View();
         }
     }
 }

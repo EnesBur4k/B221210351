@@ -1,6 +1,7 @@
 ﻿using B221210351.Areas.YonetimPaneli.Models.ViewModels;
 using B221210351.EFContext;
 using B221210351.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Numerics;
@@ -10,11 +11,13 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
     [Area("yonetimPaneli")]
     public class HomeController : Controller
     {
+        private readonly UserManager<AppUser> _userManager;
         private readonly HastaneDbContext context;
 
-        public HomeController(HastaneDbContext context)
+        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager)
         {
             this.context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Login()
