@@ -38,10 +38,11 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 }).AddCookie(options =>
 {
+    options.LoginPath = new PathString("/Home/Login");
+    options.AccessDeniedPath = new PathString("/Home/Login");
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     options.Cookie.MaxAge = options.ExpireTimeSpan; // optional
     options.SlidingExpiration = true;
-    options.AccessDeniedPath = new PathString("/Home/Login");
 });
 
 var app = builder.Build();
@@ -64,7 +65,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "area",
-    pattern: "{area:exists}/{controller=Home}/{action=Login}");
+    pattern: "{area:exists}/{controller=Home}/{action=Login}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
