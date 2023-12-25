@@ -116,9 +116,8 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"), 1L, 1);
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");
@@ -140,10 +139,43 @@ namespace B221210351.Migrations
                     b.ToTable("Appointments");
                 });
 
+            modelBuilder.Entity("B221210351.Models.AppRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
             modelBuilder.Entity("B221210351.Models.AppUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -225,152 +257,6 @@ namespace B221210351.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1",
-                            AccessFailedCount = 0,
-                            AddressId = 1,
-                            ConcurrencyStamp = "725a0033-67af-4788-9711-d3d1c985dc79",
-                            Email = "enesburak@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PatientBirthDay = new DateTime(2023, 12, 24, 16, 26, 26, 869, DateTimeKind.Local).AddTicks(7689),
-                            PatientGender = true,
-                            PatientName = "Enes",
-                            PatientPersonalId = 100,
-                            PatientSurname = "Burak",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "5c7e7550-3968-4641-95aa-7c4be8d55e2d",
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
-                            Id = "2",
-                            AccessFailedCount = 0,
-                            AddressId = 2,
-                            ConcurrencyStamp = "ec534ae5-36cf-43bb-82e2-0e8acfd56766",
-                            Email = "ogun@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PatientBirthDay = new DateTime(2023, 12, 24, 16, 26, 26, 869, DateTimeKind.Local).AddTicks(7710),
-                            PatientGender = true,
-                            PatientName = "Ogün",
-                            PatientPersonalId = 101,
-                            PatientSurname = "Şanlısoy",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "8ce0990b-3bd4-41ee-a38d-f4b9b2ce6bd9",
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
-                            Id = "3",
-                            AccessFailedCount = 0,
-                            AddressId = 3,
-                            ConcurrencyStamp = "cea305f0-22af-4f48-9d50-156eefbcbfec",
-                            Email = "winston@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PatientBirthDay = new DateTime(2023, 12, 24, 16, 26, 26, 869, DateTimeKind.Local).AddTicks(7738),
-                            PatientGender = true,
-                            PatientName = "Winston",
-                            PatientPersonalId = 102,
-                            PatientSurname = "Churchill",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "b934c5fd-f7f1-4574-91fd-3125f372db74",
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
-                            Id = "4",
-                            AccessFailedCount = 0,
-                            AddressId = 2,
-                            ConcurrencyStamp = "571b0a88-6ad3-4aa6-a958-7ee758e1ee0c",
-                            Email = "goat@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PatientBirthDay = new DateTime(2023, 12, 24, 16, 26, 26, 869, DateTimeKind.Local).AddTicks(7744),
-                            PatientGender = true,
-                            PatientName = "Emanuel",
-                            PatientPersonalId = 103,
-                            PatientSurname = "İcardi",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "7c8c57a9-7d16-40c9-b754-e262e8da23a7",
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
-                            Id = "5",
-                            AccessFailedCount = 0,
-                            AddressId = 1,
-                            ConcurrencyStamp = "4978dd12-5942-4831-9f9e-25eafea92da3",
-                            Email = "bulent@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PatientBirthDay = new DateTime(2023, 12, 24, 16, 26, 26, 869, DateTimeKind.Local).AddTicks(7753),
-                            PatientGender = true,
-                            PatientName = "Bülent",
-                            PatientPersonalId = 104,
-                            PatientSurname = "Ersoy",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "c15939db-abef-4763-b1dd-1ddda936121c",
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
-                            Id = "6",
-                            AccessFailedCount = 0,
-                            AddressId = 3,
-                            ConcurrencyStamp = "2d586903-686a-4464-8606-2eb80e18b959",
-                            Email = "senar@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PatientBirthDay = new DateTime(2023, 12, 24, 16, 26, 26, 869, DateTimeKind.Local).AddTicks(7759),
-                            PatientGender = true,
-                            PatientName = "Muazzez",
-                            PatientPersonalId = 105,
-                            PatientSurname = "Senar",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "7834a612-4f36-4698-8df4-f160c7bdc827",
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
-                            Id = "7",
-                            AccessFailedCount = 0,
-                            AddressId = 2,
-                            ConcurrencyStamp = "e77d6cd1-bd2c-437d-a649-a64a939c46ba",
-                            Email = "gogh@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PatientBirthDay = new DateTime(2023, 12, 24, 16, 26, 26, 869, DateTimeKind.Local).AddTicks(7764),
-                            PatientGender = true,
-                            PatientName = "Vincent",
-                            PatientPersonalId = 106,
-                            PatientSurname = "Van Gogh",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "71ceef8e-102a-4ed8-881f-c16b59ba7c65",
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
-                            Id = "8",
-                            AccessFailedCount = 0,
-                            AddressId = 1,
-                            ConcurrencyStamp = "a47878ef-fdf4-478c-8650-9a0c940cc473",
-                            Email = "heisenberg@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PatientBirthDay = new DateTime(2023, 12, 24, 16, 26, 26, 869, DateTimeKind.Local).AddTicks(7772),
-                            PatientGender = true,
-                            PatientName = "Werner",
-                            PatientPersonalId = 107,
-                            PatientSurname = "Heisenberg",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "164421ee-90bb-477f-a248-0d4689ab116e",
-                            TwoFactorEnabled = false
-                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.City", b =>
@@ -763,34 +649,7 @@ namespace B221210351.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -804,9 +663,8 @@ namespace B221210351.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -815,7 +673,7 @@ namespace B221210351.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -829,9 +687,8 @@ namespace B221210351.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -840,7 +697,7 @@ namespace B221210351.Migrations
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -851,9 +708,8 @@ namespace B221210351.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -862,13 +718,13 @@ namespace B221210351.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -877,10 +733,10 @@ namespace B221210351.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -991,16 +847,16 @@ namespace B221210351.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("B221210351.Models.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("B221210351.Models.AppUser", null)
                         .WithMany()
@@ -1009,7 +865,7 @@ namespace B221210351.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("B221210351.Models.AppUser", null)
                         .WithMany()
@@ -1018,9 +874,9 @@ namespace B221210351.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("B221210351.Models.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1033,7 +889,7 @@ namespace B221210351.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("B221210351.Models.AppUser", null)
                         .WithMany()

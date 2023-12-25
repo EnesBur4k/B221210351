@@ -1,6 +1,7 @@
 using B221210351.EFContext;
 using B221210351.Models;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,7 +19,7 @@ builder.Services.AddDbContext<HastaneDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services
-    .AddIdentity<AppUser, IdentityRole>(x =>
+    .AddIdentity<AppUser, AppRole>(x =>
     {
         x.Password.RequiredLength = 3;
         x.Password.RequireNonAlphanumeric = false;
@@ -29,7 +30,19 @@ builder.Services
         x.User.RequireUniqueEmail = true;
         x.User.AllowedUserNameCharacters = "abcçdefghiýjklmnoöpqrsþtuüvwxyzABCÇDEFGHIÝJKLMNOÖPQRSÞTUÜVWXYZ0123456789";
     })
-    .AddEntityFrameworkStores<HastaneDbContext>();
+    .AddEntityFrameworkStores<HastaneDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    options.Cookie.MaxAge = options.ExpireTimeSpan; // optional
+    options.SlidingExpiration = true;
+    options.AccessDeniedPath = new PathString("/Home/Login");
+});
 
 var app = builder.Build();
 
@@ -46,6 +59,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

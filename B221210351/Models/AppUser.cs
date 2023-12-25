@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace B221210351.Models
 {
-    public class AppUser : IdentityUser
+    public class AppUser : IdentityUser<int>
     {
         public AppUser() 
         {

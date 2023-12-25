@@ -11,13 +11,17 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
     [Area("yonetimPaneli")]
     public class HomeController : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
         private readonly HastaneDbContext context;
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
+        private readonly RoleManager<AppRole> roleManager;
 
-        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager)
+        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager)
         {
             this.context = context;
-            _userManager = userManager;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Login()
@@ -39,6 +43,11 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            return View();
+        }
+
         public IActionResult Dashboard()
         {
             List<AppUser> patients = context.Users.ToList();
@@ -53,8 +62,6 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
                 Departments = departments,
                 Policlinics = policlinics
             };
-
-
             return View(appData);
         }
         public IActionResult Doctors()
@@ -88,6 +95,22 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
                 .Include(a => a.Doctor)
                 .Include(a => a.Policlinic).ToList();
             return View(appointments);
+        }
+
+        public IActionResult Roles()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> addRole(CreateRoleVM model)
+        {
+            IdentityResult result = await roleManager.CreateAsync(new AppRole { Name = model.Name });
+            if (result.Succeeded)
+            {
+                //Başarılı...
+            }
+            return RedirectToAction("Dashboard");
         }
 
         [HttpPost]

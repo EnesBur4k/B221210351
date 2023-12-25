@@ -35,8 +35,10 @@
     </div>
     <div class="form-group">
         <label for="policlinic">Tarih: </label>
-        <input type="datetime-local" asp-for="@Model.Appointment.AppointmentDate"/>
+        <input type="datetime-local" asp-for="@Model.Appointment.AppointmentDate" />
     </div>
     <button type="submit" class="btn btn-primary">Doktor Ekle</button>
 </form>
 <span>@TempData["hataMesaji"]</span>
+
+<a asp-action="Logout" asp-controller="Home">Çıkış Yap</a>

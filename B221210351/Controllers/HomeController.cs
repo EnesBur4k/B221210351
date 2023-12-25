@@ -11,11 +11,13 @@ namespace B221210351.Controllers
     {
         private readonly HastaneDbContext context;
         private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager)
+        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             this.context = context;
             this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -29,9 +31,31 @@ namespace B221210351.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginUserVM loginUserVM)
+        public async Task<IActionResult> Login(LoginUserVM model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                AppUser user = await userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    await signInManager.SignOutAsync();
+                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.Persistent, model.Lock);
+
+                    if (result.Succeeded)
+                        return RedirectToAction("Index","Appointment");
+                }
+                else
+                {
+                    ModelState.AddModelError("NotUser", "Böyle bir kullanıcı bulunmamaktadır.");
+                    ModelState.AddModelError("NotUser2", "E-posta veya şifre yanlış.");
+                }
+            }
+            return View(model);
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
 
         public IActionResult Register()
@@ -55,7 +79,10 @@ namespace B221210351.Controllers
                 };
                 IdentityResult result = await userManager.CreateAsync(appUser, appUserViewModel.Password);
                 if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(appUser, "User");
                     return RedirectToAction("Index");
+                }
                 else
                     result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
             }

@@ -1,6 +1,8 @@
 ﻿using B221210351.EFContext;
 using B221210351.Models;
 using B221210351.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace B221210351.Controllers
@@ -13,7 +15,7 @@ namespace B221210351.Controllers
         {
             this.context = context;
         }
-
+        [Authorize(Roles = "User")]
         public IActionResult Index()
         {
             AppointmentVM model = new AppointmentVM()
@@ -23,6 +25,7 @@ namespace B221210351.Controllers
             };
             return View(model);
         }
+
         public IActionResult CreateAppointment(AppointmentVM appointmentVM)
         {
             appointmentVM.Doctor = context.Doctors.Find(appointmentVM.Doctor.DoctorId);

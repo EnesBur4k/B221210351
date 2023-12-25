@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace B221210351.EFContext
 {
-    public class HastaneDbContext : IdentityDbContext<AppUser>
+    public class HastaneDbContext : IdentityDbContext<AppUser,AppRole,int>
     {
         public HastaneDbContext(DbContextOptions<HastaneDbContext> options) : base(options) { }
 
@@ -378,96 +378,96 @@ namespace B221210351.EFContext
                     PoliclinicId = 10
                 });
 
-            modelBuilder.Entity<AppUser>()
-                .HasData(
-                new AppUser
-                {
-                    Id = "1",
-                    PatientPersonalId = 100,
-                    PatientName = "Enes",
-                    PatientSurname = "Burak",
-                    PatientGender = true,
-                    Email = "enesburak@gmail.com",
-                    PatientBirthDay = DateTime.Now,
-                    AddressId = 1
-                },
-                new AppUser
-                {
-                    Id = "2",
-                    PatientPersonalId = 101,
-                    PatientName = "Ogün",
-                    PatientSurname = "Şanlısoy",
-                    PatientGender = true,
-                    Email = "ogun@gmail.com",
-                    PatientBirthDay = DateTime.Now,
-                    AddressId = 2
-                },
-                new AppUser
-                {
-                    Id = "3",
-                    PatientPersonalId = 102,
-                    PatientName = "Winston",
-                    PatientSurname = "Churchill",
-                    PatientGender = true,
-                    Email = "winston@gmail.com",
-                    PatientBirthDay = DateTime.Now,
-                    AddressId = 3
-                },
-                new AppUser
-                {
-                    Id = "4",
-                    PatientPersonalId = 103,
-                    PatientName = "Emanuel",
-                    PatientSurname = "İcardi",
-                    PatientGender = true,
-                    Email = "goat@gmail.com",
-                    PatientBirthDay = DateTime.Now,
-                    AddressId = 2
-                },
-                new AppUser
-                {
-                    Id = "5",
-                    PatientPersonalId = 104,
-                    PatientName = "Bülent",
-                    PatientSurname = "Ersoy",
-                    PatientGender = true,
-                    Email = "bulent@gmail.com",
-                    PatientBirthDay = DateTime.Now,
-                    AddressId = 1
-                },
-                new AppUser
-                {
-                    Id = "6",
-                    PatientPersonalId = 105,
-                    PatientName = "Muazzez",
-                    PatientSurname = "Senar",
-                    PatientGender = true,
-                    Email = "senar@gmail.com",
-                    PatientBirthDay = DateTime.Now,
-                    AddressId = 3
-                },
-                new AppUser
-                {
-                    Id = "7",
-                    PatientPersonalId = 106,
-                    PatientName = "Vincent",
-                    PatientSurname = "Van Gogh",
-                    PatientGender = true,
-                    Email = "gogh@gmail.com",
-                    PatientBirthDay = DateTime.Now,
-                    AddressId = 2
-                },
-                new AppUser
-                {
-                    Id = "8",
-                    PatientPersonalId = 107,
-                    PatientName = "Werner",
-                    PatientSurname = "Heisenberg",
-                    PatientGender = true,
-                    Email = "heisenberg@gmail.com",
-                    PatientBirthDay = DateTime.Now,
-                    AddressId = 1
-                });
+            //modelBuilder.Entity<AppUser>()
+            //    .HasData(
+            //    new AppUser
+            //    {
+            //        Id = 1,
+            //        PatientPersonalId = 100,
+            //        PatientName = "Enes",
+            //        PatientSurname = "Burak",
+            //        PatientGender = true,
+            //        Email = "enesburak@gmail.com",
+            //        PatientBirthDay = DateTime.Now,
+            //        AddressId = 1
+            //    },
+            //    new AppUser
+            //    {
+            //        Id = 2,
+            //        PatientPersonalId = 101,
+            //        PatientName = "Ogün",
+            //        PatientSurname = "Şanlısoy",
+            //        PatientGender = true,
+            //        Email = "ogun@gmail.com",
+            //        PatientBirthDay = DateTime.Now,
+            //        AddressId = 2
+            //    },
+            //    new AppUser
+            //    {
+            //        Id = "3",
+            //        PatientPersonalId = 102,
+            //        PatientName = "Winston",
+            //        PatientSurname = "Churchill",
+            //        PatientGender = true,
+            //        Email = "winston@gmail.com",
+            //        PatientBirthDay = DateTime.Now,
+            //        AddressId = 3
+            //    },
+            //    new AppUser
+            //    {
+            //        Id = "4",
+            //        PatientPersonalId = 103,
+            //        PatientName = "Emanuel",
+            //        PatientSurname = "İcardi",
+            //        PatientGender = true,
+            //        Email = "goat@gmail.com",
+            //        PatientBirthDay = DateTime.Now,
+            //        AddressId = 2
+            //    },
+            //    new AppUser
+            //    {
+            //        Id = "5",
+            //        PatientPersonalId = 104,
+            //        PatientName = "Bülent",
+            //        PatientSurname = "Ersoy",
+            //        PatientGender = true,
+            //        Email = "bulent@gmail.com",
+            //        PatientBirthDay = DateTime.Now,
+            //        AddressId = 1
+            //    },
+            //    new AppUser
+            //    {
+            //        Id = "6",
+            //        PatientPersonalId = 105,
+            //        PatientName = "Muazzez",
+            //        PatientSurname = "Senar",
+            //        PatientGender = true,
+            //        Email = "senar@gmail.com",
+            //        PatientBirthDay = DateTime.Now,
+            //        AddressId = 3
+            //    },
+            //    new AppUser
+            //    {
+            //        Id = "7",
+            //        PatientPersonalId = 106,
+            //        PatientName = "Vincent",
+            //        PatientSurname = "Van Gogh",
+            //        PatientGender = true,
+            //        Email = "gogh@gmail.com",
+            //        PatientBirthDay = DateTime.Now,
+            //        AddressId = 2
+            //    },
+            //    new AppUser
+            //    {
+            //        Id = "8",
+            //        PatientPersonalId = 107,
+            //        PatientName = "Werner",
+            //        PatientSurname = "Heisenberg",
+            //        PatientGender = true,
+            //        Email = "heisenberg@gmail.com",
+            //        PatientBirthDay = DateTime.Now,
+            //        AddressId = 1
+            //    });
 
         }
     }
