@@ -28,6 +28,9 @@ namespace B221210351.EFContext
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<AppUser>()
+                .HasKey(p => p.Id);
+
             modelBuilder.Entity<Appointment>()
                 .HasOne(a => a.Doctor)
                 .WithMany(d => d.Appointments)
@@ -35,7 +38,7 @@ namespace B221210351.EFContext
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.AppUser)
+                .HasOne(u => u.AppUser)
                 .WithMany(p => p.Appointments)
                 .OnDelete(DeleteBehavior.Restrict);
 

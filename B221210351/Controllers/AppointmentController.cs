@@ -18,7 +18,7 @@ namespace B221210351.Controllers
         }
         public IActionResult Index()
         {
-            AppointmentVM model = new AppointmentVM()
+            CreateAppointmentVM model = new CreateAppointmentVM()
             {
                 Policlinics = context.Policlinics.ToList(),
                 Doctors = context.Doctors.ToList(),
@@ -26,7 +26,7 @@ namespace B221210351.Controllers
             return View(model);
         }
 
-        public IActionResult CreateAppointment(AppointmentVM appointmentVM)
+        public IActionResult CreateAppointment(CreateAppointmentVM appointmentVM)
         {
             appointmentVM.Doctor = context.Doctors.Find(appointmentVM.Doctor.DoctorId);
             appointmentVM.Policlinic = context.Policlinics.Find(appointmentVM.Policlinic.PoliclinicId);
