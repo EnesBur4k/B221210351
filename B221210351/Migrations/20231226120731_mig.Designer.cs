@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B221210351.Migrations
 {
     [DbContext(typeof(HastaneDbContext))]
-    [Migration("20231226113931_mig")]
+    [Migration("20231226120731_mig")]
     partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,6 +148,22 @@ namespace B221210351.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "99af8560-5c1b-43a9-91a0-693b8c683fc7",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "9f16a1df-b4cf-48db-b639-3567dad200a8",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("B221210351.Models.AppUser", b =>

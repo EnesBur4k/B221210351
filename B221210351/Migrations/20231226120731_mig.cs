@@ -351,6 +351,15 @@ namespace B221210351.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { 1, "99af8560-5c1b-43a9-91a0-693b8c683fc7", "Admin", "ADMIN" },
+                    { 2, "9f16a1df-b4cf-48db-b639-3567dad200a8", "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Cities",
                 columns: new[] { "CityId", "CityName" },
                 values: new object[,]

@@ -1,12 +1,13 @@
 ﻿using B221210351.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 namespace B221210351.EFContext
 {
-    public class HastaneDbContext : IdentityDbContext<AppUser,AppRole,int>
+    public class HastaneDbContext : IdentityDbContext<AppUser, AppRole, int>
     {
-        public HastaneDbContext(DbContextOptions<HastaneDbContext> options) : base(options) 
+        public HastaneDbContext(DbContextOptions<HastaneDbContext> options) : base(options)
         { }
 
         public DbSet<Appointment> Appointments { get; set; }
@@ -67,6 +68,21 @@ namespace B221210351.EFContext
                 .HasOne(a => a.Street)
                 .WithMany(c => c.Addresses)
                 .HasForeignKey(a => a.StreetId);
+
+            modelBuilder.Entity<AppRole>()
+                .HasData(
+                new AppRole
+                {
+                    Id = 1,
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                },
+                new AppRole
+                {
+                    Id = 2,
+                    Name = "User",
+                    NormalizedName = "USER"
+                });
 
             modelBuilder.Entity<Street>()
                 .HasData(

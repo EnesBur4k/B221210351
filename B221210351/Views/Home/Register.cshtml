@@ -5,27 +5,23 @@
         <div asp-validation-summary="@ValidationSummary.ModelOnly"></div>
         <form class="opacity-100" style="width: 50%; " asp-action="Register" asp-controller="Home">
             <div class="form-group">
-                <label for="patientName">Kullanıcı Adı</label>
+                @* <label for="patientName">Ad: </label> *@
                 <input type="text" class="form-control" asp-for="PatientName" placeholder="Adınızı giriniz.">
                 <span asp-validation-for="PatientName"></span>
             </div>
             <div class="form-group">
-                <label for="patientSurname">Kullanıcı Adı</label>
                 <input type="text" class="form-control" asp-for="PatientSurname" placeholder="Soyadınızı giriniz.">
                 <span asp-validation-for="PatientSurname"></span>
             </div>
             <div class="form-group">
-                <label for="username">Kullanıcı Adı</label>
                 <input type="text" class="form-control" asp-for="UserName" placeholder="Kullanıcı Adınızı giriniz.">
                 <span asp-validation-for="UserName"></span>
             </div>
             <div class="form-group">
-                <label for="email">Kullanıcı Adı</label>
                 <input type="email" class="form-control" asp-for="Email" placeholder="E-mail adresinizi giriniz.">
                 <span asp-validation-for="Email"></span>
             </div>
             <div class="form-group">
-                <label for="password">Parola</label>
                 <input type="password" class="form-control" asp-for="Password" placeholder="Parolanızı giriniz.">
                 <span asp-validation-for="Password"></span>
             </div>

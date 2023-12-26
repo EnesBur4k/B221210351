@@ -51,7 +51,10 @@ namespace B221210351.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.Persistent, model.Lock);
 
                     if (result.Succeeded)
+                    {
+                        TempData["UserId"] = user.Id;
                         return RedirectToAction("Index", "Appointment");
+                    }
                 }
                 else
                 {

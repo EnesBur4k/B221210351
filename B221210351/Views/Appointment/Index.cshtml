@@ -42,3 +42,31 @@
 <span>@TempData["hataMesaji"]</span>
 
 <a asp-action="Logout" asp-controller="Home">Çıkış Yap</a>
+
+<table class="table table-dark">
+    <tr>
+        <td>
+            Randevu Tarihi
+        </td>
+        <td>
+            Klinik
+        </td>
+        <td>
+            Doktor Adı
+        </td>
+        @foreach (var item in Model.Appointments)
+        {
+        <tr>
+            <td>
+                    @item.AppointmentDate
+            </td>
+            <td>
+                    @item.Policlinic.PoliclinicName
+            </td>
+            <td>
+                    @item.Doctor.DoctorName
+            </td>
+        </tr>
+        }
+</table>
+<br />
