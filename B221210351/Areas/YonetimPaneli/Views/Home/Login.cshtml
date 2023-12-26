@@ -1,4 +1,4 @@
-﻿@model Admin
+﻿@model LoginAdminVM
 
 <center>
     <div class="bg-white p-2 rounded" style="--bs-bg-opacity: .75;">
@@ -6,7 +6,7 @@
         <form class="opacity-100" style="width: 50%; " asp-action="Login" asp-controller="Home" asp-area="yonetimPaneli">
             <div class="form-group">
                 <label for="EMail">Kullanıcı Adı</label>
-                <input type="email" class="form-control" asp-for="UserName" placeholder="E-mail adresinizi giriniz.">
+                <input type="email" class="form-control" asp-for="Email" placeholder="E-mail adresinizi giriniz.">
             </div>
             <div class="form-group">
                 <label for="Parola">Parola</label>

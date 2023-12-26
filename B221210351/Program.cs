@@ -11,8 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services
-    .AddControllersWithViews()
-    .AddFluentValidation(x => x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+    .AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<HastaneDbContext>(options =>
@@ -38,10 +37,10 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 }).AddCookie(options =>
 {
+    options.Cookie.MaxAge = options.ExpireTimeSpan; // optional
     options.LoginPath = new PathString("/Home/Login");
     options.AccessDeniedPath = new PathString("/Home/Login");
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-    options.Cookie.MaxAge = options.ExpireTimeSpan; // optional
     options.SlidingExpiration = true;
 });
 

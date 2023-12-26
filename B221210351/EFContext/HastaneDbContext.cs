@@ -6,9 +6,9 @@ namespace B221210351.EFContext
 {
     public class HastaneDbContext : IdentityDbContext<AppUser,AppRole,int>
     {
-        public HastaneDbContext(DbContextOptions<HastaneDbContext> options) : base(options) { }
+        public HastaneDbContext(DbContextOptions<HastaneDbContext> options) : base(options) 
+        { }
 
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Department> Departments { get; set; }

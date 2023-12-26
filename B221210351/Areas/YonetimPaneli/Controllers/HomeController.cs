@@ -1,6 +1,8 @@
 ﻿using B221210351.Areas.YonetimPaneli.Models.ViewModels;
 using B221210351.EFContext;
 using B221210351.Models;
+using B221210351.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +10,7 @@ using System.Numerics;
 
 namespace B221210351.Areas.YonetimPaneli.Controllers
 {
+    [Authorize(Roles ="Admin")]
     [Area("yonetimPaneli")]
     public class HomeController : Controller
     {
@@ -24,28 +27,39 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
             this.signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login(Admin admin)
+        public async Task<IActionResult> Login(LoginUserVM model)
         {
-            if (context.Admins.Any(a => a.UserName == admin.UserName))
+            if (ModelState.IsValid)
             {
-                Admin userControl = context.Admins.FirstOrDefault(p => p.UserName == admin.UserName);
+                AppUser user = await userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    await signInManager.SignOutAsync();
+                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.Persistent, model.Lock);
 
-                if (userControl.Password == admin.Password)
-                    return RedirectToAction("Dashboard");
+                    if (result.Succeeded)
+                        return RedirectToAction("Dashboard");
+                }
+                else
+                {
+                    ModelState.AddModelError("NotUser", "Böyle bir kullanıcı bulunmamaktadır.");
+                    ModelState.AddModelError("NotUser2", "E-posta veya şifre yanlış.");
+                }
             }
-            TempData["hataMesaji"] = "Lütfen Bilgileri Doğru Giriniz";
-            return View();
+            return View(model);
         }
-
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            return View();
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
 
         public IActionResult Dashboard()

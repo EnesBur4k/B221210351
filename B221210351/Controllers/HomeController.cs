@@ -1,12 +1,14 @@
 ﻿using B221210351.EFContext;
 using B221210351.Models;
 using B221210351.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace B221210351.Controllers
 {
+    [Authorize(Roles = "User")]
     public class HomeController : Controller
     {
         private readonly HastaneDbContext context;
@@ -20,16 +22,23 @@ namespace B221210351.Controllers
             this.signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
+            //if (Response.Cookies[] == null)
+            //{
             return View();
+            //}
+            //return RedirectToAction("Login");
         }
 
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserVM model)
         {
@@ -42,7 +51,7 @@ namespace B221210351.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.Persistent, model.Lock);
 
                     if (result.Succeeded)
-                        return RedirectToAction("Index","Appointment");
+                        return RedirectToAction("Index", "Appointment");
                 }
                 else
                 {
@@ -57,12 +66,12 @@ namespace B221210351.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
-
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(CreateUserVM appUserViewModel)
         {

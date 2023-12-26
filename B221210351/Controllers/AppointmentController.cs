@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace B221210351.Controllers
 {
+    [Authorize(Roles = "User")]
     public class AppointmentController : Controller
     {
         private readonly HastaneDbContext context;
@@ -15,7 +16,6 @@ namespace B221210351.Controllers
         {
             this.context = context;
         }
-        [Authorize(Roles = "User")]
         public IActionResult Index()
         {
             AppointmentVM model = new AppointmentVM()
