@@ -11,11 +11,7 @@ namespace B221210351.EFContext
         { }
 
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Address> Addresses { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<District> Districts { get; set; }
-        public DbSet<Neighbourhood> Neighbourhoods { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<AppUser> Users { get; set; }
         public DbSet<Policlinic> Policlinics { get; set; }
@@ -49,26 +45,6 @@ namespace B221210351.EFContext
                 .HasForeignKey(a => a.PoliclinicId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Address>()
-                .HasOne(a => a.City)
-                .WithMany(c => c.Addresses)
-                .HasForeignKey(a => a.CityId);
-
-            modelBuilder.Entity<Address>()
-                .HasOne(a => a.District)
-                .WithMany(c => c.Addresses)
-                .HasForeignKey(a => a.DistrictId);
-
-            modelBuilder.Entity<Address>()
-                .HasOne(a => a.Neighbourhood)
-                .WithMany(c => c.Addresses)
-                .HasForeignKey(a => a.NeighbourhoodId);
-
-            modelBuilder.Entity<Address>()
-                .HasOne(a => a.Street)
-                .WithMany(c => c.Addresses)
-                .HasForeignKey(a => a.StreetId);
-
             modelBuilder.Entity<AppRole>()
                 .HasData(
                 new AppRole
@@ -84,111 +60,15 @@ namespace B221210351.EFContext
                     NormalizedName = "USER"
                 });
 
-            modelBuilder.Entity<Street>()
-                .HasData(
-                new Street
-                {
-                    StreetId = 1,
-                    StreetName = "Yavuz Selim",
-
-                },
-                new Street
-                {
-                    StreetId = 2,
-                    StreetName = "Teoman"
-                },
-                new Street
-                {
-                    StreetId = 3,
-                    StreetName = "Toplum"
-                });
-
-            modelBuilder.Entity<Neighbourhood>()
-                .HasData(
-                new Neighbourhood
-                {
-                    NeighbourhoodId = 1,
-                    NeighbourhoodName = "Güzelyalı",
-
-                },
-                new Neighbourhood
-                {
-                    NeighbourhoodId = 2,
-                    NeighbourhoodName = "Kaynarca"
-                },
-                new Neighbourhood
-                {
-                    NeighbourhoodId = 3,
-                    NeighbourhoodName = "Çamçeşme"
-                });
-
-            modelBuilder.Entity<District>()
-                .HasData(
-                new District
-                {
-                    DistrictId = 1,
-                    DistrictName = "Pendik",
-
-                },
-                new District
-                {
-                    DistrictId = 2,
-                    DistrictName = "Kartal"
-                },
-                new District
-                {
-                    DistrictId = 3,
-                    DistrictName = "Maltepe"
-                });
-
-            modelBuilder.Entity<City>()
-                .HasData(
-                new City
-                {
-                    CityId = 1,
-                    CityName = "İstanbul",
-
-                },
-                new City
-                {
-                    CityId = 2,
-                    CityName = "Kocaeli"
-                },
-                new City
-                {
-                    CityId = 3,
-                    CityName = "Sakarya"
-                });
-
-            modelBuilder.Entity<Address>()
-                .HasData(
-                new Address
-                {
-                    AddressId = 1,
-                    CityId = 1,
-                    DistrictId = 1,
-                    NeighbourhoodId = 1,
-                    StreetId = 1,
-                    ApartmentNo = 1
-                },
-                new Address
-                {
-                    AddressId = 2,
-                    CityId = 1,
-                    DistrictId = 2,
-                    NeighbourhoodId = 2,
-                    StreetId = 2,
-                    ApartmentNo = 2
-                },
-                new Address
-                {
-                    AddressId = 3,
-                    CityId = 1,
-                    DistrictId = 3,
-                    NeighbourhoodId = 3,
-                    StreetId = 3,
-                    ApartmentNo = 3
-                });
+            //modelBuilder.Entity<AppUser>()
+            //    .HasData(
+            //    new AppUser
+            //    {
+            //        Id = 1,
+            //        PatientName = "Enes Burak",
+            //        PatientSurname = "Kaya",
+            //        Email="221210351@sakarya.edu.tr",
+            //    }); ;
 
             modelBuilder.Entity<Department>()
                 .HasData(

@@ -12,11 +12,11 @@ namespace B221210351.Models.ViewModels
         [Display(Name = "Hasta Soyadı")]
         public string PatientSurname { get; set; }
 
-        [Required(ErrorMessage = "Lütfen kullanıcı adınızı giriniz...")]
-        [Display(Name = "Kullanıcı Adı")]
-        public string UserName { get; set; }
-        [Display(Name = "Hasta Adresi")]
-        public Address? PatientAddress { get; set; }
+        [Required(ErrorMessage = "Lütfen TC Kimlik numaranızı giriniz...")]
+        [StringLength(11, MinimumLength = 11,
+            ErrorMessage = "TC Kimlik numarası 11 karakterli olmalı.")]
+        [Display(Name = "TC Kimlik No")]
+        public string PatientPersonalId { get; set; }
 
         [Required(ErrorMessage = "Lütfen email adresinizi giriniz...")]
         [EmailAddress(ErrorMessage = "Lütfen email formatında bir değer belirtiniz...")]

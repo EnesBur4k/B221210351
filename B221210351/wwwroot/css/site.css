@@ -1,23 +1,63 @@
 html {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     margin-bottom: 60px;
-    background-color: antiquewhite;
+    background-color: lightseagreen;
 }
 
-.btn{
+.btn {
     margin: 20px;
+}
+
+/* Navbar'ýn arka planý ve font rengi */
+.navbar-custom {
+    background-color: #007bff;
+    color: #fff;
+}
+
+    /* Navbar baþlýðý için stil */
+    .navbar-custom .navbar-brand {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    /* Navbar linkleri için stil */
+    .navbar-custom .nav-link {
+        color: #fff;
+    }
+
+        /* Aktif sayfa linki için farklý bir renk */
+        .navbar-custom .nav-link.active {
+            color: #ffc107;
+        }
+
+.logout-btn {
+    background-color: red;
+    color: white;
+    border: 1px solid red;
+}
+
+    .logout-btn:hover {
+        background-color: white;
+        color: red;
+    }
+
+.form-container {
+    background-color: #f5f5f5; /* Örnek bir açýk gri */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
 }

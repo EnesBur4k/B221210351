@@ -11,13 +11,11 @@ namespace B221210351.Models
         {
             Appointments = new HashSet<Appointment>();
         }
-        public int AddressId { get; set; }
-        public int PatientPersonalId { get; set; }
+        public string PatientPersonalId { get; set; }
         public string PatientName { get; set; }
         public string PatientSurname { get; set; }
         public bool PatientGender { get; set; }
         public DateTime PatientBirthDay { get; set; }
-        public Address Address { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
     }
 }

@@ -68,7 +68,7 @@ namespace B221210351.Controllers
                 }
             }
             context.SaveChanges();
-            return View();
+            return RedirectToAction("Login");
         }
 
         [AllowAnonymous]
@@ -123,10 +123,10 @@ namespace B221210351.Controllers
                 {
                     PatientName = appUserViewModel.PatientName,
                     PatientSurname = appUserViewModel.PatientSurname,
-                    UserName = appUserViewModel.UserName,
+                    PatientPersonalId = appUserViewModel.PatientPersonalId,
+                    UserName = appUserViewModel.PatientName.Replace(" ","") + appUserViewModel.PatientSurname,
                     Email = appUserViewModel.Email,
-                    PatientBirthDay = DateTime.Now,
-                    Address = await context.Addresses.FindAsync(1)
+                    PatientBirthDay = DateTime.Now
                 };
                 IdentityResult result = await userManager.CreateAsync(appUser, appUserViewModel.Password);
                 if (result.Succeeded)
