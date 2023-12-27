@@ -38,7 +38,7 @@
 
     <div class="form-group">
         <label for="policlinic">Klinik: </label>
-        <select id="policlinic" asp-for="@Model.Policlinic.PoliclinicId" class="form-control">
+        <select id="policlinicId" onchange="secimDegisti(this)" asp-for="@Model.Policlinic.PoliclinicId" class="form-control">
             @foreach (var item in Model.Policlinics)
             {
                 <option value="@item.PoliclinicId">@item.PoliclinicName</option>
@@ -48,7 +48,7 @@
 
     <div class="form-group">
         <label for="doctor">Doktor: </label>
-        <select id="doctor" asp-for="Doctor.DoctorId" class="form-control">
+        <select id="doctorId" asp-for="Doctor.DoctorId" class="form-control">
             @foreach (var item in Model.Doctors)
             {
                 <option value="@item.DoctorId">@item.DoctorName @item.DoctorSurname</option>
@@ -68,3 +68,69 @@
         <span class="text-success">@TempData["randevu"]</span>
     </div>
 </form>
+
+<form id="appointmentForm">
+    <div>
+        <label for="policlinicSelect">Policlinic:</label>
+        <select id="policlinicSelect" name="policlinicId" asp-for="Policlinic.PoliclinicId">
+            @foreach (var item in Model.Policlinics)
+            {
+                <option value="@item.PoliclinicId">@item.PoliclinicName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="doctorSelect">Doctor:</label>
+        <select id="doctorSelect" name="doctorId">
+            <!-- Doctor options will be loaded here -->
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Make Appointment" />
+    </div>
+</form>
+
+<script>
+    // Policlinic select changed event
+    document.getElementById('policlinicSelect').addEventListener('change', function () {
+        var policlinicId = policlinicSelect.value;
+
+        // Make an AJAX request to get doctors for selected policlinic
+        // You'll need to replace this with your actual endpoint
+        // Example AJAX call with jQuery:
+        
+        $.ajax({
+            url: '/Appointment/GetDoctorsByPoliclinicId/' + policlinicId,
+            method: 'GET',
+            success: function (data) {
+                // Populate doctor options based on received data
+                // Replace #doctorSelectOptions with your actual options container
+                var doctorOptions = document.getElementById('doctorSelect');
+                doctorOptions.innerHTML = ''; // Clear previous options
+
+                data.forEach(function (doctor) {
+                    var option = document.createElement('option');
+                    option.value = doctor.doctorId;
+                    option.textContent = doctor.doctorName + ' ' + doctor.doctorSurname;
+                    doctorOptions.appendChild(option);
+                });
+            },
+            error: function (error) {
+                console.error('Error fetching doctors: ', error);
+            }
+        });
+        
+    });
+
+    // Form submission event
+    document.getElementById('appointmentForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Get form data and submit to server
+        // Replace this with your actual form submission logic
+        var formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+    });
+</script>

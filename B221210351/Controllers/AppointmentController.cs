@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Versioning;
 
 namespace B221210351.Controllers
 {
@@ -46,6 +45,16 @@ namespace B221210351.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult GetDoctorsByPoliclinicId(int policlinicId)
+        {
+            // Veritabanından ilgili policlinic'e bağlı doktorları al
+            var doctors = context.Doctors.Where(d => d.PoliclinicId == policlinicId).ToList();// Burada veritabanından doktorları çekme işlemi yapılmalıdır.
+
+            var doctorList = doctors.Select(d => new { d.DoctorId, DoctorName = d.DoctorName, DoctorSurname = d.DoctorSurname }).ToList();
+            return Json(doctorList);
+        }
+
         public IActionResult CreateAppointment(CreateAppointmentVM appointmentVM)
         {
             int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));
@@ -73,6 +82,7 @@ namespace B221210351.Controllers
             }
             return RedirectToAction("index");
         }
+
 
         //public IActionResult CreateAppointment(CreateAppointmentVM appointmentVM)
         //{
