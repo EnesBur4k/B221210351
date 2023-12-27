@@ -23,7 +23,6 @@ namespace B221210351.Controllers
         }
         public IActionResult Index()
         {
-            //randevuları oluşturma
             int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));//Kullanıcının UserId bilgisini alma
             List<Appointment> appointmentList = context.Appointments
                 .Include(a => a.Doctor)
@@ -31,11 +30,18 @@ namespace B221210351.Controllers
                 .Include(a => a.AppUser)
                 .Where(a => a.AppUserId == tempUserId)
                 .ToList();
+
+            List<Appointment> allAppointments = context.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Policlinic)
+                .ToList();
+
             CreateAppointmentVM model = new CreateAppointmentVM()
             {
                 Appointments = appointmentList,
                 Policlinics = context.Policlinics.ToList(),
                 Doctors = context.Doctors.ToList(),
+                AllAppointments = allAppointments
             };
             return View(model);
         }
@@ -51,9 +57,38 @@ namespace B221210351.Controllers
                 AppUser = context.Users.Find(tempUserId)
             };
 
-            context.Appointments.Add(appointment);
-            context.SaveChanges();
+            var isAppointmentEmpty = context.Appointments.Where(a =>
+            (a.DoctorId == appointmentVM.Doctor.DoctorId &&
+            a.AppointmentDate == appointmentVM.AppointmentDate)).Any();
+
+            if (isAppointmentEmpty)
+            {
+                context.Appointments.Add(appointment);
+                context.SaveChanges();
+                TempData["randevu"] = "Randevu başarıyla alındı.";
+            }
+            else
+            {
+                TempData["randevu"] = "Almak istediğiniz randevu doludur.";
+            }
             return RedirectToAction("index");
         }
+
+        //public IActionResult CreateAppointment(CreateAppointmentVM appointmentVM)
+        //{
+
+
+        //    if (appointmentVM.Appointment.isActive)
+        //    {
+        //        context.Appointments.Add();
+        //        context.SaveChanges();
+        //        TempData["randevu"] = "Randevu başarıyla alındı.";
+        //    }
+        //    else
+        //    {
+        //        TempData["randevu"] = "Almak istediğiniz randevu doludur.";
+        //    }
+        //    return RedirectToAction("index");
+        //}
     }
 }

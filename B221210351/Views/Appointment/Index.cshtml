@@ -1,19 +1,5 @@
 ﻿@model CreateAppointmentVM
 
-<h1>
-    RANDEVU EKRANI
-
-    poliklinik
-    doktor
-    tarih
-
-    sorgula
-
-    getir
-</h1>
-
-<
-
 <form class="opacity-100" style="width: 50%; " asp-action="CreateAppointment" asp-controller="Appointment">
     <div class="form-group">
         <label for="policlinic">Klinik: </label>
@@ -37,9 +23,11 @@
         <label for="policlinic">Tarih: </label>
         <input type="datetime-local" asp-for="@Model.Appointment.AppointmentDate" />
     </div>
-    <button type="submit" class="btn btn-primary">Doktor Ekle</button>
+    <button type="submit" class="btn btn-primary">Randevu Al</button>
 </form>
 <span>@TempData["hataMesaji"]</span>
+<span>@TempData["randevu"]</span>
+
 
 <a asp-action="Logout" asp-controller="Home">Çıkış Yap</a>
 

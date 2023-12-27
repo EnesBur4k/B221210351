@@ -4,6 +4,8 @@ using B221210351.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace B221210351.Controllers
@@ -25,11 +27,48 @@ namespace B221210351.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            //if (Response.Cookies[] == null)
-            //{
+            List<Doctor> doctorList = context.Doctors
+                .Include(d => d.Appointments)
+                .Include(d => d.Policlinic)
+                .ToList();
+            List<Appointment> appointmentList = new List<Appointment>();
+            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+            int dtCheck = DateTime.Now.DayOfYear;
+
+            var firstAppointmentDate = context.Appointments.Select(a => a.AppointmentDate).FirstOrDefault();
+            if (!firstAppointmentDate.DayOfYear.Equals(dtCheck))
+            {
+                List<Appointment> deletedAppointments = context.Appointments
+                    .Where(a => a.AppointmentDate.DayOfYear < dtCheck).ToList();
+                context.Appointments.RemoveRange(deletedAppointments);
+
+            }
+            Appointment tempAppointment;
+            foreach (var doctor in doctorList)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    for (int i = 0; i < 36; i++)
+                    {
+                        tempAppointment = new Appointment
+                        {
+                            Doctor = context.Doctors.Find(doctor.DoctorId),
+                            Policlinic = context.Policlinics.Find(doctor.Policlinic.PoliclinicId),
+                            AppointmentDate = dt.AddDays(j).AddMinutes(i * 15)
+                        };
+
+                        bool isDateEnable = !context.Appointments.Where(a => (a.AppointmentDate == tempAppointment.AppointmentDate) && (a.Doctor == tempAppointment.Doctor)).Any();
+                        int weekOfDay = (int)tempAppointment.AppointmentDate.DayOfWeek;
+
+                        if (isDateEnable && ((weekOfDay != 5) && (weekOfDay != 6)))
+                        {
+                            context.Appointments.Add(tempAppointment);
+                        }
+                    }
+                }
+            }
+            context.SaveChanges();
             return View();
-            //}
-            //return RedirectToAction("Login");
         }
 
         [AllowAnonymous]

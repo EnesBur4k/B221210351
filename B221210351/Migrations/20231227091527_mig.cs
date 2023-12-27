@@ -237,9 +237,10 @@ namespace B221210351.Migrations
                 {
                     AppointmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    AppUserId = table.Column<int>(type: "int", nullable: true),
                     DoctorId = table.Column<int>(type: "int", nullable: false),
                     PoliclinicId = table.Column<int>(type: "int", nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false),
                     AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -355,8 +356,8 @@ namespace B221210351.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "99af8560-5c1b-43a9-91a0-693b8c683fc7", "Admin", "ADMIN" },
-                    { 2, "9f16a1df-b4cf-48db-b639-3567dad200a8", "User", "USER" }
+                    { 1, "83c7f2c0-f1bc-425d-b834-d856fa3b7fda", "Admin", "ADMIN" },
+                    { 2, "7269b064-ae93-458f-9baa-23cd06ecd2b5", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(

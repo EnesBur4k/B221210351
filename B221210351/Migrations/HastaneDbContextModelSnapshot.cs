@@ -95,7 +95,7 @@ namespace B221210351.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"), 1L, 1);
 
-                    b.Property<int>("AppUserId")
+                    b.Property<int?>("AppUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("AppointmentDate")
@@ -106,6 +106,9 @@ namespace B221210351.Migrations
 
                     b.Property<int>("PoliclinicId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("AppointmentId");
 
@@ -151,14 +154,14 @@ namespace B221210351.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "99af8560-5c1b-43a9-91a0-693b8c683fc7",
+                            ConcurrencyStamp = "83c7f2c0-f1bc-425d-b834-d856fa3b7fda",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "9f16a1df-b4cf-48db-b639-3567dad200a8",
+                            ConcurrencyStamp = "7269b064-ae93-458f-9baa-23cd06ecd2b5",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -787,8 +790,7 @@ namespace B221210351.Migrations
                     b.HasOne("B221210351.Models.AppUser", "AppUser")
                         .WithMany("Appointments")
                         .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("B221210351.Models.Doctor", "Doctor")
                         .WithMany("Appointments")

@@ -11,5 +11,6 @@ namespace B221210351.Models.ViewModels
         public List<Doctor> Doctors { get; set; }
         public List<Policlinic> Policlinics { get; set; }
         public List<Appointment> Appointments { get; set; }
+        public List<Appointment> AllAppointments { get; set; }
     }
 }
