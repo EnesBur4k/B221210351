@@ -2,7 +2,43 @@
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body" style="background-color: whitesmoke;">
+                    <h3 class="card-title text-center mb-4">Randevu Al</h3>
+                    <form asp-action="AppointmentList" asp-controller="Appointment">
+                        <div class="form-group mb-2">
+                            <label for="policlinic">Klinik: </label>
+                            <select id="policlinicId" class="form-control" asp-for="Policlinic.PoliclinicId">
+                                @foreach (var item in Model.Policlinics)
+                                {
+                                    <option value="@item.PoliclinicId">@item.PoliclinicName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="doctorId">Doktor: </label>
+                            <select id="doctorId" class="form-control" asp-for="Doctor.DoctorId">
+                                @foreach (var item in Model.Doctors)
+                                {
+                                    <option value="@item.DoctorId">@item.DoctorName @item.DoctorSurname</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="datepicker">Tarih Seçici:</label>
+                            <input type="datetime-local" class="flatpickr" id="datetimepicker" asp-for="AppointmentDate">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Randevuları Gör</button>
+                        <div class="mt-4">
+                            <span class="text-danger font-weight-bold">@TempData["hataMesaji"]</span>
+                            <span class="text-success">@TempData["appointmentState"] </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
             <div class="card shadow-lg">
                 <div class="card-body" style="background-color: whitesmoke;">
                     <h3 class="card-title text-center mb-4">Randevularım</h3>
@@ -14,6 +50,7 @@
                                     <th scope="col">Randevu Tarihi</th>
                                     <th scope="col">Klinik</th>
                                     <th scope="col">Doktor Adı</th>
+                                    <th scope="col">Doktor Soyadı</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,6 +61,8 @@
                                         <td>@item.AppointmentDate</td>
                                         <td>@item.Policlinic.PoliclinicName</td>
                                         <td>@item.Doctor.DoctorName</td>
+                                        <td>@item.Doctor.DoctorSurname</td>
+                                        <td><a asp-route-appointmentId="@item.AppointmentId" asp-action="CancelAppointment" asp-controller="Appointment">İptal Et</a></td>
                                     </tr>
                                 }
                             </tbody>
@@ -34,103 +73,39 @@
         </div>
     </div>
 </div>
-<form asp-action="CreateAppointment" asp-controller="Appointment">
 
-    <div class="form-group">
-        <label for="policlinic">Klinik: </label>
-        <select id="policlinicId" onchange="secimDegisti(this)" asp-for="@Model.Policlinic.PoliclinicId" class="form-control">
-            @foreach (var item in Model.Policlinics)
-            {
-                <option value="@item.PoliclinicId">@item.PoliclinicName</option>
-            }
-        </select>
-    </div>
+@section Scripts {
 
-    <div class="form-group">
-        <label for="doctor">Doktor: </label>
-        <select id="doctorId" asp-for="Doctor.DoctorId" class="form-control">
-            @foreach (var item in Model.Doctors)
-            {
-                <option value="@item.DoctorId">@item.DoctorName @item.DoctorSurname</option>
-            }
-        </select>
-    </div>
+    <script>
+        // Bugünün tarihini al
+        const today = new Date();
 
-    <div class="form-group">
-        <label for="appointmentDate">Tarih: </label>
-        <input type="datetime-local" asp-for="@Model.Appointment.AppointmentDate" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-block">Randevu Al</button>
-
-    <div class="mt-4">
-        <span class="text-danger font-weight-bold">@TempData["hataMesaji"]</span>
-        <span class="text-success">@TempData["randevu"]</span>
-    </div>
-</form>
-
-<form id="appointmentForm">
-    <div>
-        <label for="policlinicSelect">Policlinic:</label>
-        <select id="policlinicSelect" name="policlinicId" asp-for="Policlinic.PoliclinicId">
-            @foreach (var item in Model.Policlinics)
-            {
-                <option value="@item.PoliclinicId">@item.PoliclinicName</option>
-            }
-        </select>
-    </div>
-    <div>
-        <label for="doctorSelect">Doctor:</label>
-        <select id="doctorSelect" name="doctorId">
-            <!-- Doctor options will be loaded here -->
-        </select>
-    </div>
-    <div>
-        <input type="submit" value="Make Appointment" />
-    </div>
-</form>
-
-<script>
-    // Policlinic select changed event
-    document.getElementById('policlinicSelect').addEventListener('change', function () {
-        var policlinicId = policlinicSelect.value;
-
-        // Make an AJAX request to get doctors for selected policlinic
-        // You'll need to replace this with your actual endpoint
-        // Example AJAX call with jQuery:
-        
-        $.ajax({
-            url: '/Appointment/GetDoctorsByPoliclinicId/' + policlinicId,
-            method: 'GET',
-            success: function (data) {
-                // Populate doctor options based on received data
-                // Replace #doctorSelectOptions with your actual options container
-                var doctorOptions = document.getElementById('doctorSelect');
-                doctorOptions.innerHTML = ''; // Clear previous options
-
-                data.forEach(function (doctor) {
-                    var option = document.createElement('option');
-                    option.value = doctor.doctorId;
-                    option.textContent = doctor.doctorName + ' ' + doctor.doctorSurname;
-                    doctorOptions.appendChild(option);
-                });
+        flatpickr("#datetimepicker", {
+            // Bugünden itibaren 3 gün seçilebilir
+            minDate: "today",
+            maxDate: new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000),
+            // Hafta sonları seçilemez
+            disable: [
+                function (date) {
+                    // Gelen tarihlerde hafta sonu (Cumartesi veya Pazar) var mı kontrol et
+                    return (date.getDay() === 5 || date.getDay() === 6);
+                }
+            ],
+            // Türkçe dil seçeneği
+            locale: {
+                firstDayOfWeek: 1,
+                weekdays: {
+                    shorthand: ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'],
+                    longhand: ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar']
+                },
+                months: {
+                    shorthand: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+                    longhand: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
+                }
             },
-            error: function (error) {
-                console.error('Error fetching doctors: ', error);
-            }
+            // DateTime formatı
+            dateFormat: "d-m-Y",
         });
-        
-    });
+    </script>
 
-    // Form submission event
-    document.getElementById('appointmentForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        // Get form data and submit to server
-        // Replace this with your actual form submission logic
-        var formData = new FormData(this);
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
-    });
-</script>
+}

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace B221210351.Controllers
 {
@@ -30,75 +31,71 @@ namespace B221210351.Controllers
                 .Where(a => a.AppUserId == tempUserId)
                 .ToList();
 
-            List<Appointment> allAppointments = context.Appointments
-                .Include(a => a.Doctor)
-                .Include(a => a.Policlinic)
-                .ToList();
-
             CreateAppointmentVM model = new CreateAppointmentVM()
             {
                 Appointments = appointmentList,
                 Policlinics = context.Policlinics.ToList(),
-                Doctors = context.Doctors.ToList(),
-                AllAppointments = allAppointments
+                Doctors = context.Doctors.ToList()
             };
             return View(model);
         }
-
-        [HttpGet]
-        public IActionResult GetDoctorsByPoliclinicId(int policlinicId)
+        [HttpPost]
+        public IActionResult AppointmentList(CreateAppointmentVM createAppointmentVM)
         {
-            // Veritabanından ilgili policlinic'e bağlı doktorları al
-            var doctors = context.Doctors.Where(d => d.PoliclinicId == policlinicId).ToList();// Burada veritabanından doktorları çekme işlemi yapılmalıdır.
+            int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));//Kullanıcının UserId bilgisini alma
+            List<Appointment> appointmentList = context.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Policlinic)
+                .Include(a => a.AppUser)
+                .Where(a => a.AppUserId == tempUserId)
+                .ToList();
 
-            var doctorList = doctors.Select(d => new { d.DoctorId, DoctorName = d.DoctorName, DoctorSurname = d.DoctorSurname }).ToList();
-            return Json(doctorList);
+            List<Appointment> creatingAppointmentList = context.Appointments
+                .Where(a =>
+                (a.AppointmentDate.Day == createAppointmentVM.AppointmentDate.Day) &&
+                (a.DoctorId == createAppointmentVM.Doctor.DoctorId))
+                .ToList();
+
+            CreateAppointmentVM createAppointment = new CreateAppointmentVM
+            {
+                Appointments = appointmentList,
+                creatingAppointments = creatingAppointmentList
+            };
+            //o tarihteki o doktordaki randevuları listele
+            return View(createAppointment);
         }
 
-        public IActionResult CreateAppointment(CreateAppointmentVM appointmentVM)
+        public IActionResult MakeAppointment(int appointmentId)
         {
-            int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));
-            Appointment appointment = new Appointment
-            {
-                Doctor = context.Doctors.Find(appointmentVM.Doctor.DoctorId),
-                Policlinic = context.Policlinics.Find(appointmentVM.Policlinic.PoliclinicId),
-                AppointmentDate = appointmentVM.Appointment.AppointmentDate,
-                AppUser = context.Users.Find(tempUserId)
-            };
+            int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));//Kullanıcının UserId bilgisini alma
 
-            var isAppointmentEmpty = context.Appointments.Where(a =>
-            (a.DoctorId == appointmentVM.Doctor.DoctorId &&
-            a.AppointmentDate == appointmentVM.AppointmentDate)).Any();
+            Appointment appointment = context.Appointments.Find(appointmentId);
 
-            if (isAppointmentEmpty)
+            if (appointment.AppointmentState.Equals("Boş"))
             {
-                context.Appointments.Add(appointment);
+                appointment.AppUser = context.Users.Find(tempUserId);
+                appointment.AppointmentState = "Aktif";
+                TempData["appointmentState"] = "Randevunuz başarıyla oluşturulmuştur.";
+
                 context.SaveChanges();
-                TempData["randevu"] = "Randevu başarıyla alındı.";
             }
             else
             {
-                TempData["randevu"] = "Almak istediğiniz randevu doludur.";
+                TempData["appointmentState"] = "Bu randevu doludur.";
             }
+
             return RedirectToAction("index");
         }
 
+        public IActionResult CancelAppointment(int appointmentId)
+        {
+            var appointment = context.Appointments.Include(a => a.AppUser).FirstOrDefault(a => a.AppointmentId == appointmentId);
+            appointment.AppointmentState = "Boş";
+            appointment.AppUser = null;
 
-        //public IActionResult CreateAppointment(CreateAppointmentVM appointmentVM)
-        //{
+            context.SaveChanges();
+            return RedirectToAction("index");
+        }
 
-
-        //    if (appointmentVM.Appointment.isActive)
-        //    {
-        //        context.Appointments.Add();
-        //        context.SaveChanges();
-        //        TempData["randevu"] = "Randevu başarıyla alındı.";
-        //    }
-        //    else
-        //    {
-        //        TempData["randevu"] = "Almak istediğiniz randevu doludur.";
-        //    }
-        //    return RedirectToAction("index");
-        //}
     }
 }

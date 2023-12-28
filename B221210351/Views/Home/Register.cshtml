@@ -22,6 +22,12 @@
                         <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Kaydol</h3>
 
                         <div class="form-outline mb-4">
+                            <input asp-for="PatientPersonalId" type="text" id="form2Example18" class="form-control form-control-lg" />
+                            <label class="form-label" for="form2Example18">TC Kimlik No</label><br />
+                            <span class="text-danger" asp-validation-for="PatientPersonalId"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
                             <input asp-for="PatientName" type="text" id="form2Example18" class="form-control form-control-lg" />
                             <label class="form-label" for="form2Example18">Ad</label><br />
                             <span class="text-danger" asp-validation-for="PatientName"></span>
@@ -34,9 +40,12 @@
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input asp-for="PatientPersonalId" type="text" id="form2Example18" class="form-control form-control-lg" />
-                            <label class="form-label" for="form2Example18">TC Kimlik No</label><br />
-                            <span class="text-danger" asp-validation-for="PatientPersonalId"></span>
+                            <select id="gender" class="form-control form-control-lg" asp-for="PatientGender">
+                                <option value="False">Erkek</option>
+                                <option value="True">Kadın</option>
+                            </select>
+                            <label class="form-label" for="form2Example18">Cinsiyet</label><br />
+                            <span class="text-danger" asp-validation-for="PatientGender"></span>
                         </div>
 
                         <div class="form-outline mb-4">

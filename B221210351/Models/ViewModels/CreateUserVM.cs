@@ -4,6 +4,12 @@ namespace B221210351.Models.ViewModels
 {
     public class CreateUserVM
     {
+        [Required(ErrorMessage = "Lütfen TC Kimlik numaranızı giriniz...")]
+        [StringLength(11, MinimumLength = 11,
+            ErrorMessage = "TC Kimlik numarası 11 karakterli olmalı.")]
+        [Display(Name = "TC Kimlik No")]
+        public string PatientPersonalId { get; set; }
+
         [Required(ErrorMessage = "Lütfen adınızı giriniz...")]
         [Display(Name = "Hasta Adı")]
         public string PatientName { get; set; }
@@ -12,11 +18,9 @@ namespace B221210351.Models.ViewModels
         [Display(Name = "Hasta Soyadı")]
         public string PatientSurname { get; set; }
 
-        [Required(ErrorMessage = "Lütfen TC Kimlik numaranızı giriniz...")]
-        [StringLength(11, MinimumLength = 11,
-            ErrorMessage = "TC Kimlik numarası 11 karakterli olmalı.")]
-        [Display(Name = "TC Kimlik No")]
-        public string PatientPersonalId { get; set; }
+        [Required(ErrorMessage = "Lütfen soyadınızı giriniz...")]
+        [Display(Name = "Hasta Cinsiyeti")]
+        public bool PatientGender { get; set; }
 
         [Required(ErrorMessage = "Lütfen email adresinizi giriniz...")]
         [EmailAddress(ErrorMessage = "Lütfen email formatında bir değer belirtiniz...")]

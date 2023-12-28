@@ -3,6 +3,9 @@
 <table class="table table-dark">
     <tr>
         <td>
+            TC Kimlik No
+        </td>
+        <td>
             Ad
         </td>
         <td>
@@ -10,9 +13,6 @@
         </td>
         <td>
             Email
-        </td>
-        <td>
-            TC Kimlik No
         </td>
         <td>
             Cinsiyet
@@ -24,20 +24,27 @@
         {
         <tr>
             <td>
+                    @item.PatientPersonalId
+
+            </td>
+            <td>
                     @item.PatientName
             </td>
             <td>
                     @item.PatientSurname
             </td>
             <td>
-                    @* @item.PatientEmail *@
+                    @item.Email
             </td>
             <td>
-                    @item.PatientPersonalId
-
-            </td>
-            <td>
-                    @item.PatientGender
+                    @if (item.PatientGender)
+                    {
+                        @:Kadın
+                    }
+                    else
+                    {
+                        @:Erkek
+                    }
             </td>
             <td>
                     @item.PatientBirthDay

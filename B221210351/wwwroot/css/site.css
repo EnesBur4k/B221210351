@@ -61,3 +61,11 @@ body {
     border-radius: 10px;
     margin-top: 50px;
 }
+
+/* Özelleþtirilmiþ input stili */
+input.flatpickr[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}

@@ -124,6 +124,7 @@ namespace B221210351.Controllers
                     PatientName = appUserViewModel.PatientName,
                     PatientSurname = appUserViewModel.PatientSurname,
                     PatientPersonalId = appUserViewModel.PatientPersonalId,
+                    PatientGender = appUserViewModel.PatientGender,
                     UserName = appUserViewModel.PatientName.Replace(" ","") + appUserViewModel.PatientSurname,
                     Email = appUserViewModel.Email,
                     PatientBirthDay = DateTime.Now
