@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B221210351.Migrations
 {
     [DbContext(typeof(HastaneDbContext))]
-    [Migration("20231227134018_mig")]
+    [Migration("20231230161830_mig")]
     partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,14 +92,14 @@ namespace B221210351.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "668fd4a3-a6a8-4cd5-a468-cbab5619851d",
+                            ConcurrencyStamp = "fc74a611-5487-458a-bbd4-5f29583f068f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "49c8fe65-e3ac-4d2c-a496-b29bc7bdd25c",
+                            ConcurrencyStamp = "8eff6df2-207c-43b3-9e79-16678ee05272",
                             Name = "User",
                             NormalizedName = "USER"
                         });

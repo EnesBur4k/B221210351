@@ -36,7 +36,7 @@ namespace B221210351.Controllers
             int dtCheck = DateTime.Now.DayOfYear;
 
             var firstAppointmentDate = context.Appointments.Select(a => a.AppointmentDate).FirstOrDefault();
-            if (!firstAppointmentDate.DayOfYear.Equals(dtCheck))
+            if (firstAppointmentDate.DayOfYear < dtCheck)
             {
                 List<Appointment> deletedAppointments = context.Appointments
                     .Where(a => a.AppointmentDate.DayOfYear < dtCheck).ToList();
@@ -48,23 +48,23 @@ namespace B221210351.Controllers
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    for (int i = 0; i < 36; i++)
-                    {
-                        tempAppointment = new Appointment
+                        for (int i = 0; i < 36; i++)
                         {
-                            Doctor = context.Doctors.Find(doctor.DoctorId),
-                            Policlinic = context.Policlinics.Find(doctor.Policlinic.PoliclinicId),
-                            AppointmentDate = dt.AddDays(j).AddMinutes(i * 15)
-                        };
+                            tempAppointment = new Appointment
+                            {
+                                Doctor = context.Doctors.Find(doctor.DoctorId),
+                                Policlinic = context.Policlinics.Find(doctor.Policlinic.PoliclinicId),
+                                AppointmentDate = dt.AddDays(j).AddMinutes(i * 15)
+                            };
 
-                        bool isDateEnable = !context.Appointments.Where(a => (a.AppointmentDate == tempAppointment.AppointmentDate) && (a.Doctor == tempAppointment.Doctor)).Any();
-                        int weekOfDay = (int)tempAppointment.AppointmentDate.DayOfWeek;
+                            bool isDateEnable = !context.Appointments.Where(a => (a.AppointmentDate == tempAppointment.AppointmentDate) && (a.Doctor == tempAppointment.Doctor)).Any();
+                            int weekOfDay = (int)tempAppointment.AppointmentDate.DayOfWeek;
 
-                        if (isDateEnable && ((weekOfDay != 5) && (weekOfDay != 6)))
-                        {
-                            context.Appointments.Add(tempAppointment);
+                            if (isDateEnable && !((weekOfDay == 6) || (weekOfDay == 0)))
+                            {
+                                context.Appointments.Add(tempAppointment);
+                            }
                         }
-                    }
                 }
             }
             context.SaveChanges();
@@ -95,11 +95,6 @@ namespace B221210351.Controllers
                         return RedirectToAction("Index", "Appointment");
                     }
                 }
-                else
-                {
-                    ModelState.AddModelError("NotUser", "Böyle bir kullanıcı bulunmamaktadır.");
-                    ModelState.AddModelError("NotUser2", "E-posta veya şifre yanlış.");
-                }
             }
             return View(model);
         }
@@ -125,7 +120,7 @@ namespace B221210351.Controllers
                     PatientSurname = appUserViewModel.PatientSurname,
                     PatientPersonalId = appUserViewModel.PatientPersonalId,
                     PatientGender = appUserViewModel.PatientGender,
-                    UserName = appUserViewModel.PatientName.Replace(" ","") + appUserViewModel.PatientSurname,
+                    UserName = appUserViewModel.PatientName.Replace(" ", "") + appUserViewModel.PatientSurname,
                     Email = appUserViewModel.Email,
                     PatientBirthDay = DateTime.Now
                 };

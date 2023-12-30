@@ -1,0 +1,55 @@
+﻿@model List<AppUser>
+
+<table class="table table-dark">
+    <tr>
+        <td>
+            TC Kimlik No
+        </td>
+        <td>
+            Ad
+        </td>
+        <td>
+            Soyad
+        </td>
+        <td>
+            Email
+        </td>
+        <td>
+            Cinsiyet
+        </td>
+        <td>
+            Doğum Tarihi
+        </td>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                    @item.PatientPersonalId
+
+            </td>
+            <td>
+                    @item.PatientName
+            </td>
+            <td>
+                    @item.PatientSurname
+            </td>
+            <td>
+                    @item.Email
+            </td>
+            <td>
+                    @if (item.PatientGender)
+                    {
+                        @:Kadın
+                    }
+                    else
+                    {
+                        @:Erkek
+                    }
+            </td>
+            <td>
+                    @item.PatientBirthDay
+            </td>
+        </tr>
+        }
+</table>
+<br />

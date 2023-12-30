@@ -7,8 +7,7 @@
         public string DoctorSurname { get; set; }
         public bool Gender { get; set; }
         public int PoliclinicId { get; set; }
-        //Nöbet günü ayarlanacak
-        //public int WatchDays { get; set; }
+        //public DateTime WatchDay { get; set; }
         public Policlinic Policlinic { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
     }

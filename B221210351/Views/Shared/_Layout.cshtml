@@ -21,17 +21,20 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" asp-action="Index" asp-controller="Appointment"><img src="~/img/logo.png" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" asp-action="Index" asp-controller="Appointment">Ana Sayfa</a>
-                        <a class="nav-link" asp-action="Index" asp-controller="User">Bilgilerim</a>
-                        <a class="btn logout-btn" asp-action="Logout" asp-controller="Home">Çıkış Yap</a>
+                    <div class="navbar-nav w-100">
+                        <a class="nav-link active d-flex align-items-center" aria-current="page" asp-action="Index" asp-controller="Appointment">Ana Sayfa</a>
+                        <a class="nav-link d-flex align-items-center" asp-action="Index" asp-controller="User">Bilgilerim</a>
+                        <div class="flex-grow-1"></div>
+                        <a class="btn logout-btn d-flex align-items-center" asp-action="Logout" asp-controller="Home">Çıkış Yap</a>
                     </div>
                 </div>
+
+
             </div>
         </nav>
     </header>

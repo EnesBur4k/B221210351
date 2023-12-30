@@ -46,6 +46,7 @@ namespace B221210351.Controllers
             user.PatientBirthDay = userVM.PatientBirthDay;
             user.PhoneNumber = userVM.PhoneNumber;
 
+            TempData["userUpdate"] = "Kullanıcı bilgileriniz başarıyla güncellenmiştir.";
             context.SaveChanges();
             return View();
         }

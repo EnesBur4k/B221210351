@@ -51,13 +51,15 @@
                                     <th scope="col">Klinik</th>
                                     <th scope="col">Doktor Adı</th>
                                     <th scope="col">Doktor Soyadı</th>
+                                    <th scope="col"></th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model.Appointments)
                                 {
                                     <tr>
-                                        <td>@item.AppointmentState</td>
+                                        <td class="text-success fw-bolder">@item.AppointmentState</td>
                                         <td>@item.AppointmentDate</td>
                                         <td>@item.Policlinic.PoliclinicName</td>
                                         <td>@item.Doctor.DoctorName</td>

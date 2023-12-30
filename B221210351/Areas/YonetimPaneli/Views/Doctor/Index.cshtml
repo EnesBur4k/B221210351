@@ -1,5 +1,5 @@
 ﻿@model DoctorPageVM
-@* 
+@*
 Her klinikte 5 doktor her doktor 1 gün nöbet tutar
 herkes 8-16 arası çalışır. *@
 
@@ -36,7 +36,7 @@ herkes 8-16 arası çalışır. *@
 <center>
     <div class="bg-warning p-2 rounded mt-3 shadow-lg" style="--bs-bg-opacity: .50;">
 
-        <form class="opacity-100" style="width: 50%;" asp-action="addDoctor" asp-controller="Home" asp-area="yonetimPaneli">
+        <form class="opacity-100" style="width: 50%;" asp-action="addDoctor" asp-controller="Doctor" asp-area="yonetimPaneli">
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold">Ad</label>
                 <input type="text" class="form-control" asp-for="@Model.Doctor.DoctorName">
@@ -68,5 +68,3 @@ herkes 8-16 arası çalışır. *@
         <span>@TempData["hataMesaji"]</span>
     </div>
 </center>
-<br>
-

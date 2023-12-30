@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="gender">Cinsiyet</label>
-                    <select id="gender" asp-for="PatientGender">
+                    <select class="form-control" id="gender" asp-for="PatientGender">
                         <option value="0">Erkek</option>
                         <option value="1">Kadın</option>
                     </select>
@@ -38,6 +38,7 @@
                     <input type="password" class="form-control" id="password" asp-for="PatientName">
                 </div> *@
                 <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
+                <text class="text-success">@TempData["userUpdate"]</text>
             </form>
         </div>
     </div>

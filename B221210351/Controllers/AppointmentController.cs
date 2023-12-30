@@ -58,6 +58,8 @@ namespace B221210351.Controllers
 
             CreateAppointmentVM createAppointment = new CreateAppointmentVM
             {
+                Doctor = context.Doctors.Find(createAppointmentVM.Doctor.DoctorId),
+                AppointmentDate = createAppointmentVM.AppointmentDate,
                 Appointments = appointmentList,
                 creatingAppointments = creatingAppointmentList
             };

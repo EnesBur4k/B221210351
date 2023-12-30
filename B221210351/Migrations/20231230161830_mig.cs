@@ -256,8 +256,8 @@ namespace B221210351.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "668fd4a3-a6a8-4cd5-a468-cbab5619851d", "Admin", "ADMIN" },
-                    { 2, "49c8fe65-e3ac-4d2c-a496-b29bc7bdd25c", "User", "USER" }
+                    { 1, "fc74a611-5487-458a-bbd4-5f29583f068f", "Admin", "ADMIN" },
+                    { 2, "8eff6df2-207c-43b3-9e79-16678ee05272", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(

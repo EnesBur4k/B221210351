@@ -1,23 +1,56 @@
 ﻿@model CreateAppointmentVM
-
+@{
+    int itemCount = 0;
+}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-lg">
                 <div class="card-body" style="background-color: whitesmoke;">
-                    <h3 class="card-title text-center mb-4">Randevu Al</h3>
+                    <h3 class="card-title text-center mb-4"> @Model.Doctor.DoctorName @Model.Doctor.DoctorSurname @Model.AppointmentDate.ToString("d") </h3>
                     @foreach (var item in Model.creatingAppointments)
+                    {
+                        if (itemCount % 4 == 0)
+                        {
+                            @:<div class="row bg-info rounded mb-3">
+                        }
+                        <div class="col-md-3">
+                        @if (item.AppointmentState == "Boş")
+                        {
+                            <div class="col-md-3">
+                                <a asp-route-appointmentId="@item.AppointmentId" asp-action="MakeAppointment" asp-controller="Appointment" class="btn btn-success btn-lg"> @item.AppointmentDate.ToString("HH:mm")</a>
+                            </div>
+                        }else
+                        {
+                            <div class="col-md-3">
+                                <span class="btn btn-secondary btn-lg"> @item.AppointmentDate.ToString("HH:mm")</span>
+                            </div>
+                        }
+                        </div>
+
+                        itemCount++;
+
+                        if (itemCount % 4 == 0 || itemCount == Model.creatingAppointments.Count)
+                        {
+                            @:</div>
+                        }
+                    }
+
+                    @* @foreach (var item in Model.creatingAppointments)
                     {
                         if (item.AppointmentState == "Boş")
                         {
-                            <a asp-route-appointmentId="@item.AppointmentId" asp-action="MakeAppointment" asp-controller="Appointment" class="btn btn-primary"> @item.AppointmentDate.ToString("HH:mm")</a>
+                            <div class="col-md-3">
+                                <a asp-route-appointmentId="@item.AppointmentId" asp-action="MakeAppointment" asp-controller="Appointment" class="btn btn-primary"> @item.AppointmentDate.ToString("HH:mm")</a>
+                            </div>
                         }
                         else
                         {
-                            <span class="btn btn-secondary"> @item.AppointmentDate.ToString("HH:mm")</span>
+                            <div class="col-md-3">
+                                <span class="btn btn-secondary"> @item.AppointmentDate.ToString("HH:mm")</span>
+                            </div>
                         }
-                        <br />
-                    }
+                    } *@
                 </div>
             </div>
         </div>

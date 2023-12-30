@@ -1,0 +1,76 @@
+﻿@model PoliclinicDepartmentVM
+
+<center>
+    <div class="bg-white p-2 rounded" style="--bs-bg-opacity: .75;">
+
+        <form class="opacity-100" style="width: 50%; " asp-action="addDepartment" asp-controller="Policlinic" asp-area="yonetimPaneli">
+            <div class="form-group">
+                <label for="name">Ad: </label>
+                <input type="text" class="form-control" asp-for="@Model.Department.DepartmentName">
+            </div>
+            <button type="submit" class="btn btn-primary">Anabilim Dalı Ekle</button>
+        </form>
+    </div>
+</center>
+<br>
+
+<table class="table table-dark">
+    <tr>
+        <td>
+            Anabilim Dalı
+        </td>
+        @foreach (var item in Model.Departments)
+        {
+        <tr>
+            <td>
+                    @item.DepartmentName
+            </td>
+        </tr>
+        }
+</table>
+<br />
+
+<center>
+    <div class="bg-white p-2 rounded" style="--bs-bg-opacity: .75;">
+
+        <form class="opacity-100" style="width: 50%; " asp-action="addPoliclinic" asp-controller="Policlinic" asp-area="yonetimPaneli">
+            <div class="form-group">
+                <label for="name">Poliklinik Adı: </label>
+                <input type="text" class="form-control" asp-for="@Model.Policlinic.PoliclinicName">
+            </div>
+            <div class="form-group">
+                <label for="department">Anabilim Dalı: </label>
+                <select id="policlinic" asp-for="@Model.Policlinic.DepartmentId">
+                    @foreach (var item in Model.Departments)
+                    {
+                        <option value="@item.DepartmentId">@item.DepartmentName</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Poliklinik Ekle</button>
+        </form>
+    </div>
+</center>
+<br>
+
+<table class="table table-dark">
+    <tr>
+        <td>
+            Poliklinik
+        </td>
+        <td>
+            Anabilim Dalı
+        </td>
+        @foreach (var item in Model.Policlinics)
+        {
+        <tr>
+            <td>
+                    @item.PoliclinicName
+            </td>
+            <td>
+                    @item.Department.DepartmentName
+            </td>
+        </tr>
+        }
+</table>
+<br />
