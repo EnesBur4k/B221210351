@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Resources\en-US\Index.en-US.resx" />
+    <None Include="Resources\en-US\SharedResources.resx" />
   </ItemGroup>
 
 </Project>

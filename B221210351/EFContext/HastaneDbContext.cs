@@ -60,16 +60,6 @@ namespace B221210351.EFContext
                     NormalizedName = "USER"
                 });
 
-            //modelBuilder.Entity<AppUser>()
-            //    .HasData(
-            //    new AppUser
-            //    {
-            //        Id = 1,
-            //        PatientName = "Enes Burak",
-            //        PatientSurname = "Kaya",
-            //        Email="221210351@sakarya.edu.tr",
-            //    }); ;
-
             modelBuilder.Entity<Department>()
                 .HasData(
                 new Department

@@ -17,14 +17,14 @@ namespace B221210351.Controllers
         private readonly HastaneDbContext context;
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
-        private readonly IStringLocalizer<HomeController> localizer;
+        private readonly IStringLocalizer<HomeController> _localizer;
 
         public HomeController(HastaneDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IStringLocalizer<HomeController> localizer)
         {
             this.context = context;
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.localizer = localizer;
+            _localizer = localizer;
         }
 
         [AllowAnonymous]
@@ -76,6 +76,7 @@ namespace B221210351.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
+            ViewData["WelcomeMessage"] = _localizer["WelcomeMessage"];
             return View();
         }
 
