@@ -17,14 +17,19 @@ namespace B221210351.Controllers
             this.context = context;
         }
 
-        [HttpGet]
-        public Doctor GetDoctorByIdWithAll(int id)
+        [HttpGet("{id}")]
+        public Doctor Get(int id)
         {
-            Doctor doctor = context.Doctors
-                .Include(d => d.Policlinic)
-                .Include(d => d.Appointments)
-                .FirstOrDefault(d => d.DoctorId == id);
+            Doctor doctor = context.Doctors.Find(id);
             return doctor;
         }
+
+        [HttpGet]
+        public List<Doctor> Get() 
+        {
+            List<Doctor> doctors = context.Doctors.ToList();
+            return doctors;
+        }
+
     }
 }

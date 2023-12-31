@@ -3,6 +3,7 @@ using B221210351.Models;
 using B221210351.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace B221210351.Controllers
 {
@@ -17,7 +18,7 @@ namespace B221210351.Controllers
             this.context = context;
             this.userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
             int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));//Kullanıcının UserId bilgisini alma
             AppUser user = context.Users.Find(tempUserId);

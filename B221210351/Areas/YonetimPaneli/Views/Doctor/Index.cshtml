@@ -11,8 +11,6 @@ herkes 8-16 arası çalışır. *@
                 <th scope="col">Poliklinik</th>
                 <th scope="col">Anabilim Dalı</th>
                 <th scope="col">Cinsiyeti</th>
-                <th scope="col">Nöbet Günleri</th>
-                <th scope="col">Çalışma Saatleri</th>
             </tr>
         </thead>
         <tbody>
@@ -22,9 +20,17 @@ herkes 8-16 arası çalışır. *@
                     <td>@item.DoctorName @item.DoctorSurname</td>
                     <td>@item.Policlinic.PoliclinicName</td>
                     <td>@item.Policlinic.Department.DepartmentName</td>
-                    <td>@item.Gender</td>
-                    <td><!-- Nöbet Günleri --></td>
-                    <td><!-- Çalışma Saatleri --></td>
+                    <td>
+                        @if (item.Gender)
+                        {
+                            @:<text>Kadın</text>
+                        }
+                        else
+                        {
+                            @:Erkek
+                        }
+
+                    </td>
                 </tr>
             }
         </tbody>

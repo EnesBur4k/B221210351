@@ -7,35 +7,52 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/B221210351.styles.css" asp-append-version="true" />
+
+    <style>
+        /* Stillemeler */
+        .navbar {
+            background-color: #333; /* Navbar arkaplan rengi */
+        }
+
+        .navbar-brand {
+            color: #fff; /* Navbar marka metni rengi */
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff; /* Navbar link metinleri rengi */
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #aaa; /* Navbar link metinleri hover rengi */
+            }
+    </style>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">B221210351</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark mb-3">
+            <div class="container">
+                <!-- Navbar Markası -->
+                <a class="navbar-brand" href="#">Admin Paneli</a>
+                <!-- Navbar Toggle Butonu (Mobil) -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="yonetimPaneli" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
+                <!-- Navbar Linkleri -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="yonetimPaneli" asp-controller="Home" asp-action="Doctors">Doktorlar</a>
+                            <a class="nav-link" asp-area="yonetimPaneli" asp-controller="Doctor" asp-action="Index">Doktorlar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="yonetimPaneli" asp-controller="Home" asp-action="Policlinics">Poliklinikler</a>
+                            <a class="nav-link" asp-area="yonetimPaneli" asp-controller="Policlinic" asp-action="Index">Poliklinikler</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="yonetimPaneli" asp-controller="Home" asp-action="Patients">Kullanıcılar</a>
+                            <a class="nav-link" asp-area="yonetimPaneli" asp-controller="User" asp-action="Index">Kullanıcılar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="yonetimPaneli" asp-controller="Home" asp-action="Appointments">Randevular</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="yonetimPaneli" asp-controller="Home" asp-action="Roles">Roller</a>
+                            <a class="nav-link" asp-area="yonetimPaneli" asp-controller="Appointment" asp-action="Index">Randevular</a>
                         </li>
                     </ul>
                 </div>

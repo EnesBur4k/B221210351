@@ -10,6 +10,7 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.39" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.25">
       <PrivateAssets>all</PrivateAssets>
@@ -20,6 +21,10 @@
 
   <ItemGroup>
     <Folder Include="Areas\YonetimPaneli\Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\en-US\Index.en-US.resx" />
   </ItemGroup>
 
 </Project>

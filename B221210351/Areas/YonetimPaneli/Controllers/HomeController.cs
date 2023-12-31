@@ -35,7 +35,7 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login(LoginUserVM model)
+        public async Task<IActionResult> Login(LoginAdminVM model)
         {
             if (ModelState.IsValid)
             {
@@ -77,83 +77,6 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
                 Policlinics = policlinics
             };
             return View(appData);
-        }
-        public IActionResult Doctors()
-        {
-            DoctorPageVM doctorPageVM = new()
-            {
-                Doctors = context.Doctors.Include(d => d.Policlinic.Department).ToList(),
-                Policlinics = context.Policlinics.ToList()
-            };
-            return View(doctorPageVM);
-        }
-
-        public IActionResult Policlinics()
-        {
-            PoliclinicDepartmentVM policlinicDepartmentVm = new()
-            {
-                Policlinics = context.Policlinics.Include(p => p.Department).ToList(),
-                Departments = context.Departments.ToList()
-            };
-            return View(policlinicDepartmentVm);
-        }
-        public IActionResult Patients()
-        {
-            List<AppUser> patients = context.Users.ToList();
-            return View(patients);
-        }
-        public IActionResult Appointments()
-        {
-            List<Appointment> appointments = context.Appointments
-                .Include(a => a.AppUser)
-                .Include(a => a.Doctor)
-                .Include(a => a.Policlinic).ToList();
-            return View(appointments);
-        }
-
-        public IActionResult Roles()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> addRole(CreateRoleVM model)
-        {
-            IdentityResult result = await roleManager.CreateAsync(new AppRole { Name = model.Name });
-            if (result.Succeeded)
-            {
-                //Başarılı...
-            }
-            return RedirectToAction("Dashboard");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> addDoctorAsync(Doctor doctor)
-        {
-            var policlinic = context.Policlinics.Find(doctor.PoliclinicId);
-            doctor.Policlinic = policlinic;
-            await context.Doctors.AddAsync(doctor);
-            context.SaveChanges();
-            TempData["AddMessage"] = "Doktor başarıyla eklendi";
-            return RedirectToAction("Doctors");
-        }
-
-        public async Task<IActionResult> addPoliclinicAsync(Policlinic policlinic)
-        {
-            var department = context.Departments.Find(policlinic.DepartmentId);
-            policlinic.Department = department;
-            await context.Policlinics.AddAsync(policlinic);
-            context.SaveChanges();
-            TempData["AddMessage"] = "Anabilim Dalı başarıyla eklendi";
-            return RedirectToAction("Policlinics");
-        }
-
-        public async Task<IActionResult> addDepartmentAsync(Department department)
-        {
-            await context.Departments.AddAsync(department);
-            context.SaveChanges();
-            TempData["AddMessage"] = "Anabilim Dalı başarıyla eklendi";
-            return RedirectToAction("Policlinics");
         }
     }
 }

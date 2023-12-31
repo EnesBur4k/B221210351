@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Globalization;
 
 namespace B221210351.Controllers
@@ -21,9 +22,13 @@ namespace B221210351.Controllers
             this.context = context;
             this.userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
             int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));//Kullanıcının UserId bilgisini alma
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync($"https://localhost:44322/api/usersApi/{tempUserId}");
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            AppUser user = JsonConvert.DeserializeObject<AppUser>(jsonResponse);
             List<Appointment> appointmentList = context.Appointments
                 .Include(a => a.Doctor)
                 .Include(a => a.Policlinic)

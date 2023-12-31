@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -16,12 +17,14 @@ namespace B221210351.Controllers
         private readonly HastaneDbContext context;
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
+        private readonly IStringLocalizer<HomeController> localizer;
 
-        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IStringLocalizer<HomeController> localizer)
         {
             this.context = context;
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.localizer = localizer;
         }
 
         [AllowAnonymous]
@@ -33,13 +36,12 @@ namespace B221210351.Controllers
                 .ToList();
             List<Appointment> appointmentList = new List<Appointment>();
             DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
-            int dtCheck = DateTime.Now.DayOfYear;
 
             var firstAppointmentDate = context.Appointments.Select(a => a.AppointmentDate).FirstOrDefault();
-            if (firstAppointmentDate.DayOfYear < dtCheck)
+            if (firstAppointmentDate.CompareTo(dt) < 0)
             {
                 List<Appointment> deletedAppointments = context.Appointments
-                    .Where(a => a.AppointmentDate.DayOfYear < dtCheck).ToList();
+                    .Where(a => a.AppointmentDate.CompareTo(dt) < 0).ToList();
                 context.Appointments.RemoveRange(deletedAppointments);
 
             }

@@ -8,26 +8,26 @@ namespace B221210351.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PoliclinicsApiController : ControllerBase
+    public class UsersApiController : ControllerBase
     {
         private readonly HastaneDbContext context;
 
-        public PoliclinicsApiController(HastaneDbContext context)
+        public UsersApiController(HastaneDbContext context)
         {
             this.context = context;
         }
 
         [HttpGet("{id}")]
-        public Policlinic Get(int id)
+        public AppUser Get(int id)
         {
-            Policlinic data = context.Policlinics.Find(id);
+            AppUser data = context.Users.Find(id);
             return data;
         }
 
         [HttpGet]
-        public List<Policlinic> Get()
+        public List<AppUser> Get()
         {
-            List<Policlinic> data = context.Policlinics.ToList();
+            List<AppUser> data = context.Users.ToList();
             return data;
         }
     }

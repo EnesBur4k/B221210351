@@ -35,7 +35,7 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
             await context.Policlinics.AddAsync(policlinic);
             context.SaveChanges();
             TempData["AddMessage"] = "Anabilim Dalı başarıyla eklendi";
-            return RedirectToAction("Policlinics");
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> addDepartmentAsync(Department department)
@@ -43,7 +43,7 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
             await context.Departments.AddAsync(department);
             context.SaveChanges();
             TempData["AddMessage"] = "Anabilim Dalı başarıyla eklendi";
-            return RedirectToAction("Policlinics");
+            return RedirectToAction("Index");
         }
     }
 }

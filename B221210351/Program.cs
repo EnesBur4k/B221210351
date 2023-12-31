@@ -1,17 +1,16 @@
 using B221210351.EFContext;
 using B221210351.Models;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Reflection;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services
-    .AddControllersWithViews();
+builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<HastaneDbContext>(options =>
@@ -44,7 +43,27 @@ builder.Services.AddAuthentication(options =>
     options.SlidingExpiration = true;
 });
 
+// Lokalizasyon için desteklenen dillerin belirlenmesi
+var supportedCultures = new[] { "en-US", "tr-TR" };
+
+// Servislerin eklenmesi
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+
 var app = builder.Build();
+
+// Lokalizasyon ayarlarýnýn yapýlmasý
+var localizationOptions = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("en-US"),
+    SupportedCultures = supportedCultures.Select(c => new CultureInfo(c)).ToList(),
+    SupportedUICultures = supportedCultures.Select(c => new CultureInfo(c)).ToList()
+};
+
+app.UseRequestLocalization(localizationOptions);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
