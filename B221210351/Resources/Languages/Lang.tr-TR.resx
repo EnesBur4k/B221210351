@@ -117,25 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Email" xml:space="preserve">
-    <value>Email Adress</value>
+  <data name="doHaveAccount" xml:space="preserve">
+    <value>Hesabınız var mı?</value>
   </data>
-  <data name="ForgetPassword" xml:space="preserve">
-    <value>Forget password ?</value>
+  <data name="dontHaveAccount" xml:space="preserve">
+    <value>Hesabınız yok mu?</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>Login</value>
+  <data name="email" xml:space="preserve">
+    <value>Email Adresi</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
+  <data name="forgotPassword" xml:space="preserve">
+    <value>Parolanızı mı unuttunuz?</value>
   </data>
-  <data name="RegisterWord" xml:space="preserve">
-    <value>Don't have an account ?</value>
+  <data name="gender" xml:space="preserve">
+    <value>Cinsiyet</value>
   </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Bu text görünmeli</value>
+  <data name="login" xml:space="preserve">
+    <value>Giriş Yap</value>
   </data>
-  <data name="WelcomeMessage" xml:space="preserve">
-    <value>gözüksün</value>
+  <data name="name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Parola</value>
+  </data>
+  <data name="personalId" xml:space="preserve">
+    <value>TC Kimlik No</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Kaydol</value>
+  </data>
+  <data name="surname" xml:space="preserve">
+    <value>Soyad</value>
   </data>
 </root>

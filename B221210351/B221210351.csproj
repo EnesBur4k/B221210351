@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -21,10 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\YonetimPaneli\Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Resources\en-US\SharedResources.resx" />
   </ItemGroup>
 
 </Project>

@@ -85,29 +85,22 @@
         flatpickr("#datetimepicker", {
             // Bugünden itibaren 3 gün seçilebilir
             minDate: "today",
-            maxDate: new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000),
+            maxDate: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
             // Hafta sonları seçilemez
             disable: [
                 function (date) {
-                    // Gelen tarihlerde hafta sonu (Cumartesi veya Pazar) var mı kontrol et
-                    return (date.getDay() === 5 || date.getDay() === 6);
+                    return (date.getDay() === 0 || date.getDay() === 6);
                 }
             ],
-            // Türkçe dil seçeneği
+            // Dil seçeneği ve Türkçe ayarları
             locale: {
-                firstDayOfWeek: 1,
-                weekdays: {
-                    shorthand: ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'],
-                    longhand: ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar']
-                },
-                months: {
-                    shorthand: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
-                    longhand: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
-                }
+                firstDayOfWeek: 1, // Haftanın ilk günü pazartesi olarak ayarlandı
+                // Diğer dil seçenekleri
             },
-            // DateTime formatı
+            // Tarih formatı
             dateFormat: "d-m-Y",
         });
+
     </script>
 
 }

@@ -1,4 +1,6 @@
 using B221210351.EFContext;
+using B221210351.Extensions;
+using B221210351.Middlewares;
 using B221210351.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +13,29 @@ using System.Globalization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+                .AddViewLocalization();
+
+builder.Services.AddLocalization(options =>
+{
+    options.ResourcesPath = "Resources";
+});
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.DefaultRequestCulture = new("tr-TR");
+
+    CultureInfo[] cultures = new CultureInfo[]
+    {
+        new("tr-TR"),
+        new("en-US")
+    };
+
+    options.SupportedCultures = cultures;
+    options.SupportedUICultures = cultures;
+});
+
+builder.Services.AddScoped<RequestLocalizationCookiesMiddleware>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<HastaneDbContext>(options =>
@@ -44,29 +68,7 @@ builder.Services.AddAuthentication(options =>
     options.SlidingExpiration = true;
 });
 
-// Lokalizasyon için desteklenen dillerin belirlenmesi
-var supportedCultures = new[] { "en-US", "tr-TR" };
-
-// Servislerin eklenmesi
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-builder.Services.AddControllersWithViews()
-    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-    .AddDataAnnotationsLocalization();
-
-builder.Services.AddSingleton(typeof(IStringLocalizerFactory), typeof(ResourceManagerStringLocalizerFactory));
-
 var app = builder.Build();
-
-// Lokalizasyon ayarlarýnýn yapýlmasý
-var localizationOptions = new RequestLocalizationOptions
-{
-    DefaultRequestCulture = new RequestCulture("en-US"),
-    SupportedCultures = supportedCultures.Select(c => new CultureInfo(c)).ToList(),
-    SupportedUICultures = supportedCultures.Select(c => new CultureInfo(c)).ToList()
-};
-
-app.UseRequestLocalization(localizationOptions);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -83,6 +85,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseRequestLocalization();
+app.UseRequestLocalizationCookies();
 
 app.MapControllerRoute(
     name: "area",

@@ -1,4 +1,5 @@
 ﻿using B221210351.EFContext;
+using B221210351.Languages;
 using B221210351.Models;
 using B221210351.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,14 +18,14 @@ namespace B221210351.Controllers
         private readonly HastaneDbContext context;
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
-        private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly IStringLocalizer<Lang> stringLocalizer;
 
-        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IStringLocalizer<HomeController> localizer)
+        public HomeController(HastaneDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IStringLocalizer<Lang> stringLocalizer)
         {
             this.context = context;
             this.userManager = userManager;
             this.signInManager = signInManager;
-            _localizer = localizer;
+            this.stringLocalizer = stringLocalizer;
         }
 
         [AllowAnonymous]
@@ -76,7 +77,13 @@ namespace B221210351.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
-            ViewData["WelcomeMessage"] = _localizer["WelcomeMessage"];
+            ViewBag.Login = stringLocalizer["login"];
+            ViewBag.Email = stringLocalizer["email"];
+            ViewBag.Password = stringLocalizer["password"];
+            ViewBag.ForgotPassword = stringLocalizer["forgotPassword"];
+            ViewBag.Register = stringLocalizer["register"];
+            ViewBag.DontHaveAccount = stringLocalizer["dontHaveAccount"];
+
             return View();
         }
 
@@ -109,6 +116,17 @@ namespace B221210351.Controllers
         [AllowAnonymous]
         public IActionResult Register()
         {
+            ViewBag.PersonalId = stringLocalizer["personalId"];
+            ViewBag.Name = stringLocalizer["name"];
+            ViewBag.Surname = stringLocalizer["surname"];
+            ViewBag.Email = stringLocalizer["email"];
+            ViewBag.Gender = stringLocalizer["gender"];
+            ViewBag.Login = stringLocalizer["login"];
+            ViewBag.Password = stringLocalizer["password"];
+            ViewBag.ForgotPassword = stringLocalizer["forgotPassword"];
+            ViewBag.Register = stringLocalizer["register"];
+            ViewBag.DoHaveAccount = stringLocalizer["doHaveAccount"];
+
             return View();
         }
         [AllowAnonymous]

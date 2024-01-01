@@ -18,7 +18,7 @@ namespace B221210351.Controllers
             this.context = context;
             this.userManager = userManager;
         }
-        public async Task<IActionResult> IndexAsync()
+        public IActionResult Index()
         {
             int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));//Kullanıcının UserId bilgisini alma
             AppUser user = context.Users.Find(tempUserId);
@@ -40,6 +40,7 @@ namespace B221210351.Controllers
         {
             int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));//Kullanıcının UserId bilgisini alma
             AppUser user = context.Users.Find(tempUserId);
+
             user.PatientName = userVM.PatientName;
             user.PatientSurname = userVM.PatientSurname;
             user.Email = userVM.Email;
@@ -49,7 +50,7 @@ namespace B221210351.Controllers
 
             TempData["userUpdate"] = "Kullanıcı bilgileriniz başarıyla güncellenmiştir.";
             context.SaveChanges();
-            return View();
+            return RedirectToAction("index");
         }
     }
 }

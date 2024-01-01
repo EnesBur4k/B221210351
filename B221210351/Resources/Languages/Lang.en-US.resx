@@ -117,7 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="WelcomeMessage" xml:space="preserve">
-    <value>gözüksün</value>
+  <data name="doHaveAccount" xml:space="preserve">
+    <value>Do you have an account?</value>
+  </data>
+  <data name="dontHaveAccount" xml:space="preserve">
+    <value>Dont you have an account?</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="forgotPassword" xml:space="preserve">
+    <value>Forgot Password?</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="personalId" xml:space="preserve">
+    <value>Personal ID</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="surname" xml:space="preserve">
+    <value>Surname</value>
   </data>
 </root>
