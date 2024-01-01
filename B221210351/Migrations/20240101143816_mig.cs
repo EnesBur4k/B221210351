@@ -256,8 +256,8 @@ namespace B221210351.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "5db04c1f-7b54-4060-a7dc-730b838d4fe2", "Admin", "ADMIN" },
-                    { 2, "a38c6e81-6f45-4d81-8655-2a361e216b6d", "User", "USER" }
+                    { 1, "7f9a47de-c539-49f4-8fab-77c2fc8ac9f6", "Admin", "ADMIN" },
+                    { 2, "fbab367e-ed8b-49a0-a762-7621079569fd", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -297,16 +297,16 @@ namespace B221210351.Migrations
                 columns: new[] { "DoctorId", "DoctorName", "DoctorSurname", "Gender", "PoliclinicId" },
                 values: new object[,]
                 {
-                    { 1, "Asım", "Bar", true, 1 },
-                    { 2, "Basım", "Bar", true, 2 },
-                    { 3, "Casım", "Bar", true, 3 },
-                    { 4, "Dasım", "Bar", true, 4 },
-                    { 5, "Esim", "Bar", true, 5 },
-                    { 6, "Fesim", "Bar", true, 6 },
-                    { 7, "Kesim", "Bar", true, 7 },
-                    { 8, "Lesim", "Bar", true, 8 },
-                    { 9, "Tesim", "Bar", true, 9 },
-                    { 10, "Resim", "Bar", true, 10 }
+                    { 1, "Fatma", "Yılmaz", true, 1 },
+                    { 2, "Mehmet", "Kaya", false, 2 },
+                    { 3, "Ayşe", "Demir", true, 3 },
+                    { 4, "Mustafa", "Çelik", false, 4 },
+                    { 5, "Emine", "Aydın", true, 5 },
+                    { 6, "Ahmet", "Yıldırım", false, 6 },
+                    { 7, "Hatice", "Güneş", true, 7 },
+                    { 8, "Fatih", "Terim", false, 8 },
+                    { 9, "Zeynep", "Görgülü", true, 9 },
+                    { 10, "Hüseyin", "Çınar", false, 10 }
                 });
 
             migrationBuilder.CreateIndex(

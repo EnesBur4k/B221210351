@@ -1,44 +1,28 @@
 ﻿@model List<Appointment>
 
-<table class="table table-dark">
-    <tr>
-        <td>
-            TC Kimlik No
-        </td>
-        <td>
-            Hasta Adı
-        </td>
-        <td>
-            Klinik
-        </td>
-        <td>
-            Doktor Adı
-        </td>
-        <td>
-            Randevu Tarihi
-        </td>
+<table class="table table-light table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>TC Kimlik No</th>
+            <th>Hasta Adı</th>
+            <th>Klinik</th>
+            <th>Doktor Adı</th>
+            <th>Randevu Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (var item in Model)
         {
-            if (item.AppUser != null)
+            @if (item.AppUser != null)
             {
-            <tr>
-                <td>
-                        @item.AppUser.PatientPersonalId
-                </td>
-                <td>
-                        @item.AppUser.PatientName @item.AppUser.PatientSurname
-                </td>
-                <td>
-                        @item.Policlinic.PoliclinicName
-                </td>
-                <td>
-                        @item.Doctor.DoctorName
-                </td>
-                <td>
-                        @item.AppointmentDate
-                </td>
-            </tr>
+                <tr>
+                    <td>@item.AppUser.PatientPersonalId</td>
+                    <td>@item.AppUser.PatientName @item.AppUser.PatientSurname</td>
+                    <td>@item.Policlinic.PoliclinicName</td>
+                    <td>@item.Doctor.DoctorName</td>
+                    <td>@item.AppointmentDate</td>
+                </tr>
             }
         }
+    </tbody>
 </table>
-<br />

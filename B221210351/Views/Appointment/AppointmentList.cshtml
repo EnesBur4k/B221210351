@@ -35,22 +35,6 @@
                             @:</div>
                         }
                     }
-
-                    @* @foreach (var item in Model.creatingAppointments)
-                    {
-                        if (item.AppointmentState == "Boş")
-                        {
-                            <div class="col-md-3">
-                                <a asp-route-appointmentId="@item.AppointmentId" asp-action="MakeAppointment" asp-controller="Appointment" class="btn btn-primary"> @item.AppointmentDate.ToString("HH:mm")</a>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="col-md-3">
-                                <span class="btn btn-secondary"> @item.AppointmentDate.ToString("HH:mm")</span>
-                            </div>
-                        }
-                    } *@
                 </div>
             </div>
         </div>

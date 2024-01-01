@@ -10,7 +10,7 @@ using System.Numerics;
 
 namespace B221210351.Areas.YonetimPaneli.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     [Area("yonetimPaneli")]
     public class HomeController : Controller
     {
@@ -64,17 +64,25 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
 
         public IActionResult Dashboard()
         {
-            List<AppUser> patients = context.Users.ToList();
-            List<Doctor> doctors = context.Doctors.ToList();
-            List<Policlinic> policlinics = context.Policlinics.ToList();
-            List<Department> departments = context.Departments.ToList();
+            List<AppUser> patients = context.Users.Where(m => m.Id < 5).ToList();
+            List<Doctor> doctors = context.Doctors.Where(m => m.DoctorId < 5).ToList();
+            List<Policlinic> policlinics = context.Policlinics.Where(m => m.PoliclinicId < 5).ToList();
+            List<Department> departments = context.Departments.Where(m => m.DepartmentId < 5).ToList();
+            List<Appointment> appointments = context.Appointments
+                .Include(a => a.AppUser)
+                .Include(b => b.Doctor)
+                .Include(c => c.Policlinic)
+                .Where(m => ((m.AppointmentId < 5) && (m.AppUser != null)))
+                .ToList();
+
 
             AppDatasForAdminVM appData = new()
             {
                 Patients = patients,
                 Doctors = doctors,
                 Departments = departments,
-                Policlinics = policlinics
+                Policlinics = policlinics,
+                Appointments = appointments
             };
             return View(appData);
         }

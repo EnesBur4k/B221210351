@@ -56,9 +56,9 @@ namespace B221210351.Controllers
                 .ToList();
 
             List<Appointment> creatingAppointmentList = context.Appointments
-                .Where(a =>
+                .Where(a =>(
                 (a.AppointmentDate.Day == createAppointmentVM.AppointmentDate.Day) &&
-                (a.DoctorId == createAppointmentVM.Doctor.DoctorId))
+                (a.DoctorId == createAppointmentVM.Doctor.DoctorId)))
                 .ToList();
 
             CreateAppointmentVM createAppointment = new CreateAppointmentVM

@@ -90,14 +90,14 @@ namespace B221210351.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "5db04c1f-7b54-4060-a7dc-730b838d4fe2",
+                            ConcurrencyStamp = "7f9a47de-c539-49f4-8fab-77c2fc8ac9f6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "a38c6e81-6f45-4d81-8655-2a361e216b6d",
+                            ConcurrencyStamp = "fbab367e-ed8b-49a0-a762-7621079569fd",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -280,81 +280,81 @@ namespace B221210351.Migrations
                         new
                         {
                             DoctorId = 1,
-                            DoctorName = "Asım",
-                            DoctorSurname = "Bar",
+                            DoctorName = "Fatma",
+                            DoctorSurname = "Yılmaz",
                             Gender = true,
                             PoliclinicId = 1
                         },
                         new
                         {
                             DoctorId = 2,
-                            DoctorName = "Basım",
-                            DoctorSurname = "Bar",
-                            Gender = true,
+                            DoctorName = "Mehmet",
+                            DoctorSurname = "Kaya",
+                            Gender = false,
                             PoliclinicId = 2
                         },
                         new
                         {
                             DoctorId = 3,
-                            DoctorName = "Casım",
-                            DoctorSurname = "Bar",
+                            DoctorName = "Ayşe",
+                            DoctorSurname = "Demir",
                             Gender = true,
                             PoliclinicId = 3
                         },
                         new
                         {
                             DoctorId = 4,
-                            DoctorName = "Dasım",
-                            DoctorSurname = "Bar",
-                            Gender = true,
+                            DoctorName = "Mustafa",
+                            DoctorSurname = "Çelik",
+                            Gender = false,
                             PoliclinicId = 4
                         },
                         new
                         {
                             DoctorId = 5,
-                            DoctorName = "Esim",
-                            DoctorSurname = "Bar",
+                            DoctorName = "Emine",
+                            DoctorSurname = "Aydın",
                             Gender = true,
                             PoliclinicId = 5
                         },
                         new
                         {
                             DoctorId = 6,
-                            DoctorName = "Fesim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
+                            DoctorName = "Ahmet",
+                            DoctorSurname = "Yıldırım",
+                            Gender = false,
                             PoliclinicId = 6
                         },
                         new
                         {
                             DoctorId = 7,
-                            DoctorName = "Kesim",
-                            DoctorSurname = "Bar",
+                            DoctorName = "Hatice",
+                            DoctorSurname = "Güneş",
                             Gender = true,
                             PoliclinicId = 7
                         },
                         new
                         {
                             DoctorId = 8,
-                            DoctorName = "Lesim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
+                            DoctorName = "Fatih",
+                            DoctorSurname = "Terim",
+                            Gender = false,
                             PoliclinicId = 8
                         },
                         new
                         {
                             DoctorId = 9,
-                            DoctorName = "Tesim",
-                            DoctorSurname = "Bar",
+                            DoctorName = "Zeynep",
+                            DoctorSurname = "Görgülü",
                             Gender = true,
                             PoliclinicId = 9
                         },
                         new
                         {
                             DoctorId = 10,
-                            DoctorName = "Resim",
-                            DoctorSurname = "Bar",
-                            Gender = true,
+                            DoctorName = "Hüseyin",
+                            DoctorSurname = "Çınar",
+                            Gender = false,
                             PoliclinicId = 10
                         });
                 });

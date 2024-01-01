@@ -189,81 +189,81 @@ namespace B221210351.EFContext
                 new Doctor
                 {
                     DoctorId = 1,
-                    DoctorName = "Asım",
-                    DoctorSurname = "Bar",
+                    DoctorName = "Fatma",
+                    DoctorSurname = "Yılmaz",
                     Gender = true,
                     PoliclinicId = 1
                 },
                 new Doctor
                 {
                     DoctorId = 2,
-                    DoctorName = "Basım",
-                    DoctorSurname = "Bar",
-                    Gender = true,
+                    DoctorName = "Mehmet",
+                    DoctorSurname = "Kaya",
+                    Gender = false,
                     PoliclinicId = 2
                 },
                 new Doctor
                 {
                     DoctorId = 3,
-                    DoctorName = "Casım",
-                    DoctorSurname = "Bar",
+                    DoctorName = "Ayşe",
+                    DoctorSurname = "Demir",
                     Gender = true,
                     PoliclinicId = 3
                 },
                 new Doctor
                 {
                     DoctorId = 4,
-                    DoctorName = "Dasım",
-                    DoctorSurname = "Bar",
-                    Gender = true,
+                    DoctorName = "Mustafa",
+                    DoctorSurname = "Çelik",
+                    Gender = false,
                     PoliclinicId = 4
                 },
                 new Doctor
                 {
                     DoctorId = 5,
-                    DoctorName = "Esim",
-                    DoctorSurname = "Bar",
+                    DoctorName = "Emine",
+                    DoctorSurname = "Aydın",
                     Gender = true,
                     PoliclinicId = 5
                 },
                 new Doctor
                 {
                     DoctorId = 6,
-                    DoctorName = "Fesim",
-                    DoctorSurname = "Bar",
-                    Gender = true,
+                    DoctorName = "Ahmet",
+                    DoctorSurname = "Yıldırım",
+                    Gender = false,
                     PoliclinicId = 6
                 },
                 new Doctor
                 {
                     DoctorId = 7,
-                    DoctorName = "Kesim",
-                    DoctorSurname = "Bar",
+                    DoctorName = "Hatice",
+                    DoctorSurname = "Güneş",
                     Gender = true,
                     PoliclinicId = 7
                 },
                 new Doctor
                 {
                     DoctorId = 8,
-                    DoctorName = "Lesim",
-                    DoctorSurname = "Bar",
-                    Gender = true,
+                    DoctorName = "Fatih",
+                    DoctorSurname = "Terim",
+                    Gender = false,
                     PoliclinicId = 8
                 },
                 new Doctor
                 {
                     DoctorId = 9,
-                    DoctorName = "Tesim",
-                    DoctorSurname = "Bar",
+                    DoctorName = "Zeynep",
+                    DoctorSurname = "Görgülü",
                     Gender = true,
                     PoliclinicId = 9
                 },
                 new Doctor
                 {
                     DoctorId = 10,
-                    DoctorName = "Resim",
-                    DoctorSurname = "Bar",
-                    Gender = true,
+                    DoctorName = "Hüseyin",
+                    DoctorSurname = "Çınar",
+                    Gender = false,
                     PoliclinicId = 10
                 });
         }

@@ -8,5 +8,7 @@ namespace B221210351.Areas.YonetimPaneli.Models.ViewModels
         public List<Doctor> Doctors { get; set; }
         public List<Policlinic> Policlinics { get; set; }
         public List<Department> Departments { get; set; }
+        public List<Appointment> Appointments { get; set; }
+
     }
 }

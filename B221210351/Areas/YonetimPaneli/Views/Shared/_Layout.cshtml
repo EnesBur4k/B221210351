@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/B221210351.styles.css" asp-append-version="true" />
 
     <style>
+
         /* Stillemeler */
         .navbar {
             background-color: #333; /* Navbar arkaplan rengi */
@@ -25,6 +26,7 @@
             .navbar-nav .nav-link:hover {
                 color: #aaa; /* Navbar link metinleri hover rengi */
             }
+
     </style>
 
 </head>
@@ -41,6 +43,9 @@
                 <!-- Navbar Linkleri -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="yonetimPaneli" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="yonetimPaneli" asp-controller="Doctor" asp-action="Index">Doktorlar</a>
