@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 
 namespace B221210351.Controllers
 {
@@ -51,26 +52,26 @@ namespace B221210351.Controllers
             {
                 for (int j = 0; j < 7; j++)
                 {
-                        for (int i = 0; i < 36; i++)
+                    for (int i = 0; i < 36; i++)
+                    {
+                        tempAppointment = new Appointment
                         {
-                            tempAppointment = new Appointment
-                            {
-                                Doctor = context.Doctors.Find(doctor.DoctorId),
-                                Policlinic = context.Policlinics.Find(doctor.Policlinic.PoliclinicId),
-                                AppointmentDate = dt.AddDays(j).AddMinutes(i * 15)
-                            };
+                            Doctor = context.Doctors.Find(doctor.DoctorId),
+                            Policlinic = context.Policlinics.Find(doctor.Policlinic.PoliclinicId),
+                            AppointmentDate = dt.AddDays(j).AddMinutes(i * 15)
+                        };
 
-                            bool isDateEnable = !context.Appointments.Where(a => (a.AppointmentDate == tempAppointment.AppointmentDate) && (a.Doctor == tempAppointment.Doctor)).Any();
-                            int weekOfDay = (int)tempAppointment.AppointmentDate.DayOfWeek;
+                        bool isDateEnable = !context.Appointments.Where(a => (a.AppointmentDate == tempAppointment.AppointmentDate) && (a.Doctor == tempAppointment.Doctor)).Any();
+                        int weekOfDay = (int)tempAppointment.AppointmentDate.DayOfWeek;
 
-                            if (isDateEnable && !((weekOfDay == 6) || (weekOfDay == 0)))
-                            {
-                                context.Appointments.Add(tempAppointment);
-                            }
+                        if (isDateEnable && !((weekOfDay == 6) || (weekOfDay == 0)))
+                        {
+                            context.Appointments.Add(tempAppointment);
+                            context.SaveChanges();
                         }
+                    }
                 }
             }
-            context.SaveChanges();
             return RedirectToAction("Login");
         }
 

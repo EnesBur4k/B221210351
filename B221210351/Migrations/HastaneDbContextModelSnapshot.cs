@@ -90,14 +90,14 @@ namespace B221210351.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "7f9a47de-c539-49f4-8fab-77c2fc8ac9f6",
+                            ConcurrencyStamp = "e334141a-2443-4507-93cc-a05e9099a7f9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "fbab367e-ed8b-49a0-a762-7621079569fd",
+                            ConcurrencyStamp = "7c163c8c-c8a3-4b14-8f6b-3f28bebe9901",
                             Name = "User",
                             NormalizedName = "USER"
                         });

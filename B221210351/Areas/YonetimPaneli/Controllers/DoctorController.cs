@@ -36,6 +36,7 @@ namespace B221210351.Areas.YonetimPaneli.Controllers
             await context.Doctors.AddAsync(doctor);
             context.SaveChanges();
             TempData["AddMessage"] = "Doktor başarıyla eklendi";
+            return Redirect("/Home/Index");
             return RedirectToAction("Index");
         }
     }

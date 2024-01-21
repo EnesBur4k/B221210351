@@ -22,6 +22,8 @@ namespace B221210351.Controllers
             this.context = context;
             this.userManager = userManager;
         }
+
+        //Api kullanımı
         public async Task<IActionResult> IndexAsync()
         {
             int tempUserId = Convert.ToInt32(userManager.GetUserId(HttpContext.User));//Kullanıcının UserId bilgisini alma
